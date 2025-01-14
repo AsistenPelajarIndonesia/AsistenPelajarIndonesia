@@ -23,7 +23,7 @@
   <style scoped>
   .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1); /* Light grey */
-    border-left-color: #3498db; /* Blue spinner color */
+    border-left-color: rgb(225, 29, 72); /* Blue spinner color */
     border-radius: 50%;
     width: 50px;
     height: 50px;

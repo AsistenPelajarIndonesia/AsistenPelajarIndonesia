@@ -64,6 +64,7 @@ async function getQuestions() {
     <main class="py-4 container">
         <article class="input-group">
             {{ selectedLanguage }}
+            {{showed_answer}}
             <Input type="text" placeholder="Masukan topik soal yang ingin dibuat!" v-model="topic" />
             <article class="submit-group">
                 <Select v-model="selectedLanguage">
@@ -112,7 +113,7 @@ async function getQuestions() {
                 <CardTitle>{{ question.question }}</CardTitle>
             </CardHeader>
             <CardContent>
-            <RadioGroup :class="['border border-green-500 p-4', {'border-red-500': selectedAnswer[question.number] === question.answerKey(0)}]" :default-value="selectedAnswer[question.number]" :key="question.options" disabled>
+            <RadioGroup :class="['border border-green-500 p-4', {'border-red-500': selectedAnswer[question.number] === question.answerKey[0]}]" :default-value="selectedAnswer[question.number]" :key="selectedAnswer[question.number]" disabled>
                     <div class="flex items-center space-x-2"  v-for="option of question.options">
                         <RadioGroupItem :id="option.value" :value="option.value"/>
                         <Label :for="option.value">{{ option.label }}</Label>
@@ -132,5 +133,6 @@ async function getQuestions() {
                 </Accordion>
             </CardFooter>
         </Card>
+        <button @click="$forceUpdate()">Force Update</button>
     </main>
 </template>

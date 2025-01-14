@@ -29,39 +29,21 @@ watch(CmdJ, (v) => {
         </Button>
     </section>
     <CommandDialog :open="open" @update:open="handleOpenChange">
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder="Tulis perintah atau cari ilmu..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
+        <CommandGroup heading="Rekomendasi">
           <CommandItem value="Calendar">
-            <LucideCalendar class="mr-2 h-4 w-4" />
-            <span>Calendar</span>
+            <LucideMessageSquareText class="mr-2 h-4 w-4" />
+            <span>Chat AI</span>
           </CommandItem>
           <CommandItem value="Search Emoji">
-            <LucideSmile class="mr-2 h-4 w-4" />
-            <span>Search Emoji</span>
+            <LucideBookCopy class="mr-2 h-4 w-4" />
+            <span>Materi</span>
           </CommandItem>
           <CommandItem value="Calculator">
-            <LucideCalculator class="mr-2 h-4 w-4" />
-            <span>Calculator</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Settings">
-          <CommandItem value="Profile">
-            <LucideUser class="mr-2 h-4 w-4" />
-            <span>Profile</span>
-            <CommandShortcut>⌘P</CommandShortcut>
-          </CommandItem>
-          <CommandItem value="Billing">
-            <LucideCreditCard class="mr-2 h-4 w-4" />
-            <span>Billing</span>
-            <CommandShortcut>⌘B</CommandShortcut>
-          </CommandItem>
-          <CommandItem value="Settings">
-            <LucideSettings class="mr-2 h-4 w-4" />
-            <span>Settings</span>
-            <CommandShortcut>⌘S</CommandShortcut>
+            <LucidePencilLine class="mr-2 h-4 w-4" />
+            <span>Latihan Soal</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>

@@ -22,11 +22,12 @@
   
   <style scoped>
   .loading-bar {
-    position: fixed;
+    position: relative;
     width: 100%;
     height: 5px;
-    background-color: #BD1D4F;
+    background-color: rgb(59, 130, 236);
     animation: loading-animation 2s linear infinite;
+    width: 100vw!important;overflow: hidden!important;
   }
   
   @keyframes loading-animation {

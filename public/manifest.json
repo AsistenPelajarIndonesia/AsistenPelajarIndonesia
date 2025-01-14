@@ -1,6 +1,6 @@
 {
-    "name": "Asisten Pelajar Indonesia",
-    "short_name": "API",
+    "name": "Akademi Pelajar",
+    "short_name": "AP",
     "start_url": "/?home=true",
     "icons": [
       {
@@ -29,7 +29,7 @@
       }
     ],
     "theme_color": "#000000",
-    "background_color": "#FFFFFF",
+    "background_color": "#020817",
     "display": "fullscreen",
     "orientation": "portrait"
 }

@@ -1,13 +1,26 @@
 <script setup lang="ts">
 const supabase: any = useNuxtApp().$supabase;
 
+const route = useRoute()
 const router = useRouter()
+const colorMode = useColorMode()
 const userEmail = ref<string | null>(null)
 const UserDisplayName = ref<string | null>(null)
 
 const logoutError = ref<string | null>(null)
 const getUserEmailError = ref<string | null>(null)
 const getUserDisplayNameError = ref<string | null>(null)
+
+const currentPage = ref(route.fullPath.split("/").at(2))
+
+watch(route, _value => {
+    currentPage.value = route.fullPath.split("/").at(2)
+  }, 
+  {
+    deep: true, 
+    immediate: true
+  }
+)
 
 
 async function logout() {
@@ -17,7 +30,6 @@ async function logout() {
     logoutError.value = signOutError.message
     console.error('Sign out error:', logoutError.value)
   } else {
-    // Redirect to login page or home page after sign out
     await router.push('/login')
   }
 }
@@ -35,7 +47,6 @@ async function getUserEmail() {
   }
 }
 async function getUserDisplayName() {
-  console.log("run")
   const { data: { session }, error: sessionError } = await supabase.auth.getSession()
   console.log(session)
   if (sessionError) {
@@ -48,13 +59,7 @@ async function getUserDisplayName() {
   }
 }
 getUserDisplayName()
-const colorMode = useColorMode()
-const route = useRoute()
-console.log(route.fullPath.split("/").length)
-const currentPage = ref(route.fullPath.split("/").at(2))
-watch(route, value => {
-    currentPage.value = route.fullPath.split("/").at(2)
-  }, {deep: true, immediate: true})
+
 </script>
 
 <template>
@@ -64,7 +69,7 @@ watch(route, value => {
           to="#"
           class="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <img src="/icon.svg" alt="icon" />
+          <img src="/logo.png" alt="icon" />
           <span class="sr-only">API Org</span>
         </NuxtLink>
         <NuxtLink
@@ -127,7 +132,7 @@ watch(route, value => {
               to="#"
               class="flex items-center gap-2 text-lg font-semibold"
             >
-                <img src="/icon.svg" alt="icon" width="160" />
+                <img src="/logo.png" alt="icon" width="160" />
                 <span class="sr-only">API Org</span>
             </NuxtLink>
             <NuxtLink to="/dashboard" :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === undefined)}]">

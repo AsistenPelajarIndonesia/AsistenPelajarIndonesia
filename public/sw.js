@@ -2,5 +2,5 @@ importScripts('https://cdnjs.cloudflare.com/ajax/libs/workbox-sw/5.1.2/workbox-s
 
 workbox.routing.registerRoute(
     ({request}) => request.destination === 'image',
-    new workbox.strategies.NetworkFirst()
+    new workbox.strategies.CacheFirst()
 )
