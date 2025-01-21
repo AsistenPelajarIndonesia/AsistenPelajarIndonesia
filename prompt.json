@@ -1,0 +1,36 @@
+{
+    "passage": "Long paragraph hard TOEFL passage here",
+    "questions": [
+        {
+            "question": "Question related with the hard TOEFL passage",
+            "options": [
+                "A. Option A",
+                "B. Option B",
+                "C. Option C",
+                "D. Option D"
+            ],
+            "answer": "A"
+        },
+        {
+            "question": "Question related with the hard TOEFL passage",
+            "options": [
+                "A. Option A",
+                "B. Option B",
+                "C. Option C",
+                "D. Option D"
+            ],
+            "answer": "A"
+        },
+        {
+            "question": "Question related with the hard TOEFL passage",
+            "options": [
+                "A. Option A",
+                "B. Option B",
+                "C. Option C",
+                "D. Option D"
+            ],
+            "answer": "A"
+        }
+        etc...
+    ]
+} Respond in this JSON format

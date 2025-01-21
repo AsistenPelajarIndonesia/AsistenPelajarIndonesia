@@ -54,11 +54,11 @@
     </Dialog>
     <Card v-if="currentQuestion">
       <CardTitle>Question {{ currentQuestionIndex + 1 }}:</CardTitle>
-      <CardDescription>{{ currentQuestion.text }}</CardDescription>
+      <CardDescription>{{ currentQuestion.pertanyaan }}</CardDescription>
 
       <div class="flex flex-col">
         <label
-          v-for="(option, index) in currentQuestion.options"
+          v-for="(option, index) in currentQuestion.pilihan"
           :key="index"
           class="option"
         >
@@ -113,147 +113,336 @@ import { ref, computed } from "vue";
 let checked = ref(null);
 // Exam Questions
 const questions = ref([
-  { text: "What is 2 + 2?", options: ["3", "4", "5", "6"] },
-  {
-    text: "What is the capital of France?",
-    options: ["Berlin", "Madrid", "Paris", "Rome"],
-  },
-  {
-    text: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Saturn"],
-  },
-  { text: "What is 10 / 2?", options: ["3", "5", "10", "20"] },
-  {
-    text: "What is the boiling point of water?",
-    options: ["90°C", "100°C", "110°C", "120°C"],
-  },
-  {
-    text: "Who wrote 'Romeo and Juliet'?",
-    options: ["Shakespeare", "Hemingway", "Frost", "Poe"],
-  },
-  { text: "What is the square root of 64?", options: ["6", "7", "8", "9"] },
-  {
-    text: "What is the chemical symbol for gold?",
-    options: ["Au", "Ag", "Gd", "Go"],
-  },
-  {
-    text: "Who painted the Mona Lisa?",
-    options: ["Van Gogh", "Da Vinci", "Picasso", "Michelangelo"],
-  },
-  {
-    text: "What is the largest ocean on Earth?",
-    options: ["Atlantic", "Indian", "Arctic", "Pacific"],
-  },
-  { text: "What is 5 x 6?", options: ["30", "25", "20", "35"] },
-  {
-    text: "What is the capital of Japan?",
-    options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
-  },
-  {
-    text: "What gas do plants absorb from the atmosphere?",
-    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
-  },
-  {
-    text: "Who discovered gravity?",
-    options: ["Newton", "Einstein", "Galileo", "Edison"],
-  },
-  { text: "What is the square of 9?", options: ["81", "72", "64", "90"] },
-  {
-    text: "What is the powerhouse of the cell?",
-    options: ["Nucleus", "Ribosome", "Mitochondria", "Chloroplast"],
-  },
-  {
-    text: "Who invented the telephone?",
-    options: ["Alexander Graham Bell", "Thomas Edison", "Tesla", "Ford"],
-  },
-  {
-    text: "Which planet is closest to the sun?",
-    options: ["Earth", "Venus", "Mercury", "Mars"],
-  },
-  {
-    text: "How many continents are there on Earth?",
-    options: ["5", "6", "7", "8"],
-  },
-  { text: "What is 12 x 8?", options: ["96", "84", "72", "108"] },
-  {
-    text: "Who painted 'Starry Night'?",
-    options: ["Da Vinci", "Van Gogh", "Picasso", "Rembrandt"],
-  },
-  {
-    text: "What is the longest river in the world?",
-    options: ["Amazon", "Nile", "Yangtze", "Mississippi"],
-  },
-  {
-    text: "Which is the smallest prime number?",
-    options: ["0", "1", "2", "3"],
-  },
-  {
-    text: "Who was the first man to walk on the moon?",
-    options: ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "John Glenn"],
-  },
-  { text: "What is 25 / 5?", options: ["3", "4", "5", "6"] },
-  {
-    text: "What language is primarily spoken in Brazil?",
-    options: ["Spanish", "Portuguese", "French", "English"],
-  },
-  {
-    text: "What is the currency of the United Kingdom?",
-    options: ["Dollar", "Euro", "Pound", "Yen"],
-  },
-  {
-    text: "What does H2O represent?",
-    options: ["Oxygen", "Water", "Carbon Dioxide", "Hydrogen"],
-  },
-  {
-    text: "Who discovered America?",
-    options: ["Magellan", "Christopher Columbus", "Vespucci", "Cook"],
-  },
-  {
-    text: "Which animal is known as the King of the Jungle?",
-    options: ["Tiger", "Lion", "Elephant", "Cheetah"],
-  },
-  {
-    text: "What is the freezing point of water?",
-    options: ["0°C", "10°C", "32°C", "50°C"],
-  },
-  {
-    text: "What is the main gas in the air we breathe?",
-    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"],
-  },
-  {
-    text: "What is the speed of light?",
-    options: ["300,000 km/s", "150,000 km/s", "100,000 km/s", "400,000 km/s"],
-  },
-  {
-    text: "Which country is famous for the Great Wall?",
-    options: ["India", "China", "Egypt", "Mexico"],
-  },
-  {
-    text: "What is the largest organ in the human body?",
-    options: ["Brain", "Liver", "Skin", "Heart"],
-  },
-  {
-    text: "Which ocean is the coldest?",
-    options: ["Atlantic", "Pacific", "Arctic", "Indian"],
-  },
-  { text: "What is 7 x 7?", options: ["42", "49", "56", "63"] },
-  {
-    text: "Which fruit is known as the 'King of Fruits'?",
-    options: ["Apple", "Mango", "Banana", "Grapes"],
-  },
-  {
-    text: "What does DNA stand for?",
-    options: [
-      "Deoxyribonucleic Acid",
-      "Dinucleic Acid",
-      "Deoxyribonitro Acid",
-      "None of the above",
-    ],
-  },
-  {
-    text: "What is the capital of Australia?",
-    options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
-  },
+    {
+        "pertanyaan": "Organ pencernaan yang menghasilkan hormon sekretin adalah?",
+        "pilihan": [
+            "A. Organ I",
+            "B. Organ II",
+            "C. Organ III",
+            "D. Organ IV"
+        ],
+        "jawaban": "C",
+        "label": ["Biologi", "Organ Pencernaan", "Hormon"]
+    },
+    {
+        "pertanyaan": "Jumlah zat yang dapat difiltrasi dan direabsorbsi oleh ginjal adalah?",
+        "pilihan": [
+            "A. 3",
+            "B. 4",
+            "C. 5",
+            "D. 6"
+        ],
+        "jawaban": "C",
+        "label": ["Biologi", "Ginjal", "Filtrasi", "Reabsorbsi"]
+    },
+    {
+        "pertanyaan": "Stomata yang cenderung terbuka pada siang hari ditemukan pada tumbuhan?",
+        "pilihan": [
+            "A. C3",
+            "B. C4",
+            "C. CAM",
+            "D. Conifera"
+        ],
+        "jawaban": "A",
+        "label": ["Biologi", "Tumbuhan", "Stomata", "Photosintesis"]
+    },
+    {
+        "pertanyaan": "Persentase tanaman yang mempunyai tanaman berubah manis dan kuning adalah?",
+        "pilihan": [
+            "A. 0%",
+            "B. 25%",
+            "C. 50%",
+            "D. 100%"
+        ],
+        "jawaban": "B",
+        "label": ["Biologi", "Genetika", "Tanaman", "Karakteristik"]
+    },
+    {
+        "pertanyaan": "Ciri mamalia yang tidak ditemukan pada hewan lain adalah?",
+        "pilihan": [
+            "A. Berambut",
+            "B. Berkaki du pasang",
+            "C. Bernafas dengan paru-paru",
+            "D. Homoterm"
+        ],
+        "jawaban": "A",
+        "label": ["Biologi", "Mamalia", "Ciri Khas"]
+    },
+    {
+        "pertanyaan": "Organisme yang apabila populasinya meningkat tajam menyebabkan populasi udang dan cumi meningkat adalah?",
+        "pilihan": [
+            "A. 1",
+            "B. 2",
+            "C. 3",
+            "D. 4"
+        ],
+        "jawaban": "C",
+        "label": ["Biologi", "Ekosistem", "Rantai Makanan"]
+    },
+    {
+        "pertanyaan": "Interaksi antara 2 jenis tumbuhan dimana salah satu jenis diuntungkan termasuk jenis interaksi?",
+        "pilihan": [
+            "A. Amensalisme",
+            "B. Kompetisi",
+            "C. Mutualisme",
+            "D. Parasitisme"
+        ],
+        "jawaban": "C",
+        "label": ["Biologi", "Ekosistem", "Interaksi Tumbuhan"]
+    },
+    {
+        "pertanyaan": "Ciri-ciri mata hewan diurnal ditunjukkan oleh gambar?",
+        "pilihan": [
+            "A. I dan II",
+            "B. III dan IV",
+            "C. I dan III",
+            "D. II dan IV"
+        ],
+        "jawaban": "A",
+        "label": ["Biologi", "Anatomi", "Mata"]
+    },
+    {
+        "pertanyaan": "Anak dari ayah dengan golongan darah B dan ibu dengan golongan darah A dapat memiliki golongan darah?",
+        "pilihan": [
+            "A. A jika ayahnya mempunyai genotip golongan darah homozigot",
+            "B. A jika kedua orang tuanya mempunyai genotip golongan darah homozigot",
+            "C. B jika kedua orang tuanya mempunyai genotip golongan darah homozigot",
+            "D. AB jika kedua orang tuanya mempunyai genotip golongan darah homozigot"
+        ],
+        "jawaban": "D",
+        "label": ["Biologi", "Genetika", "Golongan Darah"]
+    },
+    {
+        "pertanyaan": "Yang tidak memiliki membran adalah?",
+        "pilihan": [
+            "A. i, ii, dan iii",
+            "B. i, ii, dan iv",
+            "C. i dan iv",
+            "D. iv saja"
+        ],
+        "jawaban": "B",
+        "label": ["Biologi", "Sel", "Membran"]
+    },
+    {
+        "pertanyaan": "Organ ekskresi pada hewan Arthropoda adalah?",
+        "pilihan": [
+            "A. i saja",
+            "B. i dan iv",
+            "C. i, ii, dan iv",
+            "D. i, ii, iii, dan iv"
+        ],
+        "jawaban": "D",
+        "label": ["Biologi", "Hewan", "Ekskresi"]
+    },
+    {
+        "pertanyaan": "Hewan yang sudah memiliki sistem pencernaan yang sempurna adalah?",
+        "pilihan": [
+            "A. i, ii, iii, iv, v, vi, dan vii",
+            "B. i, ii, iii, iv, v, dan vi",
+            "C. i, ii, v, vi, dan vii",
+            "D. i, ii, iii, dan v"
+        ],
+        "jawaban": "B",
+        "label": ["Biologi", "Hewan", "Sistem Pencernaan"]
+    },
+    {
+        "pertanyaan": "Larutan yang bersifat hipotonis adalah?",
+        "pilihan": [
+            "A. I dan II",
+            "B. II dan III",
+            "C. III dan IV",
+            "D. IV dan V"
+        ],
+        "jawaban": "C",
+        "label": ["Biologi", "Sel", "Osmosis"]
+    },
+    {
+        "pertanyaan": "Metafase ditunjukkan oleh sel nomor?",
+        "pilihan": [
+            "A. 1",
+            "B. 2",
+            "C. 3",
+            "D. 4"
+        ],
+        "jawaban": "C",
+        "label": ["Biologi", "Sel", "Pembelahan Sel"]
+    },
+    {
+        "pertanyaan": "Perbedaan antara tanaman monokotil dan dikotil yang benar adalah?",
+        "pilihan": [
+            "A. Struktur akar",
+            "B. Struktur batang",
+            "C. Struktur daun",
+            "D. Struktur bunga"
+        ],
+        "jawaban": "A",
+        "label": ["Biologi", "Botani", "Tanaman"]
+    },
+    {
+        "pertanyaan": "Suhu suatu ruangan terbaca oleh termometer X adalah?",
+        "pilihan": [
+            "A. 25°C",
+            "B. 30°C",
+            "C. 35°C",
+            "D. 40°C"
+        ],
+        "jawaban": "B",
+        "label": ["Fisika", "Termometer", "Suhu"]
+    },
+    {
+        "pertanyaan": "Pertambahan panjang batang besi B adalah?",
+        "pilihan": [
+            "A. 0,0005 m",
+            "B. 0,0001 m",
+            "C. 0,0015 m",
+            "D. 0,00025 m"
+        ],
+        "jawaban": "D",
+        "label": ["Fisika", "Panjang", "Pertambahan"]
+    },
+    {
+        "pertanyaan": "Jumlah energi kinetik dan potensial gerobak adalah?",
+        "pilihan": [
+            "A. Bertambah",
+            "B. Tetap",
+            "C. Berkurang",
+            "D. Tidak dapat ditentukan secara kualitatif"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "Energi", "Gerobak"]
+    },
+    {
+        "pertanyaan": "Ketinggian benda diukur dari titik setimbang pegas adalah?",
+        "pilihan": [
+            "A. 0,5 m",
+            "B. 0,8 m",
+            "C. 1,0 m",
+            "D. 1,5 m"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "Pegas", "Ketinggian"]
+    },
+    {
+        "pertanyaan": "Perubahan yang dialami oleh benda yang bergerak melingkar beraturan adalah?",
+        "pilihan": [
+            "A. Jari-jari lingkaran",
+            "B. Arah gerak partikel",
+            "C. Besar kecepatan",
+            "D. Kecepatan sudut"
+        ],
+        "jawaban": "B",
+        "label": ["Fisika", "Gerak Melingkar", "Perubahan"]
+    },
+    {
+        "pertanyaan": "Bayangan diri Tono pada spion mobil adalah?",
+        "pilihan": [
+            "A. Maya, tegak, diperkecil",
+            "B. Nyata, tegak, diperkecil",
+            "C. Nyata, tegak, diperbesar",
+            "D. Maya, terbalik, diperbesar"
+        ],
+        "jawaban": "A",
+        "label": ["Fisika", "Cermin", "Bayangan"]
+    },
+    {
+        "pertanyaan": "Waktu yang dibutuhkan balok untuk kembali ke titik A adalah?",
+        "pilihan": [
+            "A. 1 detik",
+            "B. 2 detik",
+            "C. 3 detik",
+            "D. 4 detik"
+        ],
+        "jawaban": "B",
+        "label": ["Fisika", "Gerak Lurus", "Waktu"]
+    },
+    {
+        "pertanyaan": "Massa jenis fluida adalah?",
+        "pilihan": [
+            "A. 1000 kg/m³",
+            "B. 2000 kg/m³",
+            "C. 3000 kg/m³",
+            "D. 4000 kg/m³"
+        ],
+        "jawaban": "B",
+        "label": ["Fisika", "Fluida", "Massa Jenis"]
+    },
+        {
+        "pertanyaan": "Tekanan hidrostatik pada ketinggian 5 cm dari dasar botol adalah?",
+        "pilihan": [
+            "A. 3,0 kPa",
+            "B. 2,5 kPa",
+            "C. 1,5 kPa",
+            "D. 1,0 kPa"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "Tekanan Hidrostatik", "Botol"]
+    },
+        {
+        "pertanyaan": "Nada dasar yang terjadi pada pipa asal adalah?",
+        "pilihan": [
+            "A. 150 Hz",
+            "B. 180 Hz",
+            "C. 375 Hz",
+            "D. 750 Hz"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "Gelombang Bunyi", "Pipa"]
+    },
+        {
+        "pertanyaan": "Frekuensi bandul setelah panjang tali diubah menjadi empat kali panjang awal adalah?",
+        "pilihan": [
+            "A. 0,1 Hz",
+            "B. 0,25 Hz",
+            "C. 0,5 Hz",
+            "D. 0,75 Hz"
+        ],
+        "jawaban": "B",
+        "label": ["Fisika", "Bandul", "Frekuensi"]
+    },
+        {
+        "pertanyaan": "Kecepatan aliran sungai adalah?",
+        "pilihan": [
+            "A. 9 m/s",
+            "B. 10 m/s",
+            "C. 11 m/s",
+            "D. 12 m/s"
+        ],
+        "jawaban": "B",
+        "label": ["Fisika", "Gerak Melingkar", "Kecepatan"]
+    },
+        {
+        "pertanyaan": "Faktor yang tidak meningkatkan besar GGL adalah?",
+        "pilihan": [
+            "A. Menambah jumlah lilitan pada koil",
+            "B. Membesar kuat medan magnet",
+            "C. Mengganti bahan koil",
+            "D. Mempercepat gerak koil"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "GGL", "Koil"]
+    },
+        {
+        "pertanyaan": "Tinggi cermin yang dibutuhkan agar anak dapat melihat bayangan tubuhnya secara keseluruhan adalah?",
+        "pilihan": [
+            "A. 65 cm dan 65 cm",
+            "B. 65 cm dan 70 cm",
+            "C. 70 cm dan 65 cm",
+            "D. 70 cm dan 70 cm"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "Cermin", "Bayangan"]
+    },
+    {
+        "pertanyaan": "Hambatan kabel B adalah?",
+        "pilihan": [
+            "A. 9 ohm",
+            "B. 18 ohm",
+            "C. 36 ohm",
+            "D. 72 ohm"
+        ],
+        "jawaban": "C",
+        "label": ["Fisika", "Hambatan", "Kabel"]
+    }
 ]);
 
 const currentQuestionIndex = ref(0); // Track the current question index
