@@ -1,11 +1,8 @@
-// @ts-nocheck
-export default defineNuxtRouteMiddleware(async () => {
-  
-  if (error) {
-    console.error('Error fetching session:', error.message)
-  }
+export default defineNuxtRouteMiddleware(() => {
+  const { userId } = useAuth();
 
-  if (!session) {
-    return navigateTo('/login')
+  // If the user is not signed in, redirect to the sign-in page
+  if (!userId.value) {
+    return navigateTo("/authenticate");
   }
-})
+});

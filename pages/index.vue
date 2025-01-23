@@ -445,11 +445,11 @@ const scrollToTarget = () => {
             yang bertujuan untuk membantu para pelajar dalam pencarian ilmunya
           </p>
           <section class="flex gap-2 justify-center items-center">
-              <Button
-                class="text-xl font-bold font-sans shadow-2xl"
-                style="padding: 0.8rem !important"
-                >Mulai <LucideCirclePlay style="padding-left: 0.2rem"
-              /></Button>
+            <Button
+              class="text-xl font-bold font-sans shadow-2xl"
+              style="padding: 0.8rem !important"
+              >Mulai <LucideCirclePlay style="padding-left: 0.2rem"
+            /></Button>
             <Button
               variant="outline"
               class="text-xl shadow-2xl font-bold font-sans"

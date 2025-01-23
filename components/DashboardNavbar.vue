@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const supabase: any = useNuxtApp().$supabase;
 
 const route = useRoute()
 const router = useRouter()
@@ -22,43 +21,6 @@ watch(route, _value => {
   }
 )
 
-
-async function logout() {
-  const { error: signOutError } = await supabase.auth.signOut()
-
-  if (signOutError) {
-    logoutError.value = signOutError.message
-    console.error('Sign out error:', logoutError.value)
-  } else {
-    await router.push('/login')
-  }
-}
-
-async function getUserEmail() {
-  const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-
-  if (sessionError) {
-    getUserEmailError.value = sessionError.message
-    console.error('Error fetching session:', getUserEmailError.value)
-  } else if (session?.user) {
-    userEmail.value = session.user.email 
-  } else {
-    userEmail.value = null
-  }
-}
-async function getUserDisplayName() {
-  const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-  console.log(session)
-  if (sessionError) {
-    getUserDisplayNameError.value = sessionError.message
-    console.error('Error fetching session:', getUserDisplayNameError.value)
-  } else if (session?.user) {
-    UserDisplayName.value = session.user.user_metadata.displayName
-  } else {
-    UserDisplayName.value = null
-  }
-}
-getUserDisplayName()
 
 </script>
 
@@ -200,20 +162,9 @@ getUserDisplayName()
                 </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
-            <DropdownMenuTrigger as-child>
-                <Button variant="secondary" size="icon" class="rounded-full">
-                <LucideCircleUser class="h-5 w-5" />
-                <span class="sr-only">Toggle user menu</span>
-                </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{{ UserDisplayName }}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem @click="logout">Logout</DropdownMenuItem>
-            </DropdownMenuContent>
+            <SignedIn>
+                <UserButton />
+            </SignedIn>
         </DropdownMenu>
       </div>
     </header>

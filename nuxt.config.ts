@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    "@vite-pwa/nuxt",
+    "@clerk/nuxt",
     "@nuxtjs/color-mode",
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
