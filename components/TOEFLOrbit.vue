@@ -15,7 +15,7 @@
       <Button>Free Test Simulation <LucideChevronsRight /> </Button>
     </div>
     <div
-      class="relative flex w-full flex-col items-center justify-center md:shadow-xl min-h-[300px]"
+      class="relative flex w-full flex-col items-center justify-center min-h-[300px]"
     >
       <span
         class="pointer-events-none text-center text-8xl font-semibold leading-none"
@@ -36,8 +36,10 @@
         path
         :direction="feature.direction"
       >
-        <Button variant="link" v-html="feature.iconSVG" style="color: white">
-        </Button>
+        <NuxtLink :to="feature.link">
+          <Button variant="link" v-html="feature.iconSVG" class="dark:text-white">
+          </Button>
+        </NuxtLink>
       </Orbit>
     </div>
   </main>
@@ -57,7 +59,7 @@ export default {
           radius: 50,
           delay: 10,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/feature1",
+          link: "/trial/toefl/reading",
         },
         {
           name: "Speaking",
@@ -66,7 +68,7 @@ export default {
           radius: 75,
           delay: 30,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/feature2",
+          link: "/trial/toefl/speaking",
         },
         {
           name: "Writing",
@@ -75,7 +77,7 @@ export default {
           radius: 100,
           delay: 40,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/feature3",
+          link: "/trial/toefl/writing"
         },
         {
           name: "Listening",
@@ -84,7 +86,7 @@ export default {
           radius: 125,
           delay: 80,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/feature4",
+          link: "/trial/toefl/listening",
         },
       ],
       a: "<b>bold text here</b>",
@@ -101,167 +103,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.atom-container {
-  position: relative;
-  width: 250px; /* Made the container smaller */
-  height: 250px;
-  margin: 0 0;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-.nucleus {
-  position: absolute;
-  width: 90px; /* Smaller nucleus */
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-}
-
-/* Orbits */
-.orbit {
-  position: absolute;
-  border: 2px dashed #999;
-  border-radius: 50%;
-  animation: spin-orbit 10s infinite linear; /* Default spin for normal direction */
-}
-
-.orbit-1 {
-  width: 120px; /* Smaller orbit */
-  height: 120px;
-  animation: spin 100s linear infinite; /* Animation properties */
-}
-
-.orbit-2 {
-  width: 160px;
-  height: 160px;
-  animation: spin 100s reverse linear infinite; /* Animation properties */
-}
-
-.orbit-3 {
-  width: 200px;
-  height: 200px;
-  animation: spin 100s linear infinite; /* Animation properties */
-}
-
-.orbit-4 {
-  width: 240px;
-  height: 240px;
-  animation: spin 100s reverse linear infinite; /* Animation properties */
-}
-
-/* Spinning Electrons */
-.electron {
-  position: absolute;
-  width: 20px; /* Smaller electrons */
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  animation: spin-orbit 10s infinite linear;
-}
-
-.electron-label {
-  color: white;
-}
-
-.electron:hover .feature-details {
-  display: block;
-}
-
-.feature-details {
-  position: absolute;
-  top: 50px;
-  left: -30px;
-  width: 100px;
-  background-color: #333;
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  display: none;
-}
-
-.electron-1 {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(0deg) translateX(90px); /* Increased orbit distance */
-  animation: spin-orbit-1 8s infinite linear; /* Normal spin */
-}
-
-.electron-2 {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(0deg) translateX(110px); /* Increased orbit distance */
-  animation: spin-orbit-2 10s infinite linear; /* Reverse spin */
-}
-
-.electron-3 {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(0deg) translateX(130px); /* Increased orbit distance */
-  animation: spin-orbit-3 12s infinite linear; /* Normal spin */
-}
-
-.electron-4 {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(0deg) translateX(150px); /* Increased orbit distance */
-  animation: spin-orbit-4 14s infinite linear; /* Reverse spin */
-}
-
-/* Keyframes for each orbiting electron */
-@keyframes spin-orbit-1 {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(60px);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) translateX(60px);
-  }
-}
-
-@keyframes spin-orbit-2 {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(80px);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg) translateX(80px); /* Counterclockwise */
-  }
-}
-
-@keyframes spin-orbit-3 {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(100px);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) translateX(100px);
-  }
-}
-
-@keyframes spin-orbit-4 {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(120px);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg) translateX(120px); /* Counterclockwise */
-  }
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg); /* Start position */
-  }
-  100% {
-    transform: rotate(360deg); /* End position */
-  }
-}
-</style>

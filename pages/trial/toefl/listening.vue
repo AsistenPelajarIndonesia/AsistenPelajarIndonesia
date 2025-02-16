@@ -1,0 +1,3 @@
+<template>
+    listen here
+</template>

@@ -1,13 +1,4 @@
 <script setup lang="ts">
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 const components: {
   title: string;
   iconSVG: string;
@@ -57,7 +48,7 @@ const components: {
 </script>
 
 <template>
-  <header class="z-10 top-0 flex h-16 px-4 justify-between md:px-6 mx-6">
+  <header class="z-10 top-0 flex h-16 px-4 justify-between md:px-6 mx-6 items-center">
     <nav
       class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:text-sm"
     >
@@ -187,14 +178,6 @@ const components: {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="/docs/introduction"
-              :class="navigationMenuTriggerStyle()"
-            >
-              Feed
-            </NavigationMenuLink>
-          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </nav>
@@ -206,19 +189,135 @@ const components: {
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
-        <nav class="grid gap-6 text-lg font-medium">
-          <NuxtLink
-            to="#"
-            class="flex items-center gap-2 text-lg font-semibold"
-          >
-            <img src="/logo.png" alt="icon" width="160" />
-            <span class="sr-only">API Org</span>
-          </NuxtLink>
+        <nav class="gap-1 text-lg font-medium flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Layanan Bimbel</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul
+                    class="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
+                  >
+                    <li class="row-span-3">
+                      <NavigationMenuLink as-child>
+                        <a
+                          class="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          href="/"
+                        >
+                          <img src="/logo.png" class="h-6 w-6" />
+                          <div class="mb-2 mt-4 text-lg font-medium">
+                            Akademi Pelajar
+                          </div>
+                          <p
+                            class="text-sm leading-tight text-muted-foreground"
+                          >
+                            Bimbel GRATIS untuk semua, mari menuju Indonesia
+                            Emas 2045!
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+
+                    <li>
+                      <NavigationMenuLink as-child>
+                        <a
+                          href="/docs/introduction"
+                          class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div class="flex items-center">
+                            <LucideMessageSquareText :size="16" />
+                            <h2 class="text-sm font-medium leading-none ml-1">
+                              Chat AI
+                            </h2>
+                          </div>
+                          <p
+                            class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                          >
+                            Tanya jawab untuk membantu melawan kesulitanmu!
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink as-child>
+                        <a
+                          href="/docs/installation"
+                          class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div class="flex items-center">
+                            <LucideBookCopy :size="16" />
+                            <h2 class="text-sm font-medium leading-none ml-1">
+                              Materi
+                            </h2>
+                          </div>
+                          <p
+                            class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                          >
+                            Pelajari berbagai materi dengan simpel, elegan, dan
+                            berbobot.
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink as-child>
+                        <a
+                          href="/docs/typography"
+                          class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div class="flex items-center">
+                            <LucidePencilLine :size="16" />
+                            <h2 class="text-sm font-medium leading-none ml-1">
+                              Latihan Soal
+                            </h2>
+                          </div>
+                          <p
+                            class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                          >
+                            Mempersiapkan bertemu dengan berbagai tantangan
+                            esensial.
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Persiapan Tes</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul
+                    class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]"
+                  >
+                    <li v-for="component in components" :key="component.title">
+                      <NavigationMenuLink as-child>
+                        <a
+                          :href="component.href"
+                          class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div
+                            class="text-sm font-medium leading-none flex items-center gap-1"
+                          >
+                            <i v-html="component.iconSVG"></i>
+                            <p v-html="component.title"></p>
+                          </div>
+                          <p
+                            class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                          >
+                            {{ component.description }}
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
       </SheetContent>
     </Sheet>
     <div class="flex items-center gap-4 md:gap-2 lg:gap-4" style="z-index: 11">
-      <DashboardCommand />
       <header>
         <SignedOut>
           <SignUpButton>
@@ -230,10 +329,12 @@ const components: {
         </SignedOut>
         <SignedIn>
           <section class="flex items-center justify-center gap-2">
-            <Button variant="secondary">
-              Dashboard
-              <LucideCircleChevronRight class="ml-1" :size="15"/>
-            </Button>
+            <NuxtLink to="/dashboard">
+              <Button variant="secondary">
+                Dashboard
+                <LucideCircleChevronRight class="ml-1" :size="15" />
+              </Button>
+            </NuxtLink>
             <UserButton />
           </section>
         </SignedIn>
