@@ -1,661 +1,220 @@
 <script setup lang="ts">
-interface Component {
-  title: string;
-  progressValue: number;
+interface Course {
   starred: boolean;
-  description: string;
-  defaultCourseContentAccordion: string;
-  color: string;
-  courseContentAccordion: Array<{
-    value: string;
-    title: string;
-    color: string;
-    completed: boolean;
-    content: Array<{
-      name: any;
-      props: {
-        title: string;
-        target: string;
-      };
-    }>;
+  courseDataType: string;
+  courseCodeName: string;
+  sections: Array<{
+    courseSubSection: string;
+    contents: Array<string>;
   }>;
 }
+const CPNSTWK = [
+  "Pancasila",
+  "Sumpah Pemuda",
+  "Bela Negara",
+  "UUD NRI 1945",
+  "Integritas",
+  "Nasionalisme",
+  "Etika Kerja",
+  "Kerahasiaan",
+];
 const selectedJenjang = ref();
 const selectedBidang = ref("");
-const CPNSMaterialRoute = "/dashboard/material/basic_material/cpns/twk";
-const components = ref<Component[]>([
+const courses = ref<Course[]>([
   {
-    title: "SNBT",
-    color: "violet",
     starred: false,
-    progressValue: 10,
-    description: "Siap bersaing? Tes SNBT adalah kunci untuk perguruan tinggi!",
-    defaultCourseContentAccordion: "item-1",
-    courseContentAccordion: [
+    courseDataType: "basic_material",
+    courseCodeName: "cpns",
+    sections: [
       {
-        color: "green",
-        value: "item-1",
-        title: "Tes Potensi Skolastik",
-        completed: true,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 2",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 2",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Tes Wawasan Kebangsaan",
+        contents: CPNSTWK,
       },
       {
-        color: "red",
-        value: "item-2",
-        title: "Literasi",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 2",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 2",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Tes Intelegensia Umum",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Tes Karakteristik Pribadi",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Seleksi Kompetensi Bidang",
+        contents: CPNSTWK,
       },
     ],
   },
   {
-    title: "CPNS",
-    color: "violet",
-    starred: true,
-    progressValue: 30,
-    description:
-      "Ujian kompetitif ini adalah gerbang menuju karier yang cemerlang!",
-    defaultCourseContentAccordion: "item-1",
-    courseContentAccordion: [
-      {
-        color: "blue",
-        value: "item-1",
-        title: "Tes Wawasan Kebangsaan",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Pancasila",
-              target: `${CPNSMaterialRoute}/pancasila`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Sumpah Pemuda",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Bela Negara",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "UUD NRI 1945",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Integritas",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Nasionalisme",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Etika Kerja",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Kerahasiaan",
-              target: `${CPNSMaterialRoute}/integritas`,
-            },
-          },
-        ],
-      },
-      {
-        color: "green",
-        value: "item-2",
-        title: "Tes Intelegensia Umum",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
-      },
-      {
-        color: "green",
-        value: "item-3",
-        title: "Tes Karakteristik Pribadi",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
-      },
-      {
-        color: "green",
-        value: "item-4",
-        title: "Seleksi Kompetensi Bidang",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "TOEFL®",
-    color: "violet",
     starred: false,
-    progressValue: 80,
-    description: "Tingkatkan kemampuan bahasa Inggrismu dan raih skor tinggi!",
-    defaultCourseContentAccordion: "item-1",
-    courseContentAccordion: [
+    courseDataType: "basic_material",
+    courseCodeName: "snbt tps",
+    sections: [
       {
-        color: "green",
-        value: "item-1",
-        title: "Reading Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Penalaran Umum",
+        contents: CPNSTWK,
       },
       {
-        color: "green",
-        value: "item-2",
-        title: "Writing Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Pengetahuan & Pemahaman Umum ",
+        contents: CPNSTWK,
       },
       {
-        color: "green",
-        value: "item-3",
-        title: "Listening Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Pemahaman Bacaan & Menulis",
+        contents: CPNSTWK,
       },
       {
-        color: "green",
-        value: "item-4",
-        title: "Speaking Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Penalaran Kuantitatif",
+        contents: CPNSTWK,
       },
     ],
   },
   {
-    title: "IELTS®",
-    color: "violet",
+    starred: false,
+    courseDataType: "basic_material",
+    courseCodeName: "snbt literasi",
+    sections: [
+      {
+        courseSubSection: "Literasi Bahasa Indonesia",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Literasi Bahasa Inggris",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Penalaran Matematika",
+        contents: CPNSTWK,
+      },
+    ],
+  },
+  {
+    starred: false,
+    courseDataType: "basic_material",
+    courseCodeName: "ielts",
+    sections: [
+      {
+        courseSubSection: "Reading",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Writing",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Listening",
+        contents: CPNSTWK,
+      },
+      {
+        courseSubSection: "Speaking",
+        contents: CPNSTWK,
+      },
+    ],
+  },
+  {
     starred: true,
-    progressValue: 70,
-    description:
-      "Membuka pintu menuju pendidikan dan peluang karier internasional!",
-    defaultCourseContentAccordion: "item-1",
-    courseContentAccordion: [
+    courseDataType: "basic_material",
+    courseCodeName: "toefl",
+    sections: [
       {
-        color: "green",
-        value: "item-1",
-        title: "Reading Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Reading",
+        contents: CPNSTWK,
       },
       {
-        color: "green",
-        value: "item-2",
-        title: "Writing Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Writing",
+        contents: CPNSTWK,
       },
       {
-        color: "green",
-        value: "item-3",
-        title: "Listening Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Listening",
+        contents: CPNSTWK,
       },
       {
-        color: "green",
-        value: "item-4",
-        title: "Speaking Section",
-        completed: false,
-        content: [
-          {
-            name: defineAsyncComponent(
-              () => import("~/components/MaterialSection.vue")
-            ),
-            props: {
-              title: "Material Section 1",
-              target: "/",
-            },
-          },
-          {
-            name: defineAsyncComponent(
-              () => import("@/components/PracticeSection.vue")
-            ),
-            props: {
-              title: "Practice Section 1",
-              target: "/",
-            },
-          },
-        ],
+        courseSubSection: "Speaking",
+        contents: CPNSTWK,
       },
     ],
   },
 ]);
+function convertString(str: string) {
+  return str.toLowerCase().replace(/\s+/g, "-");
+}
+const sortedComponents = ref<Course[]>([]);
 
-const searchQuery = ref("");
+function sortByStarred(): void {
+  sortedComponents.value = [...courses.value].sort(
+    (a, b) => Number(b.starred) - Number(a.starred)
+  );
+}
+
+watch(courses, sortByStarred, { deep: true, immediate: true });
+onMounted(() => {
+  sortByStarred();
+});
 </script>
 
 <template>
-  <div class="p-6 space-y-8">
-    <!-- Header -->
-    <div class="flex justify-between items-center">
-      <div>
-        <h1 class="text-2xl font-bold text-white">My Courses</h1>
-        <p class="text-gray-400">Continue your learning journey</p>
-      </div>
-      <div class="flex items-center gap-4">
-        <div class="relative">
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Search courses..."
-            class="w-64 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+  <main class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+    <div class="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <Card v-for="course in sortedComponents" class="p-4" :key="course.courseCodeName">
+        <div class="flex items-center justify-between">
+          <h1 class="text-2xl font-bold font-serif">
+            {{ course.courseCodeName.toUpperCase() }}
+          </h1>
+          <LucideStar
+            :size="16"
+            fill="#FFD700"
+            v-if="course.starred"
+            @click="course.starred = !course.starred"
           />
-          <svg
-            class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+          <LucideStar
+            :size="16"
+            v-else
+            @click="course.starred = !course.starred"
+          />
         </div>
-        <NuxtLink to="/dashboard/all-courses">
-          <Button class="bg-primary hover:bg-primary/90"
-            >Browse All Courses</Button
-          >
-        </NuxtLink>
-      </div>
-    </div>
-
-    <!-- Course Timeline -->
-    <div class="space-y-6">
-      <Card
-        v-for="component in components"
-        :key="component.title"
-        class="border-0 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300"
-      >
-        <CardContent class="p-6">
-          <div class="flex items-start gap-6">
-            <!-- Course Content -->
-            <div class="flex-1 space-y-4">
-              <div class="flex justify-between items-start">
-                <div>
-                  <h3 class="text-lg font-semibold text-white">
-                    {{ component.title }}
-                  </h3>
-                  <p class="text-gray-400">{{ component.description }}</p>
+        <div v-for="section in course.sections">
+          <Accordion type="single" collapsible>
+            <AccordionItem :value="section.courseSubSection">
+              <AccordionTrigger
+                ><div>
+                  <h1>{{ section.courseSubSection.toUpperCase() }}</h1>
                 </div>
-                <Button variant="outline" size="sm">Resume</Button>
-              </div>
-
-              <!-- Progress Bar -->
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span class="text-gray-400">Progress</span>
-                  <span class="text-white">{{ component.progressValue }}%</span>
-                </div>
-                <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
-                  <Progress :model-value="component.progressValue"></Progress>
-                </div>
-              </div>
-
-              <Accordion
-                type="single"
-                class="w-full grid grid-cols-1 md:grid-cols-2 gap-4"
-                collapsible
+              </AccordionTrigger>
+              <AccordionContent
+                class="flex flex-col gap-3"
+                :value="content"
+                v-for="content in section.contents"
               >
-                <AccordionItem
-                  v-for="module in component.courseContentAccordion"
-                  :key="module.title"
-                  :value="module.value"
-                >
-                  <AccordionTrigger
-                    class="p-3 rounded-lg border border-gray-700 flex gap-2"
-                    :class="{
-                      'bg-gray-800/50': !module.completed,
-                      [`bg-${module.color}-500/10 border-${module.color}-500/30`]:
-                        module.completed,
-                    }"
-                  >
-                    <svg
-                      v-if="module.completed"
-                      class="w-5 h-5"
-                      :class="`text-green-500`"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span
-                      class="text-sm"
-                      :class="{
-                        'text-gray-400': !module.completed,
-                        'text-white': module.completed,
-                      }"
-                      >{{ module.title }}</span
-                    >
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div class="flex flex-col gap-1">
-                      <div
-                        v-for="(component, index) in module.content"
-                        :key="index"
-                      >
-                        <component
-                          :is="component.name"
-                          v-bind="component.props"
-                        />
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          </div>
-        </CardContent>
+                <div class="flex justify-between items-center">
+                  <p><Badge variant="default">Materi</Badge> {{ content }}</p>
+                  <NuxtLink
+                    :to="`/dashboard/material/${course.courseDataType}/${course.courseCodeName}/${section.courseSubSection}/${convertString(content)}`"
+                    ><Button variant="default"><LucideBookOpen /></Button
+                  ></NuxtLink>
+                </div>
+                <div class="flex justify-between items-center">
+                  <p>
+                    <Badge variant="secondary">Latihan</Badge> {{ content }}
+                  </p>
+                  <NuxtLink
+                    :to="`/dashboard/practice/${course.courseDataType}/${course.courseCodeName}/${section.courseSubSection}/${convertString(content)}`"
+                    ><Button variant="secondary"><LucideSquarePen /></Button>
+                  </NuxtLink>
+                </div>
+              </AccordionContent>
+              <AccordionContent>
+                <div class="flex justify-between items-center">
+                  <p>
+                    <Badge variant="destructive">Simulasi</Badge> Simulasi Tes
+                  </p>
+                  <NuxtLink
+                    :to="`/dashboard/practice/${course.courseDataType}/${course.courseCodeName}/${section.courseSubSection}/`"
+                    ><Button variant="destructive"><LucidePlayCircle /></Button>
+                  </NuxtLink>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </Card>
     </div>
-  </div>
+  </main>
 </template>

@@ -20,7 +20,7 @@ const scrollToTarget = () => {
 <template>
   <div class="flex justify-center items-center">
     <main
-      class="border-gray-900"
+      class="border-gray-900 max-w-5xl"
       style="padding-left: 1rem !important; padding-right: 1rem !important"
     >
       <HomepageNavbar />
@@ -49,7 +49,18 @@ const scrollToTarget = () => {
               yang bertujuan untuk membantu para pelajar dalam pencarian ilmunya
             </p>
             <section class="flex gap-2 justify-center items-center">
-              <CTADialog />
+              <SignedOut>
+                <CTADialog />
+              </SignedOut>
+              <SignedIn>
+                <NuxtLink to="/dashboard">
+                <Button
+                  class="text-xl shadow-2xl font-bold font-sans"
+                  style="padding: 0.9rem !important"
+                  >Dashboard</Button
+                >
+                </NuxtLink>
+              </SignedIn>
               <Button
                 variant="outline"
                 class="text-xl shadow-2xl font-bold font-sans"
@@ -63,10 +74,14 @@ const scrollToTarget = () => {
           </div>
         </div>
       </WarpBackground>
-
       <TOEFLOrbit />
       <div id="target"></div>
       <SNBTSection />
+      <IELTSOrbit />
+      <ClientOnly>
+        <OSNSection />
+      </ClientOnly>
+      <HomepageFooter />
     </main>
   </div>
 </template>

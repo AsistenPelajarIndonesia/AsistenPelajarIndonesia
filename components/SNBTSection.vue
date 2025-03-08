@@ -12,7 +12,7 @@
         cerdas, analisis akurat, dan strategi jitu. Raih kampus impianmu
         sekarang!
       </p>
-      <Button>Free Test Simulation <LucideChevronsRight /> </Button>
+      <NuxtLink to="/trial/snbt"><Button>Free Test Simulation <LucideChevronsRight /> </Button></NuxtLink>
     </div>
     <div
       class="relative flex w-full flex-col items-center justify-center min-h-[300px]"

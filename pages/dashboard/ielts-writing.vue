@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 max-w-6xl">
     <!-- Test Header Section -->
     <div class="mb-8 space-y-4">
-      <h1 class="text-2xl font-bold">TOEFL Writing Practice Test</h1>
+      <h1 class="text-2xl font-bold">IELTS Writing Practice Test</h1>
       <div class="flex items-center justify-between">
         <Badge variant="outline" class="text-lg">
           {{ currentSection }}
@@ -22,31 +22,51 @@
     <div v-if="isGenerating" class="flex justify-center items-center py-8">
       <div class="space-y-4 text-center">
         <SpinningBar />
-        <p class="text-muted-foreground">Generating writing prompt...</p>
+        <p class="text-muted-foreground">Generating writing task...</p>
       </div>
     </div>
 
     <!-- Test Content -->
     <div v-else-if="testStarted && !testCompleted" class="space-y-6">
-      <!-- Reading Passage Section -->
-      <Card class="p-6">
-        <ScrollArea class="h-[400px] w-full pr-4">
-          <div class="space-y-4">
-            <CardTitle class="text-xl font-bold">Reading Passage</CardTitle>
-            <div class="prose prose-slate dark:prose-invert max-w-none">
-              {{ testData.passage }}
-            </div>
+      <!-- Task Type Selection -->
+      <Card v-if="!taskSelected" class="p-6">
+        <div class="space-y-4">
+          <CardTitle class="text-xl font-bold">Select Task Type</CardTitle>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Button
+              @click="selectTask('task1')"
+              variant="outline"
+              class="h-auto p-6 text-left space-y-2"
+            >
+              <div class="font-bold">Task 1 (20 minutes)</div>
+              <div class="text-sm text-muted-foreground">
+                {{ isAcademic ? 'Describe visual information (graph, table, chart, or diagram)' : 'Write a letter' }}
+              </div>
+            </Button>
+            <Button
+              @click="selectTask('task2')"
+              variant="outline"
+              class="h-auto p-6 text-left space-y-2"
+            >
+              <div class="font-bold">Task 2 (40 minutes)</div>
+              <div class="text-sm text-muted-foreground">
+                Write an essay in response to a point of view, argument, or problem
+              </div>
+            </Button>
           </div>
-        </ScrollArea>
+        </div>
       </Card>
 
-      <!-- Writing Prompt Section -->
-      <Card class="p-6">
+      <!-- Task Instructions -->
+      <Card v-else class="p-6">
         <div class="space-y-4">
-          <CardTitle class="text-xl font-bold">Writing Prompt</CardTitle>
-          <CardDescription class="text-lg">
+          <CardTitle class="text-xl font-bold">Task {{ selectedTask === 'task1' ? '1' : '2' }}</CardTitle>
+          <CardDescription class="text-lg whitespace-pre-line">
             {{ testData.prompt }}
           </CardDescription>
+          <div v-if="testData.visualData" class="mt-4">
+            <img :src="testData.visualData" alt="Task visual data" class="max-w-full h-auto" />
+          </div>
         </div>
       </Card>
 
@@ -56,7 +76,9 @@
           <div class="flex items-center justify-between">
             <CardTitle class="text-xl font-bold">Your Response</CardTitle>
             <div class="flex items-center gap-2">
-              <Badge variant="outline"> {{ wordCount }} words </Badge>
+              <Badge variant="outline">
+                {{ wordCount }} words
+              </Badge>
             </div>
           </div>
           <Textarea
@@ -85,27 +107,24 @@
         </CardTitle>
 
         <div class="space-y-8">
-          <!-- Overall Score -->
+          <!-- Overall Band Score -->
           <div class="text-center">
             <div class="text-5xl font-bold text-primary mb-2">
-              {{ evaluationResult.score }}/30
+              Band {{ evaluationResult.bandScore }}
             </div>
-            <p class="text-muted-foreground">Overall Score</p>
+            <p class="text-muted-foreground">Overall Band Score</p>
           </div>
 
           <!-- Score Breakdown -->
           <div class="grid gap-6 md:grid-cols-2">
-            <Card
-              v-for="(score, category) in evaluationResult.breakdown"
-              :key="category"
-            >
+            <Card v-for="(score, category) in evaluationResult.breakdown" :key="category">
               <CardHeader>
                 <CardTitle class="capitalize">{{ category }}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div class="flex items-center justify-between">
-                  <span class="text-2xl font-bold">{{ score }}/5</span>
-                  <Progress :model-value="(score / 5) * 100" class="w-2/3" />
+                  <span class="text-2xl font-bold">{{ score }}</span>
+                  <Progress :model-value="(score / 9) * 100" class="w-2/3" />
                 </div>
               </CardContent>
             </Card>
@@ -117,14 +136,9 @@
               <CardTitle>Detailed Feedback</CardTitle>
             </CardHeader>
             <CardContent class="space-y-4">
-              <div
-                v-for="(feedback, idx) in evaluationResult.feedback"
-                :key="idx"
-              >
+              <div v-for="(feedback, idx) in evaluationResult.feedback" :key="idx">
                 <Alert :variant="getFeedbackVariant(feedback.type)">
-                  <AlertTitle class="capitalize">{{
-                    feedback.type
-                  }}</AlertTitle>
+                  <AlertTitle class="capitalize">{{ feedback.type }}</AlertTitle>
                   <AlertDescription>{{ feedback.message }}</AlertDescription>
                 </Alert>
               </div>
@@ -152,7 +166,7 @@
       <Dialog v-model:open="showSampleResponse">
         <DialogContent class="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Sample High-Scoring Response</DialogTitle>
+            <DialogTitle>Sample Band 9 Response</DialogTitle>
           </DialogHeader>
           <div class="prose prose-slate dark:prose-invert max-w-none">
             {{ evaluationResult.sampleResponse }}
@@ -164,27 +178,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onBeforeUnmount } from "vue";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Groq from "groq-sdk";
+import { ref, computed, onBeforeUnmount } from 'vue';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Groq from 'groq-sdk';
 
 const groq = new Groq({
   apiKey: "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",
@@ -196,40 +198,49 @@ const testStarted = ref(false);
 const testCompleted = ref(false);
 const isGenerating = ref(false);
 const isSubmitting = ref(false);
-const timeRemaining = ref(30 * 60); // 30 minutes
-const userResponse = ref("");
+const taskSelected = ref(false);
+const selectedTask = ref(null);
+const isAcademic = ref(true); // Toggle between Academic and General Training
+const timeRemaining = ref(0);
+const userResponse = ref('');
 const showSampleResponse = ref(false);
 const timer = ref(null);
 
 // Test Data
 const testData = ref({
-  passage: "",
-  prompt: "",
+  prompt: '',
+  visualData: null, // For Task 1 Academic (graphs, charts, etc.)
 });
 
 // Evaluation Results
 const evaluationResult = ref({
-  score: 0,
+  bandScore: 0,
   breakdown: {
-    "task completion": 0,
-    "coherence and cohesion": 0,
-    "lexical resource": 0,
-    "grammatical range": 0,
-    "academic style": 0,
+    'task achievement': 0,
+    'coherence and cohesion': 0,
+    'lexical resource': 0,
+    'grammatical range and accuracy': 0,
   },
   feedback: [],
-  sampleResponse: "",
+  sampleResponse: '',
 });
 
 // Computed Properties
-const currentSection = computed(() => "Integrated Writing Task");
+const currentSection = computed(() => {
+  if (!taskSelected.value) return 'Select Task Type';
+  return `Writing ${selectedTask.value === 'task1' ? 'Task 1' : 'Task 2'}`;
+});
 
 const wordCount = computed(() => {
   return userResponse.value.trim().split(/\s+/).filter(Boolean).length;
 });
 
 const canSubmit = computed(() => {
-  return testStarted.value && wordCount.value >= 150 && !isSubmitting.value;
+  const minWords = selectedTask.value === 'task1' ? 150 : 250;
+  return testStarted.value && 
+         taskSelected.value && 
+         wordCount.value >= minWords && 
+         !isSubmitting.value;
 });
 
 // Methods
@@ -240,24 +251,26 @@ async function generateTest() {
       messages: [
         {
           role: "system",
-          content:
-            "You are an expert TOEFL test creator specializing in challenging integrated writing tasks. Generate content in JSON format.",
+          content: "You are an expert IELTS test creator specializing in writing tasks. Generate content in JSON format."
         },
         {
           role: "user",
-          content: `Create a challenging TOEFL integrated writing task with the following JSON format:
+          content: `Create an IELTS ${selectedTask.value === 'task1' ? 
+            (isAcademic.value ? 'Academic Task 1 (describe visual information)' : 'General Training Task 1 (letter writing)') : 
+            'Task 2 (essay)'} with the following JSON format:
             {
-              "passage": "[Academic passage about a complex topic]",
-              "prompt": "[Writing prompt that requires analysis and integration of the passage]"
+              "prompt": "[Detailed task instructions]",
+              ${isAcademic.value && selectedTask.value === 'task1' ? '"visualData": "[URL to graph/chart image]",' : ''}
+              "expectedWordCount": ${selectedTask.value === 'task1' ? '150' : '250'}
             }
-            Make the content extremely challenging, suitable for high-level academic English proficiency.`,
-        },
+            Make the content challenging and authentic to real IELTS tests.`
+        }
       ],
       model: "llama-3.3-70b-versatile",
       temperature: 0.7,
       max_completion_tokens: 32768,
       top_p: 0.95,
-      response_format: { type: "json_object" },
+      response_format: { type: "json_object" }
     });
 
     const response = JSON.parse(completion.choices[0]?.message?.content || "");
@@ -275,25 +288,22 @@ async function evaluateResponse() {
       messages: [
         {
           role: "system",
-          content:
-            "You are an expert TOEFL writing evaluator. Provide detailed evaluation in JSON format.",
+          content: "You are an expert IELTS writing evaluator. Provide detailed evaluation in JSON format."
         },
         {
           role: "user",
-          content: `Evaluate this TOEFL integrated writing response:
-            Passage: ${testData.value.passage}
-            Prompt: ${testData.value.prompt}
+          content: `Evaluate this IELTS ${selectedTask.value} response:
+            Task: ${testData.value.prompt}
             Response: ${userResponse.value}
 
             Provide evaluation in this JSON format:
             {
-              "score": [Overall score out of 30],
+              "bandScore": [Overall band score 1-9],
               "breakdown": {
-                "task completion": [Score 1-5],
-                "coherence and cohesion": [Score 1-5],
-                "lexical resource": [Score 1-5],
-                "grammatical range": [Score 1-5],
-                "academic style": [Score 1-5]
+                "task achievement": [Score 1-9],
+                "coherence and cohesion": [Score 1-9],
+                "lexical resource": [Score 1-9],
+                "grammatical range and accuracy": [Score 1-9]
               },
               "feedback": [
                 {
@@ -301,15 +311,15 @@ async function evaluateResponse() {
                   "message": "[Detailed feedback]"
                 }
               ],
-              "sampleResponse": "[A model response]"
-            }`,
-        },
+              "sampleResponse": "[A model band 9 response]"
+            }`
+        }
       ],
       model: "llama-3.3-70b-versatile",
       temperature: 0.3,
       max_completion_tokens: 32768,
       top_p: 0.95,
-      response_format: { type: "json_object" },
+      response_format: { type: "json_object" }
     });
 
     const response = JSON.parse(completion.choices[0]?.message?.content || "");
@@ -319,10 +329,16 @@ async function evaluateResponse() {
   }
 }
 
-function startTest() {
-  testStarted.value = true;
+function selectTask(task) {
+  selectedTask.value = task;
+  taskSelected.value = true;
+  timeRemaining.value = task === 'task1' ? 20 * 60 : 40 * 60; // 20 or 40 minutes
   generateTest();
   startTimer();
+}
+
+function startTest() {
+  testStarted.value = true;
 }
 
 function startTimer() {
@@ -342,7 +358,7 @@ async function submitTest() {
   clearInterval(timer.value);
 
   await evaluateResponse();
-
+  
   testCompleted.value = true;
   isSubmitting.value = false;
 }
@@ -350,20 +366,21 @@ async function submitTest() {
 function retryTest() {
   testStarted.value = false;
   testCompleted.value = false;
-  timeRemaining.value = 30 * 60;
-  userResponse.value = "";
-  testData.value = { passage: "", prompt: "" };
+  taskSelected.value = false;
+  selectedTask.value = null;
+  timeRemaining.value = 0;
+  userResponse.value = '';
+  testData.value = { prompt: '', visualData: null };
   evaluationResult.value = {
-    score: 0,
+    bandScore: 0,
     breakdown: {
-      "task completion": 0,
-      "coherence and cohesion": 0,
-      "lexical resource": 0,
-      "grammatical range": 0,
-      "academic style": 0,
+      'task achievement': 0,
+      'coherence and cohesion': 0,
+      'lexical resource': 0,
+      'grammatical range and accuracy': 0
     },
     feedback: [],
-    sampleResponse: "",
+    sampleResponse: ''
   };
 }
 
@@ -374,19 +391,19 @@ function viewSampleResponse() {
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
 
 function getFeedbackVariant(type) {
-  switch (type) {
-    case "strength":
-      return "default";
-    case "weakness":
-      return "destructive";
-    case "suggestion":
-      return "secondary";
+  switch (type.toLowerCase()) {
+    case 'strength':
+      return 'success';
+    case 'weakness':
+      return 'destructive';
+    case 'suggestion':
+      return 'info';
     default:
-      return "outline";
+      return 'default';
   }
 }
 
@@ -407,14 +424,5 @@ onBeforeUnmount(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-.prose {
-  font-size: 1.125rem;
-  line-height: 1.75;
-}
-
-.prose p {
-  margin-bottom: 1.5em;
 }
 </style>

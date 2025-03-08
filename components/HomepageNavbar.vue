@@ -48,11 +48,13 @@ const components: {
 </script>
 
 <template>
-  <header class="z-10 top-0 flex h-16 px-4 justify-between md:px-6 mx-6 items-center">
+  <header
+    class="z-10 top-0 flex h-16 justify-between items-center min-w-screen"
+  >
     <nav
-      class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:text-sm"
+      class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:text-sm min-w-screen"
     >
-      <NuxtLink to="#" class="flex items-center gap-2 text-base font-semibold">
+      <NuxtLink to="/" class="flex items-center gap-2 text-base font-semibold">
         <img src="/logo.png" alt="icon" style="max-width: 40px" />
         <h1 class="inter-font text-base">Akademi Pelajar</h1>
         <span class="sr-only">AP Org</span>
@@ -128,7 +130,7 @@ const components: {
                 <li>
                   <NavigationMenuLink as-child>
                     <a
-                      href="/docs/typography"
+                      href="/generator"
                       class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     >
                       <div class="flex items-center">
@@ -261,8 +263,8 @@ const components: {
                     </li>
                     <li>
                       <NavigationMenuLink as-child>
-                        <a
-                          href="/docs/typography"
+                        <NuxtLink
+                          to="/trial/generator"
                           class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                         >
                           <div class="flex items-center">
@@ -277,7 +279,7 @@ const components: {
                             Mempersiapkan bertemu dengan berbagai tantangan
                             esensial.
                           </p>
-                        </a>
+                        </NuxtLink>
                       </NavigationMenuLink>
                     </li>
                   </ul>

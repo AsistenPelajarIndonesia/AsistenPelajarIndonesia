@@ -1,16 +1,15 @@
 <template>
-  <main class="flex flex-col justify-between md:flex-row items-center">
+  <main class="flex flex-col justify-center md:flex-row items-center">
     <div class="max-w-2xl flex flex-col gap-4">
       <h1
         class="text-4xl font-bold"
         style="font-family: Arial, Helvetica, sans-serif"
       >
-        TOEFL: Ujian, Peluang, Sukses!
+        IELTS: Ujian, Kesempatan, Prestasi!
       </h1>
       <p>
-        Taklukkan TOEFL dan buka pintu dunia! Tunjukkan kemampuan bahasa
-        Inggrismu dan raih skor impian. Berlatih sekarang, masa depan cerah
-        menantimu!
+        Buka dunia dengan kemampuan bahasa Inggrismu! Tunjukkan keahlianmu dan
+        capai skor impian. Berlatih sekarang, dunia siap menyambutmu!
       </p>
       <NuxtLink to="/trial/toefl"
         ><Button>Free Test Simulation <LucideChevronsRight /> </Button
@@ -23,7 +22,7 @@
         class="pointer-events-none text-center text-8xl font-semibold leading-none"
       >
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9c/TOEFL_Logo.svg"
+          src="https://upload.wikimedia.org/wikipedia/commons/7/7f/IELTS_logo.svg"
           width="70"
           alt=""
         />
@@ -65,7 +64,7 @@ export default {
           radius: 50,
           delay: 10,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/trial/toefl/reading",
+          link: "/trial/ielts/reading",
         },
         {
           name: "Speaking",
@@ -74,7 +73,7 @@ export default {
           radius: 75,
           delay: 30,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/trial/toefl/speaking",
+          link: "/trial/ielts/speaking",
         },
         {
           name: "Writing",
@@ -83,7 +82,7 @@ export default {
           radius: 100,
           delay: 40,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/trial/toefl/writing",
+          link: "/trial/ielts/writing",
         },
         {
           name: "Listening",
@@ -92,7 +91,7 @@ export default {
           radius: 125,
           delay: 80,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/trial/toefl/listening",
+          link: "/trial/ielts/listening",
         },
       ],
       a: "<b>bold text here</b>",

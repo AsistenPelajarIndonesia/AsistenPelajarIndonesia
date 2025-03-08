@@ -56,7 +56,9 @@
           <div class="flex items-center justify-between">
             <CardTitle class="text-xl font-bold">Your Response</CardTitle>
             <div class="flex items-center gap-2">
-              <Badge variant="outline"> {{ wordCount }} words </Badge>
+              <Badge variant="outline">
+                {{ wordCount }} words
+              </Badge>
             </div>
           </div>
           <Textarea
@@ -95,10 +97,7 @@
 
           <!-- Score Breakdown -->
           <div class="grid gap-6 md:grid-cols-2">
-            <Card
-              v-for="(score, category) in evaluationResult.breakdown"
-              :key="category"
-            >
+            <Card v-for="(score, category) in evaluationResult.breakdown" :key="category">
               <CardHeader>
                 <CardTitle class="capitalize">{{ category }}</CardTitle>
               </CardHeader>
@@ -117,14 +116,9 @@
               <CardTitle>Detailed Feedback</CardTitle>
             </CardHeader>
             <CardContent class="space-y-4">
-              <div
-                v-for="(feedback, idx) in evaluationResult.feedback"
-                :key="idx"
-              >
+              <div v-for="(feedback, idx) in evaluationResult.feedback" :key="idx">
                 <Alert :variant="getFeedbackVariant(feedback.type)">
-                  <AlertTitle class="capitalize">{{
-                    feedback.type
-                  }}</AlertTitle>
+                  <AlertTitle class="capitalize">{{ feedback.type }}</AlertTitle>
                   <AlertDescription>{{ feedback.message }}</AlertDescription>
                 </Alert>
               </div>
@@ -164,27 +158,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onBeforeUnmount } from "vue";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Groq from "groq-sdk";
+import { ref, computed, onBeforeUnmount } from 'vue';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Textarea } from '@/components/ui/textarea';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Groq from 'groq-sdk';
 
 const groq = new Groq({
   apiKey: "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",
@@ -197,39 +180,41 @@ const testCompleted = ref(false);
 const isGenerating = ref(false);
 const isSubmitting = ref(false);
 const timeRemaining = ref(30 * 60); // 30 minutes
-const userResponse = ref("");
+const userResponse = ref('');
 const showSampleResponse = ref(false);
 const timer = ref(null);
 
 // Test Data
 const testData = ref({
-  passage: "",
-  prompt: "",
+  passage: '',
+  prompt: '',
 });
 
 // Evaluation Results
 const evaluationResult = ref({
   score: 0,
   breakdown: {
-    "task completion": 0,
-    "coherence and cohesion": 0,
-    "lexical resource": 0,
-    "grammatical range": 0,
-    "academic style": 0,
+    'task completion': 0,
+    'coherence and cohesion': 0,
+    'lexical resource': 0,
+    'grammatical range': 0,
+    'academic style': 0,
   },
   feedback: [],
-  sampleResponse: "",
+  sampleResponse: '',
 });
 
 // Computed Properties
-const currentSection = computed(() => "Integrated Writing Task");
+const currentSection = computed(() => 'Integrated Writing Task');
 
 const wordCount = computed(() => {
   return userResponse.value.trim().split(/\s+/).filter(Boolean).length;
 });
 
 const canSubmit = computed(() => {
-  return testStarted.value && wordCount.value >= 150 && !isSubmitting.value;
+  return testStarted.value && 
+         wordCount.value >= 150 && 
+         !isSubmitting.value;
 });
 
 // Methods
@@ -240,8 +225,7 @@ async function generateTest() {
       messages: [
         {
           role: "system",
-          content:
-            "You are an expert TOEFL test creator specializing in challenging integrated writing tasks. Generate content in JSON format.",
+          content: "You are an expert TOEFL test creator specializing in challenging integrated writing tasks. Generate content in JSON format."
         },
         {
           role: "user",
@@ -250,14 +234,14 @@ async function generateTest() {
               "passage": "[Academic passage about a complex topic]",
               "prompt": "[Writing prompt that requires analysis and integration of the passage]"
             }
-            Make the content extremely challenging, suitable for high-level academic English proficiency.`,
-        },
+            Make the content extremely challenging, suitable for high-level academic English proficiency.`
+        }
       ],
       model: "llama-3.3-70b-versatile",
       temperature: 0.7,
       max_completion_tokens: 32768,
       top_p: 0.95,
-      response_format: { type: "json_object" },
+      response_format: { type: "json_object" }
     });
 
     const response = JSON.parse(completion.choices[0]?.message?.content || "");
@@ -275,8 +259,7 @@ async function evaluateResponse() {
       messages: [
         {
           role: "system",
-          content:
-            "You are an expert TOEFL writing evaluator. Provide detailed evaluation in JSON format.",
+          content: "You are an expert TOEFL writing evaluator. Provide detailed evaluation in JSON format."
         },
         {
           role: "user",
@@ -302,14 +285,14 @@ async function evaluateResponse() {
                 }
               ],
               "sampleResponse": "[A model response]"
-            }`,
-        },
+            }`
+        }
       ],
       model: "llama-3.3-70b-versatile",
       temperature: 0.3,
       max_completion_tokens: 32768,
       top_p: 0.95,
-      response_format: { type: "json_object" },
+      response_format: { type: "json_object" }
     });
 
     const response = JSON.parse(completion.choices[0]?.message?.content || "");
@@ -342,7 +325,7 @@ async function submitTest() {
   clearInterval(timer.value);
 
   await evaluateResponse();
-
+  
   testCompleted.value = true;
   isSubmitting.value = false;
 }
@@ -351,19 +334,19 @@ function retryTest() {
   testStarted.value = false;
   testCompleted.value = false;
   timeRemaining.value = 30 * 60;
-  userResponse.value = "";
-  testData.value = { passage: "", prompt: "" };
+  userResponse.value = '';
+  testData.value = { passage: '', prompt: '' };
   evaluationResult.value = {
     score: 0,
     breakdown: {
-      "task completion": 0,
-      "coherence and cohesion": 0,
-      "lexical resource": 0,
-      "grammatical range": 0,
-      "academic style": 0,
+      'task completion': 0,
+      'coherence and cohesion': 0,
+      'lexical resource': 0,
+      'grammatical range': 0,
+      'academic style': 0,
     },
     feedback: [],
-    sampleResponse: "",
+    sampleResponse: '',
   };
 }
 
@@ -374,19 +357,19 @@ function viewSampleResponse() {
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
 
 function getFeedbackVariant(type) {
   switch (type) {
-    case "strength":
-      return "default";
-    case "weakness":
-      return "destructive";
-    case "suggestion":
-      return "secondary";
+    case 'strength':
+      return 'default';
+    case 'weakness':
+      return 'destructive';
+    case 'suggestion':
+      return 'secondary';
     default:
-      return "outline";
+      return 'outline';
   }
 }
 

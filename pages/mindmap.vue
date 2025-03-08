@@ -1,483 +1,337 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import * as d3 from "d3";
-
-const mindmapContainer = ref<HTMLElement | null>(null);
-const width = ref(window.innerWidth);
-const height = ref(window.innerHeight);
-
-// Sample data structure
-const data = ref({
-  id: "root",
-
-  type: "root",
-
-  title: "Undang-Undang Dasar Negara Republik Indonesia 1945",
-
-  content: "Pembukaan Undang-Undang Dasar Negara Republik Indonesia 1945",
-
-  importance: 5,
-
-  children: [
-    {
-      id: "konsep_kemerdekaan",
-
-      type: "concept",
-
-      title: "Kemerdekaan",
-
-      content:
-        "Kemerdekaan adalah hak segala bangsa, dan penjajahan harus dihapuskan karena tidak sesuai dengan perikemanusiaan dan perikeadilan.",
-
-      importance: 5,
-
-      children: [
-        {
-          id: "sub_konsep_kemerdekaan",
-
-          type: "subconcept",
-
-          title: "Perjuangan Kemerdekaan Indonesia",
-
-          content:
-            "Perjuangan pergerakan kemerdekaan Indonesia telah sampailah kepada saat yang berbahagia dengan selamat sentosa mengantarkan rakyat Indonesia ke depan pintu gerbang kemerdekaan negara Indonesia.",
-
-          importance: 4,
-
-          children: [],
-
-          relationships: [
-            {
-              target_id: "konsep_kemerdekaan",
-
-              type: "related_to",
-            },
-          ],
-        },
-
-        {
-          id: "definisi_kemerdekaan",
-
-          type: "definition",
-
-          title: "Definisi Kemerdekaan",
-
-          content:
-            "Kemerdekaan adalah keadaan bebas dari penjajahan dan pengaruh luar.",
-
-          importance: 3,
-
-          children: [],
-
-          relationships: [
-            {
-              target_id: "konsep_kemerdekaan",
-
-              type: "defines",
-            },
-          ],
-        },
-      ],
-
-      relationships: [
-        {
-          target_id: "root",
-
-          type: "related_to",
-        },
-      ],
-    },
-
-    {
-      id: "konsep_pemerintahan",
-
-      type: "concept",
-
-      title: "Pemerintahan Negara Indonesia",
-
-      content:
-        "Pemerintahan Negara Indonesia yang melindungi segenap bangsa Indonesia dan seluruh tumpah darah Indonesia.",
-
-      importance: 5,
-
-      children: [
-        {
-          id: "sub_konsep_pemerintahan",
-
-          type: "subconcept",
-
-          title: "Tujuan Pemerintahan",
-
-          content:
-            "Memajukan kesejahteraan umum, mencerdaskan kehidupan bangsa, dan ikut melaksanakan ketertiban dunia yang berdasarkan kemerdekaan, perdamaian abadi dan keadilan sosial.",
-
-          importance: 4,
-
-          children: [],
-
-          relationships: [
-            {
-              target_id: "konsep_pemerintahan",
-
-              type: "related_to",
-            },
-          ],
-        },
-
-        {
-          id: "contoh_pemerintahan",
-
-          type: "example",
-
-          title: "Contoh Pemerintahan",
-
-          content:
-            "Pemerintahan Negara Republik Indonesia yang berkedaulatan rakyat dengan berdasar kepada Ketuhanan Yang Maha Esa, kemanusiaan yang adil dan beradab, persatuan Indonesia, dan kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan.",
-
-          importance: 3,
-
-          children: [],
-
-          relationships: [
-            {
-              target_id: "konsep_pemerintahan",
-
-              type: "examples",
-            },
-          ],
-        },
-      ],
-
-      relationships: [
-        {
-          target_id: "root",
-
-          type: "related_to",
-        },
-      ],
-    },
-
-    {
-      id: "konsep_ketuhanan",
-
-      type: "concept",
-
-      title: "Ketuhanan Yang Maha Esa",
-
-      content: "Ketuhanan Yang Maha Esa sebagai dasar negara.",
-
-      importance: 4,
-
-      children: [],
-
-      relationships: [
-        {
-          target_id: "konsep_pemerintahan",
-
-          type: "related_to",
-        },
-      ],
-    },
-
-    {
-      id: "konsep_kemanusiaan",
-
-      type: "concept",
-
-      title: "Kemanusiaan yang Adil dan Beradab",
-
-      content: "Kemanusiaan yang adil dan beradab sebagai dasar negara.",
-
-      importance: 4,
-
-      children: [],
-
-      relationships: [
-        {
-          target_id: "konsep_pemerintahan",
-
-          type: "related_to",
-        },
-      ],
-    },
-
-    {
-      id: "konsep_persatuan",
-
-      type: "concept",
-
-      title: "Persatuan Indonesia",
-
-      content: "Persatuan Indonesia sebagai dasar negara.",
-
-      importance: 4,
-
-      children: [],
-
-      relationships: [
-        {
-          target_id: "konsep_pemerintahan",
-
-          type: "related_to",
-        },
-      ],
-    },
-
-    {
-      id: "konsep_kerakyatan",
-
-      type: "concept",
-
-      title: "Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan",
-
-      content:
-        "Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan sebagai dasar negara.",
-
-      importance: 4,
-
-      children: [],
-
-      relationships: [
-        {
-          target_id: "konsep_pemerintahan",
-
-          type: "related_to",
-        },
-      ],
-    },
-  ],
-
-  relationships: [],
+import { ref, computed, onMounted } from "vue";
+import { useToast } from "@/components/ui/toast/use-toast";
+import Groq from "groq-sdk";
+
+// Initialize Groq client
+const groq = new Groq({
+  apiKey: "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",
+  dangerouslyAllowBrowser: true,
 });
 
-const createMindMap = () => {
-  if (!mindmapContainer.value) return;
+// Types for mind map data structures
+interface MindMapNode {
+  id: string;
+  text: string;
+  type: 'root' | 'main' | 'sub';
+  children: MindMapNode[];
+  x?: number;
+  y?: number;
+  color?: string;
+}
 
-  // Clear previous SVG
-  d3.select(mindmapContainer.value).selectAll("*").remove();
+interface Connection {
+  source: MindMapNode;
+  target: MindMapNode;
+  path?: string;
+}
 
-  // Create SVG container with zoom support
-  const svg = d3
-    .select(mindmapContainer.value)
-    .append("svg")
-    .attr("width", "100%")
-    .attr("height", "100%")
-    .attr("viewBox", [0, 0, width.value, height.value]);
+// State management
+const { toast } = useToast();
+const loading = ref(false);
+const inputText = ref('');
+const mindMapData = ref<MindMapNode | null>(null);
+const connections = ref<Connection[]>([]);
+const svgWidth = ref(1200);
+const svgHeight = ref(800);
+const zoom = ref(1);
+const pan = ref({ x: 0, y: 0 });
+const isDragging = ref(false);
+const dragStart = ref({ x: 0, y: 0 });
 
-  const g = svg.append("g");
+// Color palette for different node types
+const colors = {
+  root: '#FF6B6B',
+  main: '#4ECDC4',
+  sub: '#45B7D1'
+};
 
-  // Add zoom behavior
-  const zoom = d3
-    .zoom()
-    .scaleExtent([0.1, 4])
-    .on("zoom", (event) => {
-      g.attr("transform", event.transform);
-    });
+// Generate a unique ID for nodes
+function generateId(): string {
+  return Math.random().toString(36).substr(2, 9);
+}
 
-  svg.call(zoom);
-
-  // Create tree layout
-  const tree = d3
-    .tree()
-    .size([height.value - 100, width.value - 200])
-    .nodeSize([80, 200]);
-
-  // Create hierarchy from data
-  const root = d3.hierarchy(data.value);
-
-  // Generate tree layout
-  const treeData = tree(root);
-
-  // Draw links
-  const links = g
-    .selectAll(".link")
-    .data(treeData.links())
-    .enter()
-    .append("path")
-    .attr("class", "link")
-    .attr(
-      "d",
-      d3
-        .linkHorizontal()
-        .x((d) => d.y)
-        .y((d) => d.x)
-    )
-    .attr("fill", "none")
-    .attr("stroke", "#ccc")
-    .attr("stroke-width", 1.5);
-
-  // Create node groups
-  const nodes = g
-    .selectAll(".node")
-    .data(treeData.descendants())
-    .enter()
-    .append("g")
-    .attr("class", "node")
-    .attr("transform", (d) => `translate(${d.y},${d.x})`);
-
-  // Create tooltip div
-  const tooltip = d3
-    .select(mindmapContainer.value)
-    .append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0)
-    .style("position", "absolute")
-    .style("background-color", "white")
-    .style("padding", "10px")
-    .style("border-radius", "6px")
-    .style("box-shadow", "0 2px 4px rgba(0,0,0,0.1)")
-    .style("pointer-events", "none")
-    .style("max-width", "300px");
-
-  // Add node circles with hover effects
-  nodes
-    .append("circle")
-    .attr("r", (d) => (d.data.importance || 1) * 5)
-    .attr("fill", (d) => getNodeColor(d.data.type))
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 2)
-    .on("mouseover", (event, d) => {
-      tooltip.transition().duration(200).style("opacity", 1);
-      tooltip
-        .html(
-          `
-        <div class="font-bold text-sm mb-1 text-gray-900">${d.data.title}</div>
-        <div class="text-xs text-gray-600">${d.data.content || "No description available"}</div>
-        <div class="text-xs text-gray-500 mt-1">Type: ${d.data.type}</div>
-      `
-        )
-        .style("left", event.pageX + 10 + "px")
-        .style("top", event.pageY - 10 + "px");
-    })
-    .on("mousemove", (event) => {
-      tooltip
-        .style("left", event.pageX + 10 + "px")
-        .style("top", event.pageY - 10 + "px");
-    })
-    .on("mouseout", () => {
-      tooltip.transition().duration(500).style("opacity", 0);
-    });
-
-  // Add node labels
-  nodes
-    .append("text")
-    .attr("dy", ".31em")
-    .attr("x", (d) => (d.children ? -8 : 8))
-    .attr("text-anchor", (d) => (d.children ? "end" : "start"))
-    .text((d) => d.data.title)
-    .style("font-size", "12px")
-    .style("fill", "#333");
-
-  // Draw relationship lines
-  if (data.value.relationships) {
-    drawRelationships(g, treeData);
+// Process the AI response and create mind map data structure
+function processMindMapResponse(response: any): MindMapNode {
+  const data = typeof response === 'string' ? JSON.parse(response) : response;
+  
+  function processNode(node: any): MindMapNode {
+    return {
+      id: generateId(),
+      text: node.text,
+      type: node.type || 'sub',
+      children: (node.children || []).map((child: any) => processNode(child)),
+      color: colors[node.type as keyof typeof colors] || colors.sub
+    };
   }
-};
 
-// Function to determine node color based on type
-const getNodeColor = (type: string) => {
-  const colors: { [key: string]: string } = {
-    root: "#4CAF50",
-    concept: "#2196F3",
-    subconcept: "#9C27B0",
-    definition: "#FF9800",
-    example: "#F44336",
-  };
-  return colors[type] || "#999";
-};
+  return processNode(data);
+}
 
-// Function to draw relationship lines
-const drawRelationships = (
-  g: d3.Selection<SVGGElement, unknown, HTMLElement, any>,
-  treeData: d3.HierarchyPointNode<any>
-) => {
-  const nodes = treeData.descendants();
-  const nodeById = new Map(nodes.map((node) => [node.data.id, node]));
+// Calculate node positions using a radial layout algorithm
+function calculateLayout(node: MindMapNode, centerX: number, centerY: number, radius: number, startAngle: number, endAngle: number) {
+  node.x = centerX;
+  node.y = centerY;
 
-  nodes.forEach((node) => {
-    if (node.data.relationships) {
-      node.data.relationships.forEach(
-        (rel: { target_id: string; type: string }) => {
-          const target = nodeById.get(rel.target_id);
-          if (target) {
-            g.append("path")
-              .attr("class", "relationship")
-              .attr(
-                "d",
-                d3
-                  .linkHorizontal()
-                  .x((d) => d.y)
-                  .y((d) => d.x)({
-                  source: { x: node.x, y: node.y },
-                  target: { x: target.x, y: target.y },
-                })
-              )
-              .attr("stroke", "#999")
-              .attr("stroke-width", 1)
-              .attr("stroke-dasharray", "4,4")
-              .attr("fill", "none");
-          }
-        }
-      );
+  if (node.children.length === 0) return;
+
+  const angleStep = (endAngle - startAngle) / node.children.length;
+  const childRadius = radius * 0.8;
+
+  node.children.forEach((child, index) => {
+    const angle = startAngle + (index * angleStep);
+    const childX = centerX + Math.cos(angle) * radius;
+    const childY = centerY + Math.sin(angle) * radius;
+
+    child.x = childX;
+    child.y = childY;
+
+    calculateLayout(
+      child,
+      childX,
+      childY,
+      childRadius,
+      angle - Math.PI / 4,
+      angle + Math.PI / 4
+    );
+  });
+}
+
+// Generate connections between nodes
+function generateConnections(node: MindMapNode): Connection[] {
+  let result: Connection[] = [];
+
+  if (!node.x || !node.y) return result;
+
+  node.children.forEach(child => {
+    if (child.x && child.y) {
+      result.push({
+        source: node,
+        target: child,
+        path: generateCurvedPath(node, child)
+      });
+      result = result.concat(generateConnections(child));
     }
   });
-};
 
-// Handle window resize
-const handleResize = () => {
-  width.value = window.innerWidth;
-  height.value = window.innerHeight;
-  createMindMap();
-};
+  return result;
+}
 
+// Generate curved path between two nodes
+function generateCurvedPath(source: MindMapNode, target: MindMapNode): string {
+  if (!source.x || !source.y || !target.x || !target.y) return '';
+
+  const dx = target.x - source.x;
+  const dy = target.y - source.y;
+  const curve = Math.sqrt(dx * dx + dy * dy) * 0.3;
+
+  const midX = (source.x + target.x) / 2;
+  const midY = (source.y + target.y) / 2;
+
+  const controlX = midX - dy * 0.2;
+  const controlY = midY + dx * 0.2;
+
+  return `M${source.x},${source.y} Q${controlX},${controlY} ${target.x},${target.y}`;
+}
+
+// Handle zooming
+function handleWheel(event: WheelEvent) {
+  event.preventDefault();
+  const zoomFactor = event.deltaY > 0 ? 0.9 : 1.1;
+  zoom.value = Math.max(0.1, Math.min(2, zoom.value * zoomFactor));
+}
+
+// Handle panning
+function handleMouseDown(event: MouseEvent) {
+  isDragging.value = true;
+  dragStart.value = {
+    x: event.clientX - pan.value.x,
+    y: event.clientY - pan.value.y
+  };
+}
+
+function handleMouseMove(event: MouseEvent) {
+  if (!isDragging.value) return;
+  pan.value = {
+    x: event.clientX - dragStart.value.x,
+    y: event.clientY - dragStart.value.y
+  };
+}
+
+function handleMouseUp() {
+  isDragging.value = false;
+}
+
+// Generate mind map using Groq API
+async function generateMindMap() {
+  if (!inputText.value.trim()) {
+    toast({
+      title: "Error",
+      description: "Please enter some text to generate a mind map",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  loading.value = true;
+  try {
+    const completion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert at analyzing text and creating mind maps. Extract key concepts and their relationships from the provided text. Format your response as a JSON object with a hierarchical structure where each node has: text (string), type (root/main/sub), and children (array of nodes). The root node should contain the main topic, main nodes for primary concepts, and sub nodes for related details."
+        },
+        {
+          role: "user",
+          content: inputText.value
+        }
+      ],
+      model: "llama-3.3-70b-versatile",
+      temperature: 0.7,
+      stream: false,
+      response_format: {
+        type: "json_object"
+      }
+    });
+
+    const response = completion.choices[0].message.content;
+    mindMapData.value = processMindMapResponse(response);
+
+    // Calculate layout
+    if (mindMapData.value) {
+      calculateLayout(
+        mindMapData.value,
+        svgWidth.value / 2,
+        svgHeight.value / 2,
+        200,
+        0,
+        2 * Math.PI
+      );
+      connections.value = generateConnections(mindMapData.value);
+    }
+
+    toast({
+      title: "Success",
+      description: "Mind map generated successfully",
+      variant: "default",
+    });
+  } catch (error) {
+    console.error("Error generating mind map:", error);
+    toast({
+      title: "Error",
+      description: "Failed to generate mind map",
+      variant: "destructive",
+    });
+  } finally {
+    loading.value = false;
+  }
+}
+
+// Transform value for SVG pan and zoom
+const transform = computed(() => {
+  return `translate(${pan.value.x}px, ${pan.value.y}px) scale(${zoom.value})`;
+});
+
+// Event listeners for pan and zoom
 onMounted(() => {
-  createMindMap();
-  window.addEventListener("resize", handleResize);
+  window.addEventListener('mouseup', handleMouseUp);
+  window.addEventListener('mousemove', handleMouseMove);
+
+  return () => {
+    window.removeEventListener('mouseup', handleMouseUp);
+    window.removeEventListener('mousemove', handleMouseMove);
+  };
 });
 </script>
 
 <template>
-  <div class="min-h-screen w-full bg-background p-4">
-    <div
-      ref="mindmapContainer"
-      class="w-full h-[calc(100vh-2rem)] border rounded-lg bg-white shadow-sm"
-    ></div>
+  <div class="min-h-screen bg-background p-6 space-y-8">
+    <header class="text-center space-y-2">
+      <h1 class="text-4xl font-bold tracking-tight">AI Mind Map Generator</h1>
+      <p class="text-muted-foreground">
+        Transform your ideas into interactive mind maps
+      </p>
+    </header>
+
+    <div class="max-w-6xl mx-auto grid gap-8">
+      <!-- Input Section -->
+      <section class="space-y-4">
+        <div class="grid gap-4">
+          <Textarea
+            v-model="inputText"
+            placeholder="Enter your text here..."
+            class="min-h-[200px] p-4"
+          />
+          <Button
+            @click="generateMindMap"
+            class="w-full md:w-auto"
+            size="lg"
+            :disabled="loading"
+          >
+            <LucideBrain v-if="!loading" class="mr-2 h-4 w-4" />
+            <SpinningBar v-else class="mr-2 h-4 w-4 animate-spin" />
+            {{ loading ? "Generating..." : "Generate Mind Map" }}
+          </Button>
+        </div>
+      </section>
+
+      <!-- Mind Map Display -->
+      <section v-if="mindMapData" class="border rounded-lg p-4 bg-card">
+        <div class="relative w-full h-[600px] overflow-hidden">
+          <svg
+            :width="svgWidth"
+            :height="svgHeight"
+            @wheel="handleWheel"
+            @mousedown="handleMouseDown"
+            class="cursor-move"
+          >
+            <g :style="{ transform }">
+              <!-- Connections -->
+              <path
+                v-for="connection in connections"
+                :key="connection.source.id + connection.target.id"
+                :d="connection.path"
+                class="stroke-muted-foreground"
+                fill="none"
+                stroke-width="2"
+              />
+
+              <!-- Nodes -->
+              <g
+                v-for="node in [mindMapData, ...mindMapData.children]"
+                :key="node.id"
+                :transform="`translate(${node.x}, ${node.y})`"
+              >
+                <circle
+                  :r="node.type === 'root' ? 60 : node.type === 'main' ? 40 : 30"
+                  :fill="node.color"
+                  class="opacity-90"
+                />
+                <text
+                  dy=".3em"
+                  text-anchor="middle"
+                  class="fill-background text-sm font-medium"
+                >
+                  <tspan
+                    v-for="(line, i) in node.text.split(' ')"
+                    :key="i"
+                    x="0"
+                    :dy="i ? '1.2em' : 0"
+                  >
+                    {{ line }}
+                  </tspan>
+                </text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.node circle {
-  cursor: pointer;
-  transition: r 0.3s ease;
-}
-
-.node circle:hover {
-  r: 12;
-}
-
-.node text {
-  cursor: pointer;
-  transition: font-size 0.3s ease;
-}
-
-.node text:hover {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.link {
-  transition: stroke-width 0.3s ease;
-}
-
-.link:hover {
-  stroke-width: 2.5;
-}
-
-.relationship {
-  transition: stroke-width 0.3s ease;
-}
-
-.relationship:hover {
-  stroke-width: 2;
+.cursor-move {
+  cursor: move;
 }
 </style>

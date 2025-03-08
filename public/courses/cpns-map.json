@@ -1,0 +1,133 @@
+{
+    "title": "CPNS",
+    "description":
+      "Ujian kompetitif ini adalah gerbang menuju karier yang cemerlang!",
+    "defaultCoursecontentAccordion": "item-1",
+    "coursecontentAccordion": [
+      {
+        "title": "Tes Wawasan Kebangsaan",
+        "content": [
+          {
+            "name": "material",
+            "props": {
+              "title": "Pancasila",
+              "target": "pancasila"
+            }
+          },
+        {
+            "name": "practice",
+            "props": {
+              "title": "Pancasila",
+              "target": "pancasila"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "Sumpah Pemuda",
+              "target": "sumpah-pemuda"
+            }
+          },
+          {
+              "title": "Bela Negara",
+              "target": "bela-negara"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "UUD NRI 1945",
+              "target": "integritas"
+            }
+          },
+          {
+            "name": "content"
+              ,
+            "props": {
+              "title": "Integritas",
+              "target": "integritas"
+            }
+          },
+          {
+            "name": "content"
+              ,
+            "props": {
+              "title": "Nasionalisme",
+              "target": "integritas"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "Etika Kerja",
+              "target": "integritas"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "Kerahasiaan",
+              "target": "integritas"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Tes Intelegensia Umum",
+        "content": [
+          {
+            "name": "content",
+            "props": {
+              "title": "Material Section 1",
+              "target": "/"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "Practice Section 1",
+              "target": "/"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Tes Karakteristik Pribadi",
+        "content": [
+          {
+            "name": "content",
+            "props": {
+              "title": "Material Section 1",
+              "target": "/"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "Practice Section 1",
+              "target": "/"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Seleksi Kompetensi Bidang",
+        "content": [
+          {
+            "name": "content",
+            "props": {
+              "title": "Material Section 1",
+              "target": "/"
+            }
+          },
+          {
+            "name": "content",
+            "props": {
+              "title": "Practice Section 1",
+              "target": "/"
+            }
+          }
+        ]
+      }
+    ]
+  }

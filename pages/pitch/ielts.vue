@@ -54,7 +54,6 @@ const courses = [
     class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-12 px-4 sm:px-6 lg:px-8"
   >
     <div class="max-w-7xl mx-auto">
-      <!-- Hero Section with Animation -->
       <div class="text-center mb-16 space-y-6">
         <h1
           class="text-5xl font-extrabold text-white sm:text-6xl md:text-7xl tracking-tight"

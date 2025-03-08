@@ -1,15 +1,6 @@
 <script setup lang="ts">
-
 const route = useRoute()
-const router = useRouter()
 const colorMode = useColorMode()
-const userEmail = ref<string | null>(null)
-const UserDisplayName = ref<string | null>(null)
-
-const logoutError = ref<string | null>(null)
-const getUserEmailError = ref<string | null>(null)
-const getUserDisplayNameError = ref<string | null>(null)
-
 const currentPage = ref(route.fullPath.split("/").at(2))
 
 watch(route, _value => {
@@ -20,61 +11,17 @@ watch(route, _value => {
     immediate: true
   }
 )
-
-
 </script>
 
 <template>
   <header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
     <nav class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <NuxtLink
-          to="#"
+          to="/report-issue"
           class="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <img src="/logo.png" alt="icon" />
+          <img src="/logo.png" alt="icon" width="50" />
           <span class="sr-only">API Org</span>
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === undefined)}]"
-        >
-          Dashboard
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard/tasks"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'tasks')}]"
-        >
-          Tasks
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard/notes"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'notes')}]"
-        >
-          Notes
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard/chats"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'chats')}]"
-        >
-          Chats
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard/tests"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'tests')}]"
-        >
-          Tests
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard/forums"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'forums')}]"
-        >
-          Forums
-        </NuxtLink>
-        <NuxtLink
-          to="/dashboard/analysis"
-          :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'analysis')}]"
-        >
-          Analysis
         </NuxtLink>
       </nav>
       <Sheet>
@@ -96,45 +43,6 @@ watch(route, _value => {
             >
                 <img src="/logo.png" alt="icon" width="160" />
                 <span class="sr-only">API Org</span>
-            </NuxtLink>
-            <NuxtLink to="/dashboard" :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === undefined)}]">
-              Dashboard
-            </NuxtLink>
-            <NuxtLink
-              to="/dashboard/tasks"
-              :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'tasks')}]"
-            >
-              Tasks
-            </NuxtLink>
-            <NuxtLink
-              to="/dashboard/notes"
-              :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'notes')}]"
-            >
-              Notes
-            </NuxtLink>
-            <NuxtLink
-              to="/dashboard/chats"
-              :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'chats')}]"
-            >
-              Chats
-            </NuxtLink>
-            <NuxtLink
-              to="/dashboard/tests"
-              :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'tests')}]"
-            >
-              Tests
-            </NuxtLink>
-            <NuxtLink
-              to="/dashboard/forums"
-              :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'forums')}]"
-            >
-              Forums
-            </NuxtLink>
-            <NuxtLink
-              to="/dashboard/analysis"
-              :class="['text-foreground transition-colors hover:text-foreground', {'text-muted-foreground': !(currentPage === 'analysis')}]"
-            >
-              Analysis
             </NuxtLink>
           </nav>
         </SheetContent>

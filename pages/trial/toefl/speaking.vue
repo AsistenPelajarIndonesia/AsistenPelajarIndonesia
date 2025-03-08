@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-4 max-w-4xl">
+    <div class="max-w-7xl mx-auto">
     <Card class="mb-6">
       <CardHeader>
         <CardTitle class="text-2xl font-bold"

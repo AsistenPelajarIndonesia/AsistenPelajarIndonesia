@@ -3,7 +3,7 @@ const title = "Pembukaan UUD 1945 - Akademi Pelajar";
 </script>
 
 <template>
-  <div class="min-h-screen bg-background">
+  <div class="max-w-5xl min-h-screen bg-background">
     <div class="container mx-auto px-4 py-8 md:py-16">
       <div
         class="prose prose-lg dark:prose-invert mx-auto bg-card rounded-lg p-6 md:p-8 shadow-lg"
