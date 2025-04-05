@@ -143,8 +143,8 @@ import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-  apiKey: "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",
+const groq = new Groq({  apiKey: "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",
+
   dangerouslyAllowBrowser: true,
 });
 
