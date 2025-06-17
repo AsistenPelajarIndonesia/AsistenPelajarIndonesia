@@ -1,0 +1,76 @@
+User File: PU_PK.user.getter.md
+System File: LITERASI_INDONESIA.system.getter.md
+--------------------------------------------------
+{
+  "kejelasan_konsep_kuantitatif": "85",
+  "kedalaman_pengetahuan": "75",
+  "akurasi_fakta_dan_istilah": "90",
+  "koreksi_isi_dan_validitas": "80",
+  "relevansi_kurikulum_SNBT": "50",
+  "kompleksitas_kognitif": "75",
+  "kemampuan_diskriminasi": "80",
+  "originalitas_soal": "70",
+  "kejelasan_instruksi": "100",
+  "overall_grade": "75",
+  "feedback": "Soal tidak memenuhi proporsi 50:50 Penalaran Umum/Penalaran Kuantitatif sebagaimana diminta. Beberapa soal Penalaran Kuantitatif sudah relevan dengan kurikulum tetapi kurang variasi konteks. Beberapa soal perlu perbaikan akurasi penjelasan (misal soal 7).) Sertakan setidaknya 5 soal Penalaran Umum untuk memenuhi parameter kurikulum."
+}
+--------------------------------------------------
+
+User File: PPU.user.getter.md
+System File: PU_PK.system.getter.md
+--------------------------------------------------
+{  "tingkat_induktifitas": "30",
+  "kompleksitas_pola": "35",
+  "keragaman_tipe_stimulus": "70",
+  "tingkat_kognitif_analisis": "40",
+  "kejelasan_instruksi": "90",
+  "koreksi_isi_dan_validitas": "85",
+  "kemampuan_diskriminasi": "65",
+  "originalitas_soal": "50",
+  "keterkaitan_dengan_konteks_uji": "75",
+  "overall_grade": "65",
+  "feedback": "Soal memiliki instruksi jelas dan validitas tinggi, tetapi kurang kompleksitas pola dan originalitas. Sebagian besar soal bersifat rutin dan kurang mendorong penalaran induktif yang kompleks."
+}
+--------------------------------------------------
+
+User File: PU_PD.user.getter.md
+System File: PU_PD.system.getter.md
+--------------------------------------------------
+{  "kemampuan_analisis_strategi": "95",
+  "feedback": "Sebagian besar soal memaksa peserta merancang strategi logis (modus tollens, ekuivalensi, negasi). Namun soal 10 memiliki ambiguasi logis pada opsi B yang tidak pasti valid secara formal."
+}
+--------------------------------------------------
+
+User File: PU_PI.user.getter.md
+System File: PPU.system.getter.md
+--------------------------------------------------
+{
+  "tingat_kesulitan_soal": "85",
+  "kejelasan_pertanyaan": "90",
+  "keakuratan_grammar": "95",
+  "kemampuan_inferensi_kontekstual": "80",
+  "overall_grade": "85",
+  "feedback": "Soal memiliki tingkat kesulitan sedang hingga tinggi, pertanyaan jelas, dan bebas kesalahan grammar. Namun, beberapa soal perlu peningkatan konteks inferensi untuk meningkatkan kemampuan diskriminasi."
+}
+--------------------------------------------------
+
+User File: PK.user.getter.md
+System File: LITERASI_ENGLISH.system.getter.md
+--------------------------------------------------
+{  "tingkat_deduktifitas": "60",
+  "kejelasan_premis": "70",
+  "kompleksitas_struktur_argumen": "30",
+  "koherensi_logika": "50",
+  "koreksi_isi_dan_validitas": "60",
+  "kejelasan_instruksi": "80",
+  "kemampuan_diskriminasi": "40",
+  "originalitas_soal": "50",
+  "kesesuaian_konteks_uji": "90",
+  "overall_grade": "65",
+  "feedback": "The questions cover diverse topics but contain typos, incorrect explanations (e.g., Q15/Q19), and lack original contexts. Some premises (e.g., missing graphs for data questions) reduce clarity. Improved explanations and error corrections needed for logical consistency."
+}
+--------------------------------------------------
+
+User File: LITERASI_ENGLISH.user.getter.md
+System File: PU_PI.system.getter.md
+--------------------------------------------------

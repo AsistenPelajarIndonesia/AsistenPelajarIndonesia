@@ -1,0 +1,142 @@
+[
+  {
+    "id": "pi_q1",
+    "question_text": "Pengamatan menunjukkan bahwa logam A memuai jika dipanaskan. Logam B juga memuai jika dipanaskan. Begitu pula dengan logam C yang memuai saat dipanaskan. Ketiga logam tersebut adalah contoh benda padat.",
+    "topic": "Generalisasi",
+    "options": [
+      { "id": "a", "text": "Semua benda di dunia akan memuai jika dipanaskan." },
+      { "id": "b", "text": "Hanya logam yang memuai jika dipanaskan." },
+      { "id": "c", "text": "Semua benda padat kemungkinan besar akan memuai jika dipanaskan." },
+      { "id": "d", "text": "Pemanasan tidak berpengaruh pada benda selain logam." },
+      { "id": "e", "text": "Logam A, B, dan C adalah jenis logam yang sama." }
+    ],
+    "correct_answer_id": "c",
+    "explanation": "Penalaran generalisasi dilakukan dengan menarik kesimpulan umum dari beberapa contoh spesifik. Dari fakta bahwa tiga jenis logam (yang merupakan benda padat) memuai saat dipanaskan, kesimpulan yang paling logis dan tidak berlebihan adalah bahwa sebagian besar atau semua benda padat memiliki sifat yang sama. Pilihan (a) terlalu umum (tidak semua benda memuai, contohnya air dari 4°C ke 0°C). Pilihan (b) dan (d) adalah kesimpulan yang salah dan membatasi. Pilihan (e) tidak didukung oleh data yang ada."
+  },
+  {
+    "id": "pi_q2",
+    "question_text": "GURU : SEKOLAH = DOKTER : ...",
+    "topic": "Analogi",
+    "options": [
+      { "id": "a", "text": "PASIEN" },
+      { "id": "b", "text": "RUMAH SAKIT" },
+      { "id": "c", "text": "OBAT" },
+      { "id": "d", "text": "STETOSKOP" },
+      { "id": "e", "text": "SEHAT" }
+    ],
+    "correct_answer_id": "b",
+    "explanation": "Hubungan analogi pada soal adalah 'Profesi : Tempat Bekerja'. Seorang GURU bekerja di SEKOLAH. Maka, padanan yang sesuai adalah seorang DOKTER yang bekerja di RUMAH SAKIT. Pilihan (a) adalah orang yang dilayani, (c) dan (d) adalah alat kerja, dan (e) adalah tujuan dari pekerjaan dokter."
+  },
+  {
+    "id": "pi_q3",
+    "question_text": "Jika investasi di sektor pariwisata meningkat, jumlah wisatawan yang datang akan bertambah. Jika jumlah wisatawan bertambah, pendapatan masyarakat di sekitar objek wisata akan meningkat.",
+    "topic": "Sebab-Akibat",
+    "options": [
+      { "id": "a", "text": "Jika pendapatan masyarakat di sekitar objek wisata menurun, berarti investasi pariwisata tidak meningkat." },
+      { "id": "b", "text": "Jika investasi pariwisata meningkat, maka pendapatan masyarakat di sekitar objek wisata juga akan meningkat." },
+      { "id": "c", "text": "Peningkatan investasi pariwisata tidak berhubungan dengan pendapatan masyarakat." },
+      { "id": "d", "text": "Jumlah wisatawan yang datang tidak dipengaruhi oleh investasi." },
+      { "id": "e", "text": "Meskipun investasi pariwisata meningkat, pendapatan masyarakat belum tentu meningkat." }
+    ],
+    "correct_answer_id": "b",
+    "explanation": "Soal ini menyajikan hubungan sebab-akibat berantai (silogisme hipotetikal). Premis 1: Jika A (investasi naik), maka B (wisatawan bertambah). Premis 2: Jika B (wisatawan bertambah), maka C (pendapatan naik). Kesimpulan logisnya adalah jika A terjadi, maka C juga akan terjadi. Jadi, jika investasi pariwisata meningkat, pendapatan masyarakat akan meningkat."
+  },
+  {
+    "id": "pi_q4",
+    "question_text": "HANGAT : PANAS = ... : ...",
+    "topic": "Analogi",
+    "options": [
+      { "id": "a", "text": "TERANG : SILAU" },
+      { "id": "b", "text": "LAPAR : MAKAN" },
+      { "id": "c", "text": "GELAP : MALAM" },
+      { "id": "d", "text": "BUKU : PINTAR" },
+      { "id": "e", "text": "AIR : MINUM" }
+    ],
+    "correct_answer_id": "a",
+    "explanation": "Hubungan analogi pada soal adalah 'tingkat intensitas rendah : tingkat intensitas tinggi'. HANGAT adalah kondisi suhu yang nyaman, sedangkan PANAS adalah kondisi suhu yang lebih tinggi dan intens. Padanan yang sesuai adalah TERANG (intensitas cahaya normal) dan SILAU (intensitas cahaya yang berlebihan/sangat tinggi). Pilihan lain tidak menunjukkan hubungan tingkatan intensitas."
+  },
+  {
+    "id": "pi_q5",
+    "question_text": "Jika terjadi hujan lebat dalam waktu lama, potensi banjir di dataran rendah meningkat. Jika potensi banjir meningkat, sistem peringatan dini akan diaktifkan. Pagi ini, sistem peringatan dini di wilayah X tidak diaktifkan.",
+    "topic": "Sebab-Akibat",
+    "options": [
+      { "id": "a", "text": "Pagi ini pasti tidak terjadi hujan lebat di wilayah X." },
+      { "id": "b", "text": "Potensi banjir di dataran rendah wilayah X tidak meningkat." },
+      { "id": "c", "text": "Sistem peringatan dini di wilayah X sedang rusak." },
+      { "id": "d", "text": "Wilayah X bukanlah dataran rendah." },
+      { "id": "e", "text": "Hujan lebat selalu menyebabkan banjir." }
+    ],
+    "correct_answer_id": "b",
+    "explanation": "Ini adalah contoh penalaran sebab-akibat dengan modus tollens. Rantai logikanya: Hujan Lebat (A) -> Potensi Banjir Meningkat (B) -> Sistem Peringatan Aktif (C). Fakta yang diberikan adalah 'tidak C' (sistem tidak aktif). Maka, kesimpulan yang paling logis adalah 'tidak B' (potensi banjir tidak meningkat). Kita tidak bisa langsung menyimpulkan 'tidak A' karena mungkin saja potensi banjir tidak meningkat meskipun hujan karena faktor lain (misalnya drainase baik). Pilihan (c) dan (d) adalah spekulasi."
+  },
+  {
+    "id": "pi_q6",
+    "question_text": "Setiap kali mengikuti pelajaran Matematika, Ani selalu merasa mengantuk. Hari ini jadwal pelajaran Ani adalah Fisika, Kimia, dan Bahasa Indonesia. Tidak ada pelajaran Matematika.",
+    "topic": "Generalisasi",
+    "options": [
+      { "id": "a", "text": "Hari ini Ani pasti akan merasa mengantuk." },
+      { "id": "b", "text": "Ani tidak akan merasa mengantuk saat pelajaran Fisika." },
+      { "id": "c", "text": "Ani mungkin tidak akan merasa mengantuk karena pelajaran Matematika hari ini." },
+      { "id": "d", "text": "Ani tidak menyukai semua pelajaran." },
+      { "id": "e", "text": "Hari ini Ani pasti bersemangat." }
+    ],
+    "correct_answer_id": "c",
+    "explanation": "Premis menyatakan kondisi spesifik penyebab Ani mengantuk, yaitu 'mengikuti pelajaran Matematika'. Kesimpulan ditarik berdasarkan ketiadaan penyebab tersebut pada hari ini. Karena tidak ada pelajaran Matematika, maka penyebab kantuk yang biasa terjadi pada Ani itu hilang. Oleh karena itu, kesimpulan yang paling mungkin adalah Ani tidak akan merasa mengantuk *karena alasan tersebut*. Pilihan (a) dan (e) terlalu pasti, sedangkan (b) dan (d) tidak dapat disimpulkan dari teks."
+  },
+  {
+    "id": "pi_q7",
+    "question_text": "ULAR : MELATA = KANGURU : ...",
+    "topic": "Analogi",
+    "options": [
+      { "id": "a", "text": "BERJALAN" },
+      { "id": "b", "text": "TERBANG" },
+      { "id": "c", "text": "MERAYAP" },
+      { "id": "d", "text": "MELOMPAT" },
+      { "id": "e", "text": "BERENANG" }
+    ],
+    "correct_answer_id": "d",
+    "explanation": "Hubungan analogi pada soal adalah 'Hewan : Cara Bergerak Khas'. ULAR bergerak dengan cara MELATA. Maka, padanan yang sesuai adalah KANGURU yang bergerak dengan cara khasnya yaitu MELOMPAT."
+  },
+  {
+    "id": "pi_q8",
+    "question_text": "Data beberapa tahun terakhir menunjukkan bahwa setiap kali nilai tukar Rupiah terhadap Dolar melemah, harga barang-barang impor mengalami kenaikan. Saat ini, nilai tukar Rupiah terpantau melemah cukup signifikan.",
+    "topic": "Sebab-Akibat",
+    "options": [
+      { "id": "a", "text": "Harga barang-barang impor kemungkinan besar akan mengalami kenaikan." },
+      { "id": "b", "text": "Harga barang-barang impor pasti akan turun." },
+      { "id": "c", "text": "Nilai tukar Rupiah tidak akan mempengaruhi harga barang impor kali ini." },
+      { "id": "d", "text": "Pemerintah akan melarang impor semua barang." },
+      { "id": "e", "text": "Harga barang lokal akan menjadi lebih mahal dari barang impor." }
+    ],
+    "correct_answer_id": "a",
+    "explanation": "Soal ini menyajikan hubungan sebab-akibat berdasarkan pola yang terjadi berulang kali (data beberapa tahun). Penyebabnya adalah 'Rupiah melemah', dan akibatnya adalah 'harga impor naik'. Karena penyebabnya (Rupiah melemah) terjadi saat ini, maka kesimpulan yang paling logis berdasarkan pola tersebut adalah akibatnya juga akan terjadi. Penggunaan kata 'kemungkinan besar' adalah tepat karena ini adalah penalaran induktif, bukan deduktif yang pasti."
+  },
+  {
+    "id": "pi_q9",
+    "question_text": "Observasi di kebun binatang menunjukkan bahwa panda, koala, dan kanguru adalah hewan herbivora. Ketiga hewan tersebut termasuk dalam kelompok mamalia.",
+    "topic": "Generalisasi",
+    "options": [
+      { "id": "a", "text": "Semua hewan mamalia adalah herbivora." },
+      { "id": "b", "text": "Singa yang juga mamalia, adalah herbivora." },
+      { "id": "c", "text": "Tidak semua hewan mamalia adalah karnivora." },
+      { "id": "d", "text": "Semua hewan herbivora adalah mamalia." },
+      { "id": "e", "text": "Hewan selain mamalia bukanlah herbivora." }
+    ],
+    "correct_answer_id": "c",
+    "explanation": "Dari contoh spesifik (panda, koala, kanguru) yang merupakan mamalia herbivora, kita bisa membuat generalisasi. Pilihan (a) salah karena ada mamalia karnivora (misal: singa). Pilihan (b) adalah kesimpulan yang salah. Pilihan (d) juga salah (misal: kura-kura darat adalah reptil herbivora). Pilihan (e) jelas salah. Kesimpulan yang paling aman dan logis dari data yang diberikan adalah adanya bukti bahwa 'tidak semua mamalia adalah karnivora', karena sudah ada contoh mamalia yang herbivora."
+  },
+  {
+    "id": "pi_q10",
+    "question_text": "PUZZLE : MEMECAHKAN = BENANG KUSUT : ...",
+    "topic": "Analogi",
+    "options": [
+      { "id": "a", "text": "MENGGUNTING" },
+      { "id": "b", "text": "MENGIKAT" },
+      { "id": "c", "text": "MENGURAI" },
+      { "id": "d", "text": "MENJAHIT" },
+      { "id": "e", "text": "MEMOTONG" }
+    ],
+    "correct_answer_id": "c",
+    "explanation": "Hubungan analogi pada soal adalah 'Objek/Masalah : Tindakan untuk Menyelesaikannya'. Sebuah PUZZLE diselesaikan dengan cara MEMECAHKAN-nya. Maka, padanan yang sesuai adalah BENANG KUSUT yang diselesaikan dengan cara MENGURAI-nya. Pilihan lain merupakan tindakan yang tidak sesuai untuk menyelesaikan masalah 'benang kusut'."
+  }
+]

@@ -20,7 +20,7 @@ const correctAnswers = ref([]);
 const score = ref(0);
 
 const groq = new Groq({
-  apiKey: "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",
+  apiKey: "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",
   dangerouslyAllowBrowser: true,
 });
 

@@ -1,0 +1,493 @@
+User File: PU_PK.user.getter.md
+System File: Anda adalah asisten AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam) di Indonesia, khususnya untuk subtes Penalaran Kuantitatif.
+
+Tugas Anda adalah membuat soal pilihan ganda yang berkualitas tinggi dalam bahasa Indonesia.
+
+Setiap soal harus menguji salah satu dari tiga jenis kemampuan penalaran kuantitatif berikut:
+
+1. Kuantitas: Melibatkan perbandingan, rasio, dan proporsi.
+
+2. Hubungan matematika sederhana: Melibatkan konversi satuan dan deret bilangan.
+
+3. Operasi aritmetika dasar: Melibatkan penjumlahan, pengurangan, perkalian, pembagian, dan persen.
+
+Pastikan soal-soal mencakup ketiga jenis kemampuan tersebut secara seimbang jika memungkinkan, atau setidaknya ada variasi.
+
+Setiap soal harus memiliki:
+
+- "id": string (nomor soal, e.g., "pk_q1", "pk_q2", ... "pk_q10")
+
+- "question_text": string (teks pertanyaan yang jelas dan lengkap, bisa berupa soal cerita atau soal numerik langsung)
+
+- "topic": string (salah satu dari 'Kuantitas', 'Hubungan Matematika Sederhana', 'Operasi Aritmetika Dasar')
+
+- "options": array of objects, masing-masing dengan "id" (e.g., "a", "b", "c", "d", "e") dan "text" (teks pilihan jawaban, bisa berupa angka atau pernyataan). Harus ada 5 pilihan jawaban.
+
+- "correct_answer_id": string (id dari pilihan jawaban yang benar)
+
+- "explanation": string (penjelasan rinci langkah-langkah penyelesaian dan mengapa jawaban tersebut benar, dalam bahasa Indonesia)
+
+  
+
+Format output HARUS berupa JSON array yang valid. Contoh satu soal:
+
+{
+
+"id": "pk_q1",
+
+"question_text": "Sebuah toko memberikan diskon 20% untuk semua barang. Jika harga awal sebuah baju adalah Rp150.000, berapakah harga baju tersebut setelah diskon?",
+
+"topic": "Operasi Aritmetika Dasar",
+
+"options": [
+
+{ "id": "a", "text": "Rp100.000" },
+
+{ "id": "b", "text": "Rp110.000" },
+
+{ "id": "c", "text": "Rp120.000" },
+
+{ "id": "d", "text": "Rp130.000" },
+
+{ "id": "e", "text": "Rp140.000" }
+
+],
+
+"correct_answer_id": "c",
+
+"explanation": "Diskon = 20% dari Rp150.000 = 0.20 * 150.000 = Rp30.000. Harga setelah diskon = Rp150.000 - Rp30.000 = Rp120.000."
+
+}
+--------------------------------------------------
+<think>
+Okay, let's start by looking at each question provided. The user wants me to evaluate these SNBT questions based on several parameters. I need to go through each parameter one by one and assess each question accordingly.
+
+First, I'll take **tingkat_kesulitan_kuantitatif**. For each question, I need to determine the complexity of the calculations or concepts required. For example, q1 is a simple percentage increase, which is low difficulty. q2 involves ratios and solving for a variable, slightly more complex. q3 uses a basic formula (speed = distance/time), so moderate. q4 is straightforward arithmetic. q5 deals with work rate, which requires understanding inverse proportionality. q6 is about number patterns, which might be a bit tricky. q7 involves profit calculation with percentages. q8 requires volume formula and algebra. q9 uses average calculations. q10 is fractions and subtraction. Overall, most are basic to moderate, so maybe a mid-range score here.
+
+Next, **kejelasan_data_dan_informasi**. All questions provide clear data. The numbers and units are specified, and there's no ambiguity. So this parameter should be high.
+
+**keragaman_konsep_matematis**: The topics include percentages, ratios, speed, fractions, work rate, number patterns, profit, volume, averages, and fractions. That's a good variety. So this would be a high score.
+
+**kompleksitas_operasi**: The operations range from simple addition/multiplication to solving equations and understanding inverse proportions. The most complex is q8 with volume and algebra. So maybe a mid to high score here.
+
+**kemampuan_analisis_strategi**: Most questions require applying a formula or basic strategy. q5 and q8 might need more strategic thinking, like setting up equations. So some questions are better here than others. Maybe an average score.
+
+**keakuratan_konteks_realistis**: The contexts are all realistic (prices, ages, speed, etc.). No issues here. High score.
+
+**koreksi_isi_dan_validitas**: All calculations seem correct, and there's only one correct answer. High score.
+
+**kemampuan_diskriminasi**: The distractors are plausible. For example, in q1, 4.200.000 is 10%, 4.400.000 is 10%, etc. They require actual calculation. High score.
+
+**kesesuaian_standar_uji**: The format matches standard SNBT questions. High score.
+
+**originalitas_soal**: The questions are standard; they might be similar to common problems. So maybe a lower score here.
+
+**kesesuaian_notasi_dan_simbol**: All notations are correct, using proper decimal points and units. High score.
+
+After evaluating each parameter for all questions, I'll compile the grades and provide feedback for each parameter. The overall grade would be the average of the parameter scores, considering the strengths and areas for improvement.
+</think>
+
+{
+  "tingkat_kesulitan_kuantitatif": "55",
+  "kejelasan_data_dan_informasi": "98",
+  "keragaman_konsep_matematis": "85",
+  "kompleksitas_operasi": "70",
+  "kemampuan_analisis_strategi": "65",
+  "keakuratan_konteks_realistis": "99",
+  "koreksi_isi_dan_validitas": "97",
+  "kemampuan_diskriminasi": "88",
+  "kesesuaian_standar_uji": "95",
+  "originalitas_soal": "72",
+  "kesesuaian_notasi_dan_simbol": "98",
+  "overall_grade": "82",
+  "feedback": "Soal memiliki data jelas dan konteks realistis, tetapi kompleksitas operasi dan analisis strategi cenderung rendah. Sebagian besar soal menggunakan konsep dasar dengan variasi topik yang baik. Beberapa soal (misalnya perbandingan umur, volume tabung) menunjukkan orisinalitas, tetapi banyak soal mirip dengan tipe umum SNBT. Distraktor cukup diskriminatif, tetapi sebagian besar soal tidak menguji pemikiran kritis tingkat lanjut."
+}
+--------------------------------------------------
+
+User File: PPU.user.getter.md
+System File: Anda adalah AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam), khususnya subtes Penalaran Umum bagian Pengetahuan dan Pemahaman Umum (PPU).
+
+Tujuan tes PPU adalah mengukur kemampuan memahami, menilai, dan mengomunikasikan pengetahuan yang dianggap penting di lingkungan budaya Indonesia.
+
+Buatlah soal pilihan ganda yang unik dan beragam untuk PPU. Setiap soal harus memiliki:
+
+1. ID unik (id), contoh "q1", "q2", dst.
+2. Topik soal (topic), pilih salah satu dari: 'Sinonim & Antonim', 'Ide Pokok & Makna', 'Kata & Bentuk Kata', 'Kesesuaian Wacana', 'Hubungan Antar Paragraf', atau 'Umum' jika tidak spesifik.
+3. Teks bacaan (passage) jika soal memerlukan konteks dari sebuah teks. Ini opsional.
+4. Teks pertanyaan (questionText).
+5. 4 atau 5 pilihan jawaban (options), masing-masing dengan 'text' dan 'id' (misalnya 'a', 'b', 'c', 'd', 'e').
+6. Satu jawaban yang benar (correctAnswerId), yang merujuk ke 'id' pilihan yang benar.
+7. (Opsional) Penjelasan singkat mengapa jawaban tersebut benar (explanation).
+
+Berikut adalah deskripsi dan contoh untuk setiap topik:
+
+- **Sinonim & Antonim**: Padanan kata (makna dekat) & lawan kata. Contoh soal: "Kata 'gigih' paling mendekati sinonim dari..."
+- **Ide Pokok & Makna**: Menentukan ide utama, simpulan, makna konteks. Contoh soal: "Paragraf kedua teks tersebut mengemukakan..."
+- **Kata & Bentuk Kata**: Afiks (imbuhan), derivasi, kata ulang. Contoh soal: "Bentuk kata yang benar untuk 'ke-ajar-an' adalah..." (Catatan: tipe soal bisa pilihan ganda atau isian singkat, tapi untuk API ini, buatlah selalu pilihan ganda).
+- **Kesesuaian Wacana**: Kohesi (rangkaian kata) & koherensi (keselarasan gagasan). Contoh soal: "Kata penghubung yang tepat untuk melanjutkan kalimat berikut adalah..."
+- **Hubungan Antar Paragraf**: Rujukan, pengembangan ide, transisi paragraf. Contoh soal: "Paragraf ketiga berfungsi sebagai ... terhadap paragraf sebelumnya."
+
+Pastikan soal-soal bervariasi dalam tingkat kesulitan dan mencakup berbagai aspek dari tipe-tipe soal tersebut. Distribusikan jumlah soal secara merata antar topik jika memungkinkan.
+
+Format output harus berupa JSON object yang valid dengan struktur berikut: { "questions": [ { "id": "q1", "topic": "Sinonim & Antonim", "questionText": "...", "options": [{"id": "a", "text": "..."}, ...], "correctAnswerId": "c", "explanation": "..." }, ... ] }
+
+Pastikan setiap soal memiliki `id` yang unik (misalnya, "q1", "q2", ..., "q20").
+Pastikan setiap pilihan dalam soal memiliki `id` yang unik dalam konteks soal tersebut (misalnya, "a", "b", "c", "d").
+--------------------------------------------------
+<think>
+Okay, let's start by understanding the user's query. They provided a JSON object containing 20 questions for a SNBT exam in the "Pengetahuan & Pemahaman Umum" section. My task is to evaluate these questions based on the specified parameters and provide a JSON response with grades and feedback.
+
+First, I need to go through each parameter listed. The parameters include things like kejelasan_konsep_dasar, kedalaman_pemahaman, cakupan_konten_umum, etc. For each parameter, I have to assess how well the questions meet the criteria and assign a grade out of 100. Then, provide a brief feedback explaining the grade.
+
+Looking at the questions, they cover a range of topics like synonym/antonym, main idea, word forms, coherence, and paragraph relationships. The explanations are detailed, which is good for clarity. The questions seem to be testing basic to moderate understanding, which might affect the kedalaman_pemahaman score. 
+
+For kejelasan_konsep_dasar, the questions are clear in what they're asking, so a high score here. However, some might have ambiguous options, but the correct answers are well-explained. 
+
+Cakupan_konten_umum: The questions are varied in topics but are mostly language and reading comprehension, which is appropriate for the SNBT section. However, there's a lack of diversity in subjects like science, history, or economics, which might lower this score.
+
+Akurasi_fakta_dan_data: The factual content seems accurate, but since most questions are about language and reading, there's less room for factual errors. Still, I should check if any historical or scientific facts are mentioned, but in the given data, they don't seem to be. So this might be a high score.
+
+Koherensi_logika_konten: The questions are logically structured, especially the ones involving paragraph relationships. The explanations help in understanding the logic, so a good score here.
+
+Kemampuan_aplikasi_pengetahuan: Many questions require applying knowledge (like choosing the correct conjunction or understanding main ideas), so this could be a high score. However, some are more about recognition than application.
+
+Originalitas_soal: The questions are standard and don't seem to be unique. They follow typical SNBT formats, so originality might be low.
+
+Keadilan_budaya_dan_aksesibilitas: The questions are in Indonesian and don't reference specific cultural contexts that might be unfamiliar, so this is likely good.
+
+Kejelasan_instruksi: The instructions are clear, so high score here.
+
+Kesesuaian_standar_SNBT: The questions align with the SNBT format, so this should be high.
+
+Kemampuan_diskriminasi: The options are plausible but the correct answers are distinct, which helps in discrimination.
+
+Pembobotan_waktu_penyelesaian: Not all questions have time estimates, so this might be missing or low.
+
+Keterkaitan_antar_soal: The questions that involve multiple paragraphs are well-linked, but others are standalone, so moderate score.
+
+Now, assigning numerical grades based on these observations. For example, kejelasan_konsep_dasar might be 90, while originalitas_soal could be 60. Need to ensure each parameter is evaluated and feedback is concise. Also, the overall_grade is the average of all parameters, but the example shows individual parameters. Wait, the example in the user's message includes multiple parameters with grades and an overall_grade. However, the user's instruction says to generate a numerical or categorical grade for the specified parameter. But the example shows multiple parameters. Wait, looking back, the user's instruction says: "Generate a numerical or categorical grade (for example, a score out of 100, a letter grade, or a descriptor such as “Excellent,” “Good,” “Fair,” “Poor”), based on how well the text meets the requested criterion." But the user provided a list of parameters. So perhaps the user wants all parameters to be evaluated. However, in the example, the assistant provided a JSON with multiple parameters, each with their own grade. But the user's instruction says to select one or several keys from the parameter list. Wait, the user's instruction says: "Anda dapat memilih salah satu atau beberapa key berikut untuk diisi pada field `"parameter"`:" So the assistant can choose to evaluate one or more parameters. But the example in the user's message shows all parameters being filled. However, in the actual task, the assistant should select one or more parameters. But the user's input here is a review of the entire set of questions, so perhaps the assistant should evaluate all the parameters. 
+
+But the user's instruction is a bit ambiguous. However, the example given by the user includes all parameters, so I'll proceed to evaluate all the parameters listed. However, in the user's message, the assistant is supposed to choose one or several parameters. But in the example, the assistant filled all. To be safe, I'll evaluate all the parameters as per the example.
+
+Now, proceeding to assign grades for each parameter. For example:
+
+kejelasan_konsep_dasar: 90 (most questions are clear)
+kedalaman_pemahaman: 75 (some require deeper understanding but others are basic)
+cakupan_konten_umum: 70 (mostly language, less on other subjects)
+akurasi_fakta_dan_data: 95 (factual content is accurate)
+koherensi_logika_konten: 85 (logical structure)
+kemampuan_aplikasi_pengetahuan: 80 (application is tested)
+originalitas_soal: 60 (standard questions)
+keadilan_budaya_dan_aksesibilitas: 85 (no cultural bias)
+kejelasan_instruksi: 95 (instructions are clear)
+kesesuaian_standar_SNBT: 90 (matches SNBT format)
+kemampuan_diskriminasi: 85 (good distractors)
+pembobotan_waktu_penyelesaian: 50 (no time info)
+keterkaitan_antar_soal: 80 (some linked well)
+
+Then, the overall_grade is the average of these, but the example shows individual parameters and an overall_grade. However, the user's example shows each parameter with a grade and an overall_grade. Wait, the example in the user's message shows:
+
+{
+  "parameter1": "34",
+  "parameter2": "22",
+  "parameter3": "98",
+  "overall_grade": "95",
+  "feedback": "..."
+}
+
+But the user's instruction says to generate exactly one JSON object with the fields "parameter", "grade", "feedback", and "overall_grade". Wait, the user's example shows multiple parameters, but the initial instruction says to choose one or several parameters. However, the example shows multiple parameters, each with their own grade. So the correct approach is to evaluate each parameter listed in the key list, assign a grade for each, and then provide an overall grade. However, the user's instruction says to generate a numerical or categorical grade based on the requested criterion, which might imply that the parameter is one of the listed ones. But in the example, the assistant provided multiple parameters. To align with the example, I'll evaluate all parameters.
+
+Now, compiling the JSON with all parameters, each with a grade (as a string), and an overall grade. The feedback should be a brief explanation of the overall grade. Also, each parameter's feedback is not required in the example, only the overall feedback. Wait, the example shows "feedback": "The sentence is grammatically correct..." which is for the overall. But in the user's instruction, the feedback field is for the overall grade. However, the user's example includes "parameter1", "parameter2" etc., each with a grade, and then "feedback" for the overall. So the assistant's response should have all the parameters as keys with their grades, and the feedback is for the overall grade. 
+
+Therefore, the final JSON will have all the parameters as keys with their respective grades (as strings), and the feedback field explains the overall grade. 
+
+Now, putting it all together, ensuring that each parameter is evaluated and the grades are assigned based on the analysis. Then calculate the overall grade as the average of all parameter grades, or perhaps the user wants the overall grade to be a separate assessment. The example shows the overall_grade as 95, which is higher than some individual parameters. So perhaps the overall grade is a summary judgment, not the average. 
+
+In this case, after evaluating all parameters, I'll assign an overall grade based on the overall quality, considering all factors. For example, if most parameters are high but some are low (like originality and time weighting), the overall might be mid-80s.
+
+Finally, ensure that the JSON is correctly formatted, with all parameters as keys, grades as strings, and the feedback as a single explanation for the overall grade.
+</think>
+
+{
+  "kejelasan_konsep_dasar": "90",
+  "kedalaman_pemahaman": "75",
+  "cakupan_konten_umum": "70",
+  "akurasi_fakta_dan_data": "95",
+  "koherensi_logika_konten": "85",
+  "kemampuan_aplikasi_pengetahuan": "80",
+  "originalitas_soal": "60",
+  "keadilan_budaya_dan_aksesibilitas": "85",
+  "kejelasan_instruksi": "95",
+  "kesesuaian_standar_SNBT": "90",
+  "kemampuan_diskriminasi": "85",
+  "pembobotan_waktu_penyelesaian": "50",
+  "keterkaitan_antar_soal": "80",
+  "overall_grade": "82",
+  "feedback": "Soal memiliki kejelasan instruksi dan akurasi fakta yang baik, tetapi cakupan konten terbatas pada aspek bahasa dan literasi. Kreativitas soal perlu ditingkatkan untuk menghindari pola standar yang umum, dan estimasi waktu penyelesaian tidak disertakan."
+}
+--------------------------------------------------
+
+User File: PU_PD.user.getter.md
+System File: Anda adalah AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam), khususnya subtes Penalaran Umum bagian Penalaran Deduktif.
+
+Penalaran Deduktif adalah kemampuan bernalar secara logis dari premis-premis yang telah diketahui untuk menarik kesimpulan yang pasti. Tes ini mengukur cara berpikir berdasarkan proposisi (pernyataan penuh) dan hubungan antar-proposisi.
+
+Buatlah soal pilihan ganda yang unik dan beragam untuk Penalaran Deduktif. Setiap soal harus memiliki:
+
+1. Teks pertanyaan (questionText).
+
+2. 4 atau 5 pilihan jawaban (options), masing-masing dengan 'text' dan 'id' (misalnya 'a', 'b', 'c', 'd', 'e').
+
+3. Satu jawaban yang benar (correctAnswerId), yang merujuk ke 'id' pilihan yang benar.
+
+4. Tipe soal (questionType) dari salah satu berikut: 'Syllogism', 'Equivalence', 'Negation', 'Conclusion', atau 'GeneralDeductive' jika tidak spesifik.
+
+5. (Opsional) Penjelasan singkat mengapa jawaban tersebut benar (explanation).
+
+  
+
+Berikut adalah karakteristik dan contoh untuk setiap tipe soal:
+
+- **Silogisme**: Dua premis → satu kesimpulan; gunakan modus ponens/tollens. Contoh: "Premis 1: Jika hari ini hujan, maka jalanan basah. Premis 2: Hari ini hujan. Kesimpulan: Jalanan basah."
+
+- **Ekuivalensi**: Tentukan pernyataan yang setara makna. Contoh: "'Jika P maka Q' ekuivalen dengan '~P atau Q'."
+
+- **Negasi**: Ubah premis menjadi bentuk kontrapositif atau negasi langsung. Contoh: "Negasi dari 'Semua kucing berwarna hitam' adalah 'Ada kucing yang tidak berwarna hitam'. Kontrapositif dari 'Jika P maka Q' adalah 'Jika ~Q maka ~P'."
+
+- **Kesimpulan**: Pilih simpulan yang logis dan pasti dari semua premis yang diberikan. Hindari kesimpulan yang terlalu umum atau terlalu ekstrem.
+
+  
+
+Pastikan soal-soal bervariasi dalam tingkat kesulitan dan mencakup berbagai aspek dari tipe-tipe soal tersebut.
+
+Format output harus berupa JSON object yang valid dengan struktur berikut: { "questions": [ { "id": "q1", "questionText": "...", "options": [{"id": "a", "text": "..."}, ...], "correctAnswerId": "c", "questionType": "Syllogism", "explanation": "..." }, ... ] }
+
+Pastikan setiap soal memiliki "id" yang unik (misalnya, "q1", "q2", ..., "q10").
+
+Pastikan setiap pilihan dalam soal memiliki "id" yang unik dalam konteks soal tersebut (misalnya, "a", "b", "c", "d").
+--------------------------------------------------
+<think>
+Okay, let's start by understanding the user's request. They provided a set of 10 logical reasoning questions and want me to evaluate each based on specific parameters for SNBT Penalaran Umum (Indonesian University Entrance Exam). The parameters include deductive reasoning level, clarity of premises, argument structure complexity, logical coherence, content validity, instruction clarity, discriminative ability, originality, and context suitability.
+
+First, I need to go through each question and assess them against these parameters. Let's take the first question (q1). It's a syllogism using Modus Ponens. The premises are clear and straightforward. The deductive level is basic since it's a direct application of Modus Ponens. The options include the correct answer (c) and plausible distractors. The explanation is accurate. So, for tingkat_deduktifitas, maybe a mid to high score. Kejelasan_premis is high here. The structure is simple, so complexity might be lower. Logical coherence is good. Validity is correct as the conclusion follows logically. Instructions are clear. Discriminative ability is moderate; some might pick 'a' (maybe lulus ujian vs. will lulus). Originality is average since it's a standard Modus Ponens. Context is suitable for SNBT.
+
+For q2 (Modus Tollens), similar assessment applies. Deductive level is basic. Clarity is good. Structure is simple. Coherence is good. Validity correct. Instructions clear. Discriminators like option 'b' might confuse some. Originality average. Context suitable.
+
+q3 is about equivalence. The question tests understanding of logical equivalence. The correct answer is (b), which is 'not P or Q'. The explanation is correct. Deductive level is moderate. Clarity is good. Structure is straightforward. Coherence and validity are good. Instructions are clear. Discriminators are plausible. Originality is moderate. Context suitable.
+
+q4 is a negation using De Morgan. The correct answer is (c). The explanation is correct. Deductive level is moderate. Clarity of premises is good. Structure involves understanding De Morgan's laws. Logical coherence is good. Validity is correct. Instructions clear. Discriminators are tricky. Originality average. Context suitable.
+
+q5 has three premises and asks for the conclusion. The correct answer is (d). The explanation is correct. Deductive level is higher due to multiple premises. Clarity is good. Structure is more complex with three premises. Logical coherence is good. Validity is correct. Instructions clear. Discriminators are plausible. Originality is moderate. Context suitable.
+
+q6 asks for contrapositive. The correct answer is (b). The explanation is correct. Deductive level is moderate. Clarity good. Structure straightforward. Coherence and validity good. Instructions clear. Discriminators like (a) are common mistakes. Originality average. Context suitable.
+
+q7 is a disjunctive syllogism. The correct answer is (a). The explanation is correct. Deductive level basic. Clarity good. Structure simple. Coherence and validity good. Instructions clear. Discriminators are minimal. Originality average. Context suitable.
+
+q8 is about negation of a disjunction. Correct answer (c). Explanation correct. Deductive level moderate. Clarity good. Structure uses De Morgan. Coherence and validity good. Instructions clear. Discriminators like (b) might confuse. Originality average. Context suitable.
+
+q9 is a syllogism with 'some' and 'all'. Correct answer (b). Explanation correct. Deductive level moderate. Clarity good. Structure involves understanding quantifiers. Coherence and validity good. Instructions clear. Discriminators like (a) might be tempting. Originality average. Context suitable.
+
+q10 involves a chain of implications and Modus Tollens. Correct answer (e). Explanation correct. Deductive level higher due to multiple steps. Clarity good. Structure more complex. Coherence and validity good. Instructions clear. Discriminators are plausible. Originality moderate. Context suitable.
+
+Overall, the questions are well-structured, follow standard logical forms, and explanations are accurate. The deductive levels vary from basic to moderate. Clarity is high across all questions. Structures range from simple to moderately complex. Logical coherence and validity are maintained. Instructions are clear. Discriminative ability is good as distractors are plausible but incorrect. Originality is average, as they follow common question types. Context is suitable for SNBT. However, some questions could be more complex to better test higher-order deductive reasoning. The overall quality is high but there's room for increasing complexity and originality in some areas.
+</think>
+
+{
+  "tingkat_deduktifitas": "75",
+  "kejelasan_premis": "95",
+  "kompleksitas_struktur_argumen": "70",
+  "koherensi_logika": "98",
+  "koreksi_isi_dan_validitas": "95",
+  "kejelasan_instruksi": "90",
+  "kemampuan_diskriminasi": "85",
+  "originalitas_soal": "65",
+  "kesesuaian_konteks_uji": "95",
+  "overall_grade": "83",
+  "feedback": "Soal memiliki validitas logika tinggi dan instruksi jelas, tetapi kompleksitas argumen dan originalitas cenderung rata-rata. Sebagian besar soal mengulang pola silogisme klasik (Modus Ponens/Tollens) tanpa variasi berarti. Kemampuan diskriminasi baik karena distraktor logis, tetapi beberapa soal bisa lebih kompleks untuk uji berpikir tingkat tinggi."
+}
+--------------------------------------------------
+
+User File: PU_PI.user.getter.md
+System File: Anda adalah asisten AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam) di Indonesia, khususnya untuk subtes Penalaran Induktif.
+
+Tugas Anda adalah membuat soal pilihan ganda yang berkualitas tinggi dalam bahasa Indonesia.
+
+Setiap soal harus menguji salah satu dari tiga jenis penalaran induktif berikut:
+
+1. Generalisasi: Menyimpulkan pernyataan umum dari fakta-fakta khusus. Contoh format: "A, B, C merupakan X; maka D juga X."
+
+2. Analogi: Membandingkan dua pasangan unsur, mencari hubungan yang sama pada pasangan berikutnya. Contoh format: "Air : Cair = Es : ?"
+
+3. Sebab-Akibat (Hubungan Kausal): Menentukan kesimpulan kausal yang logis dari rangkaian fakta atau peristiwa. Contoh format: "X menimbulkan Y, maka jika X terjadi, Z?"
+
+Pastikan soal-soal mencakup ketiga jenis penalaran tersebut secara seimbang jika memungkinkan, atau setidaknya ada variasi.
+
+Setiap soal harus memiliki:
+
+- "id": string (nomor soal, e.g., "pi_q1", "pi_q2", ... "pi_q10")
+
+- "question_text": string (teks pertanyaan yang jelas dan lengkap, bisa berupa teks singkat atau paragraf jika diperlukan untuk konteks)
+
+- "topic": string (salah satu dari 'Generalisasi', 'Analogi', 'Sebab-Akibat')
+
+- "options": array of objects, masing-masing dengan "id" (e.g., "a", "b", "c", "d", "e") dan "text" (teks pilihan jawaban). Harus ada 5 pilihan jawaban.
+
+- "correct_answer_id": string (id dari pilihan jawaban yang benar)
+
+- "explanation": string (penjelasan rinci mengapa jawaban tersebut benar dan mengapa pilihan lain salah, dalam bahasa Indonesia)
+
+  
+
+Format output HARUS berupa JSON array yang valid. Contoh satu soal:
+
+{
+
+"id": "pi_q1",
+
+"question_text": "Semua hewan mamalia menyusui anaknya. Kucing adalah hewan mamalia. Maka kesimpulan yang paling tepat adalah...",
+
+"topic": "Generalisasi",
+
+"options": [
+
+{ "id": "a", "text": "Kucing tidak menyusui anaknya." },
+
+{ "id": "b", "text": "Kucing menyusui anaknya." },
+
+{ "id": "c", "text": "Semua hewan menyusui adalah kucing." },
+
+{ "id": "d", "text": "Anak kucing tidak disusui." },
+
+{ "id": "e", "text": "Tidak dapat disimpulkan." }
+
+],
+
+"correct_answer_id": "b",
+
+"explanation": "Ini adalah contoh generalisasi. Karena kucing adalah mamalia, dan semua mamalia menyusui anaknya, maka kucing menyusui anaknya."
+
+}
+
+--------------------------------------------------
+<think>
+Okay, let's start by understanding the user's request. They provided a set of 10 questions for the SNBT Penalaran Umum (Inductive Reasoning) section and want me to evaluate each according to specific parameters. The parameters include things like inductive reasoning level, pattern complexity, diversity of stimuli, etc. The output should be a JSON with each parameter's grade and an overall grade.
+
+First, I need to go through each question and assess them individually. Let's take the first question (pi_q1). The question is about the benefits of fruits leading to a general conclusion. The topic is "Generalisasi". The options are varied, with the correct answer being C. The explanation ties the premises to the conclusion. For inductive reasoning (tingkat_induktifitas), this question is good because it requires generalizing from multiple specific instances. The complexity is moderate. The stimuli are text-based, so maybe low on diversity. The instructions are clear, and the validity is good because there's one correct answer. Originality might be medium since it's a common topic.
+
+For the second question (pi_q2), an analogy between "Pensiun:Kerja" and "Tidur:?". The correct answer is C (Bangun). The explanation is straightforward. This is a classic analogy, so the originality might be low. The pattern is simple, so complexity is low. The diversity of stimuli is text-based, so again, maybe low. The cognitive analysis is minimal, as it's a direct analogy.
+
+Continuing this way for each question, I need to evaluate each parameter. However, the user wants the evaluation of the entire set, not each question. Wait, the input is a list of questions, but the parameters are for the overall set. So I need to assess the entire set as a whole, not individual questions.
+
+Wait, the user's instruction says "the text to evaluate" is the JSON input. The parameters are for the set of questions. So I need to look at the entire JSON and evaluate how well the set meets the parameters. For example, the diversity of stimulus types (keragaman_tipe_stimulus) would look at how varied the questions are in terms of content—some are analogies, some are cause-effect, some are generalizations. The set includes different topics, so that's good. The instructions are clear across all questions. The validity is good since each has a correct answer. Originality might be medium, as some questions are standard types.
+
+Each parameter needs a score from 1-100. Let me break down each parameter:
+
+- tingkat_induktifitas: The questions require varying levels of inductive reasoning. Some are straightforward (analogies) while others need more complex generalization. Maybe 75.
+
+- kompleksitas_pola: The patterns vary; some are simple analogies, others need connecting multiple factors (like q3 with cause-effect). Maybe 65.
+
+- keragaman_tipe_stimulus: The questions use text, but the topics vary (health, economics, environment). However, all are text-based. So maybe 60.
+
+- tingkat_kognitif_analisis: Some require breaking down components (q1, q4), others are direct (analogies). Average might be 70.
+
+- kejelasan_instruksi: All questions have clear instructions. 90.
+
+- koreksi_isi_dan_validitas: All seem to have valid, unambiguous answers. 85.
+
+- kemampuan_diskriminasi: Not tested here, but the options are varied and plausible. Maybe 70.
+
+- originalitas_soal: Some are common (analogies), others are more unique (q9 about climate change). 65.
+
+- keterkaitan_dengan_konteks_uji: They align with SNBT's inductive reasoning section. 90.
+
+Overall, the set is solid but has room for improvement in pattern complexity and originality. The average might be around 75-80. The feedback should note strengths like clear instructions and validity, and areas to improve like diversity of stimuli and originality.
+</think>
+
+{
+  "tingkat_induktifitas": "75",
+  "kompleksitas_pola": "65",
+  "keragaman_tipe_stimulus": "60",
+  "tingkat_kognitif_analisis": "70",
+  "kejelasan_instruksi": "90",
+  "koreksi_isi_dan_validitas": "85",
+  "kemampuan_diskriminasi": "70",
+  "originalitas_soal": "65",
+  "keterkaitan_dengan_konteks_uji": "90",
+  "overall_grade": "75",
+  "feedback": "Soal memiliki instruksi jelas dan validitas kuat, tetapi variasi stimulus dan kompleksitas pola masih bisa ditingkatkan. Sebagian besar soal standar dengan sedikit inovasi dalam pola penalaran."
+}
+--------------------------------------------------
+
+User File: PK.user.getter.md
+System File: Anda adalah AI yang sangat ahli dalam merancang soal-soal Tes Potensi Skolastik (TPS) subtes Pengetahuan Kuantitatif untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam) di Indonesia dengan tingkat kesulitan TERTINGGI (ultra-hard).
+
+Tugas Anda adalah membuat soal pilihan ganda yang sangat menantang dalam bahasa Indonesia.
+
+Setiap soal harus memiliki TEPAT EMPAT pilihan jawaban (A, B, C, D).
+
+Soal-soal harus mencakup topik-topik berikut dengan tingkat kesulitan maksimal:
+
+1. Operasi Numerik & Aljabar Lanjut (misalnya, sistem persamaan non-linear kompleks, perbandingan kuantitatif dengan banyak variabel, manipulasi aljabar tingkat tinggi, teori bilangan lanjutan).
+
+2. Interpretasi Data Kompleks (misalnya, analisis grafik multi-dimensi, tabel dengan data tersirat, statistik inferensial dasar, probabilitas majemuk).
+
+3. Logika & Pola Abstrak (misalnya, deret aritmatika/geometri bertingkat, pola visual kompleks, matriks logika yang rumit, penalaran deduktif-induktif gabungan).
+
+4. Rasio, Laju & Campuran Multivariabel (misalnya, masalah campuran dengan lebih dari dua komponen, sistem laju kerja gabungan yang kompleks, perbandingan rasio bertingkat).
+
+5. Matematika Keuangan Lanjut (misalnya, bunga majemuk dengan periode non-standar, anuitas kompleks, analisis titik impas lanjutan, persentase hasil investasi multi-tahap).
+
+  
+
+Pastikan setiap soal benar-benar menguji pemahaman mendalam dan kemampuan problem-solving tingkat tinggi, seringkali memerlukan beberapa langkah atau konsep yang digabungkan.
+
+  
+
+Setiap soal HARUS memiliki format JSON objek berikut:
+
+- "id": string (nomor soal unik, e.g., "uq_q1", "uq_q2", ..., "uq_q25")
+
+- "questionText": string (teks pertanyaan yang jelas, lengkap, dan bisa menyertakan LaTeX untuk formula matematika, e.g., "Jika \\(x^2 + y^2 = 25\\) dan \\(xy = 12\\), berapakah nilai dari \\((x+y)^2\\)?")
+
+- "topic": string (salah satu dari: 'Operasi Numerik & Aljabar Lanjut', 'Interpretasi Data Kompleks', 'Logika & Pola Abstrak', 'Rasio, Laju & Campuran Multivariabel', 'Matematika Keuangan Lanjut')
+
+- "options": array objek, masing-masing dengan "id" (string: "a", "b", "c", "d") dan "text" (string: teks pilihan jawaban, bisa mengandung LaTeX).
+
+- "correctAnswerId": string (id dari pilihan jawaban yang benar, e.g., "c")
+
+- "explanation": string (penjelasan langkah demi langkah yang detail dan jelas mengapa jawaban tersebut benar, dalam bahasa Indonesia, bisa mengandung LaTeX).
+
+  
+
+Contoh SATU objek soal dalam array JSON:
+
+{
+
+"id": "uq_q1",
+
+"questionText": "Sebuah pekerjaan dapat diselesaikan oleh 8 pria dalam 10 hari atau oleh 12 wanita dalam 15 hari. Jika 4 pria dan 6 wanita bekerja bersama, berapa hari waktu yang dibutuhkan untuk menyelesaikan 75% pekerjaan tersebut?",
+
+"topic": "Rasio, Laju & Campuran Multivariabel",
+
+"options": [
+
+{"id": "a", "text": "6 hari"},
+
+{"id": "b", "text": "7.5 hari"},
+
+{"id": "c", "text": "9 hari"},
+
+{"id": "d", "text": "12 hari"}
+
+],
+
+"correctAnswerId": "c",
+
+"explanation": "Misal P adalah laju kerja 1 pria/hari dan W adalah laju kerja 1 wanita/hari. Total pekerjaan = 8P * 10 = 80P unit. Total pekerjaan = 12W * 15 = 180W unit. Maka 80P = 180W => P = (18/8)W = (9/4)W. Laju kerja gabungan 4 pria dan 6 wanita = 4P + 6W = 4(9/4)W + 6W = 9W + 6W = 15W. Waktu untuk menyelesaikan 100% pekerjaan = (Total Pekerjaan) / (Laju Gabungan) = 180W / 15W = 12 hari. Waktu untuk 75% pekerjaan = 0.75 * 12 hari = 9 hari."
+
+}
+
+  
+
+Pastikan output adalah array JSON yang valid berisi soal unik dengan tingkat kesulitan tertinggi. Jangan sertakan teks atau penjelasan lain di luar array JSON itu sendiri.
+--------------------------------------------------

@@ -117,8 +117,8 @@ const showEditDialog = ref(false);
 const editingContent = ref("");
 const editingIndex = ref(-1);
 
-const groq = new Groq({
-  apiKey: "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",
+const groq = new Groq({  apiKey: "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",
+
   dangerouslyAllowBrowser: true,
 });
 

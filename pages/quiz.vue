@@ -1,310 +1,93 @@
 <template>
-  <div class="quiz-container p-4">
-    <h1 class="text-2xl font-bold mb-6">Quiz App</h1>
-    <TransitionGroup name="fade" mode="out-in">
-      <Card v-if="currentQuestion && !quizCompleted" key="quiz">
-        <CardTitle class="mb-4"
-          >Question {{ currentQuestionIndex + 1 }} of
-          {{ questions.length }}</CardTitle
-        >
-        <CardDescription class="text-lg mb-6">{{ currentQuestion.pertanyaan }}</CardDescription>
-
-        <div class="flex flex-col space-y-4">
-          <TransitionGroup name="list" tag="div" class="space-y-4">
-            <Button
-              v-for="(option, index) in currentQuestion.pilihan"
-              :key="index"
-              :variant="getButtonVariant(option)"
-              class="justify-start text-left w-full transition-all duration-200 ease-in-out transform hover:scale-102 break-words whitespace-normal p-1"
-              @click="selectAnswer(option)"
-              :disabled="selectedAnswer !== null"
-            >
-              {{ option }}
-            </Button>
-          </TransitionGroup>
-
-          <Transition name="fade">
-            <div v-if="selectedAnswer" class="mt-4 space-y-4">
-              <Alert :variant="isCorrect ? 'default' : 'destructive'" class="transition-all duration-300">
-                <AlertTitle>{{ isCorrect ? "Correct!" : "Incorrect!" }}</AlertTitle>
-                <AlertDescription>
-                  {{
-                    isCorrect
-                      ? "Great job! You got it right."
-                      : `The correct answer was: ${currentQuestion.pilihan.find((p) => p.startsWith(currentQuestion.jawaban))}`
-                  }}
-                </AlertDescription>
-              </Alert>
-
-              <Button
-                class="w-full mt-4 transition-all duration-200 hover:scale-102"
-                @click="currentQuestionIndex === questions.length - 1 ? finishQuiz() : nextQuestion()"
+  <div class="min-h-screen bg-background">
+    <div class="container mx-auto py-8">
+      <div class="max-w-4xl mx-auto">
+        <div v-if="!quizStarted" class="text-center space-y-6">
+          <h1 class="text-4xl font-bold">Sample Quiz</h1>
+          <p class="text-lg text-muted-foreground">
+            Test your knowledge with this interactive quiz featuring math and markdown support.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-4">
+              <label for="time-setting" class="text-sm font-medium">Time per question:</label>
+              <select 
+                id="time-setting"
+                v-model="timePerQuestion" 
+                class="px-3 py-2 border rounded-md"
               >
-                {{
-                  currentQuestionIndex === questions.length - 1
-                    ? "Finish Quiz"
-                    : "Next Question"
-                }}
-              </Button>
+                <option :value="15">15 seconds</option>
+                <option :value="30">30 seconds</option>
+                <option :value="60">60 seconds</option>
+                <option :value="120">2 minutes</option>
+              </select>
             </div>
-          </Transition>
-        </div>
-      </Card>
-
-      <Card v-if="quizCompleted" key="completion" class="completion-card">
-        <CardTitle class="text-2xl font-bold text-center mb-6">Quiz Completed! 🎉</CardTitle>
-        <div class="space-y-6">
-          <div class="text-center">
-            <span class="text-4xl font-bold text-primary">{{ correctAnswers }}</span>
-            <span class="text-2xl"> / {{ questions.length }}</span>
-            <p class="text-muted-foreground mt-2">Correct Answers</p>
+            <Button @click="startQuiz" size="lg" class="px-8">
+              Start Quiz
+            </Button>
           </div>
+        </div>
 
-          <Progress :model-value="(correctAnswers / questions.length) * 100" class="w-full h-4" />
+        <Quiz
+          v-if="quizStarted"
+          :questions="questions"
+          :time-per-question="timePerQuestion"
+          @quiz-complete="onQuizComplete"
+        />
 
-          <Alert class="bg-muted">
-            <AlertTitle>Performance Summary</AlertTitle>
-            <AlertDescription>
-              <p class="mb-2">Score: {{ Math.round((correctAnswers / questions.length) * 100) }}%</p>
-              <p>{{ getPerformanceMessage() }}</p>
-            </AlertDescription>
-          </Alert>
-
-          <Button class="w-full transition-all duration-200 hover:scale-102" @click="restartQuiz">
-            Try Again
+        <div v-if="quizCompleted" class="mt-8 text-center">
+          <Button @click="resetDemo" variant="outline">
+            Back to Start
           </Button>
         </div>
-      </Card>
-    </TransitionGroup>
+      </div>
+    </div>
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
-import { Progress } from '@/components/ui/progress';
+<script setup lang="ts">
+import { ref } from 'vue'
+import Quiz from '@/components/Quiz.vue'
+import { Button } from '@/components/ui/button'
+import sampleData from '@/data/quiz.json'
+import type { Question, QuizResult } from '@/types/quiz'
 
-const currentQuestionIndex = ref(0);
-const selectedAnswer = ref(null);
-const correctAnswers = ref(0);
-const quizCompleted = ref(false);
+// Meta
+useHead({
+  title: 'Interactive Quiz Demo',
+  meta: [
+    { name: 'description', content: 'Interactive quiz component with timer, progress tracking, and math support' }
+  ]
+})
 
-const questions = ref([
-      {
-         "pertanyaan":"Apa yang dimaksud dengan integritas?",
-         "pilihan":[
-            "A. Kemampuan untuk melakukan tindakan yang benar tanpa menghiraukan konsekuensi",
-            "B. Konsistensi dan keteguhan dalam menjunjung tinggi nilai-nilai moral dan etika",
-            "C. Kemampuan untuk membedakan antara yang benar dan salah",
-            "D. Kemampuan untuk mengambil keputusan yang populer"
-         ],
-         "jawaban":"B",
-         "label":[
-            "Integritas",
-            "Etika",
-            "Moral"
-         ]
-      },
-      {
-         "pertanyaan":"Mengapa integritas penting dalam CPNS?",
-         "pilihan":[
-            "A. Karena integritas dapat meningkatkan kinerja",
-            "B. Karena integritas dapat mencegah korupsi",
-            "C. Karena integritas dapat membangun kepercayaan publik",
-            "D. Semua jawaban di atas benar"
-         ],
-         "jawaban":"D",
-         "label":[
-            "CPNS",
-            "Integritas",
-            "Korupsi"
-         ]
-      },
-      {
-         "pertanyaan":"Apa ciri-ciri orang yang berintegritas?",
-         "pilihan":[
-            "A. Jujur, konsisten, dan bertanggung jawab",
-            "B. Berani, adil, dan dapat dipercaya",
-            "C. Semua jawaban di atas benar",
-            "D. Tidak memiliki ciri-ciri khusus"
-         ],
-         "jawaban":"C",
-         "label":[
-            "Integritas",
-            "Ciri-ciri",
-            "Orang berintegritas"
-         ]
-      },
-      {
-         "pertanyaan":"Bagaimana cara menerapkan integritas di tempat kerja?",
-         "pilihan":[
-            "A. Dengan menyelesaikan tugas tepat waktu",
-            "B. Dengan menolak suap atau gratifikasi",
-            "C. Dengan melaporkan kesalahan sendiri",
-            "D. Semua jawaban di atas benar"
-         ],
-         "jawaban":"D",
-         "label":[
-            "Integritas",
-            "Tempat kerja",
-            "Penerapan"
-         ]
-      },
-      {
-         "pertanyaan":"Apa yang dimaksud dengan godaan materi dalam konteks integritas?",
-         "pilihan":[
-            "A. Tawaran suap atau gratifikasi yang menggiurkan",
-            "B. Tekanan sosial untuk melakukan hal yang tidak sesuai dengan prinsip",
-            "C. Budaya korupsi dalam lingkungan kerja",
-            "D. Kebutuhan ekonomi yang sulit"
-         ],
-         "jawaban":"A",
-         "label":[
-            "Integritas",
-            "Godaan",
-            "Materi"
-         ]
-      },
-      {
-         "pertanyaan":"Bagaimana cara meningkatkan integritas?",
-         "pilihan":[
-            "A. Dengan memiliki prinsip yang kuat",
-            "B. Dengan belajar dari contoh baik",
-            "C. Dengan membangun lingkungan yang mendukung",
-            "D. Semua jawaban di atas benar"
-         ],
-         "jawaban":"D",
-         "label":[
-            "Integritas",
-            "Peningkatan",
-            "Cara"
-         ]
-      },
-      {
-         "pertanyaan":"Apa yang harus dilakukan jika menemukan uang di meja kerja rekan yang sedang tidak ada di tempat?",
-         "pilihan":[
-            "A. Mengambil uang tersebut",
-            "B. Membiarkan uang tersebut dan tidak peduli",
-            "C. Menyimpan uang tersebut sementara dan memberikannya kepada rekan Anda saat ia kembali",
-            "D. Melaporkan ke atasan tentang uang tersebut"
-         ],
-         "jawaban":"C",
-         "label":[
-            "Integritas",
-            "Uang",
-            "Meja kerja"
-         ]
-      },
-      {
-         "pertanyaan":"Apa yang harus dilakukan jika diminta oleh atasan untuk memanipulasi data laporan keuangan?",
-         "pilihan":[
-            "A. Menolak dengan tegas karena hal tersebut melanggar integritas",
-            "B. Melakukan permintaan atasan tanpa bertanya",
-            "C. Meminta pendapat rekan kerja terlebih dahulu",
-            "D. Melaporkan hal tersebut kepada pihak yang berwenang"
-         ],
-         "jawaban":"A",
-         "label":[
-            "Integritas",
-            "Atasan",
-            "Manipulasi"
-         ]
-      }
-   ]);
+// State
+const questions = ref<Question[]>(sampleData)
+const quizStarted = ref(false)
+const quizCompleted = ref(false)
+const timePerQuestion = ref(30)
 
-const currentQuestion = computed(
-  () => questions.value[currentQuestionIndex.value]
-);
-
-const isCorrect = computed(() => {
-  if (!selectedAnswer.value) return false;
-  return selectedAnswer.value.startsWith(currentQuestion.value.jawaban);
-});
-
-function getButtonVariant(option) {
-  if (!selectedAnswer.value) return "outline";
-  if (option.startsWith(currentQuestion.value.jawaban)) return "default";
-  if (option === selectedAnswer.value) return "destructive";
-  return "outline";
+// Methods
+const startQuiz = () => {
+  quizStarted.value = true
+  quizCompleted.value = false
 }
 
-function selectAnswer(answer) {
-  selectedAnswer.value = answer;
-  if (isCorrect.value) {
-    correctAnswers.value++;
-  }
+const onQuizComplete = (results: QuizResult[]) => {
+  console.log('Quiz Complete!', results)
+  quizCompleted.value = true
+  
+  // Calculate score
+  const score = results.filter(r => r.isCorrect).length
+  const total = results.length
+  const percentage = Math.round((score / total) * 100)
+  
+  console.log(`Final Score: ${score}/${total} (${percentage}%)`)
+  
+  // You could navigate to a results page or show a modal here
+  // navigateTo('/quiz/results', { query: { score, total } })
 }
 
-function nextQuestion() {
-  if (currentQuestionIndex.value < questions.value.length - 1) {
-    setTimeout(() => {
-      currentQuestionIndex.value++;
-      selectedAnswer.value = null;
-    }, 500);
-  }
-}
-
-function finishQuiz() {
-  setTimeout(() => {
-    quizCompleted.value = true;
-  }, 500);
-}
-
-function getPerformanceMessage() {
-  const score = (correctAnswers.value / questions.value.length) * 100;
-  if (score === 100) return "Perfect score! Outstanding performance!";
-  if (score >= 80) return "Excellent work! Keep it up!";
-  if (score >= 60) return "Good effort! Room for improvement.";
-  return "Keep practicing to improve your score.";
-}
-
-function restartQuiz() {
-  quizCompleted.value = false;
-  setTimeout(() => {
-    currentQuestionIndex.value = 0;
-    selectedAnswer.value = null;
-    correctAnswers.value = 0;
-  }, 300);
+const resetDemo = () => {
+  quizStarted.value = false
+  quizCompleted.value = false
 }
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.completion-card {
-  animation: slideIn 0.6s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hover\:scale-102:hover {
-  transform: scale(1.02);
-}
-</style>

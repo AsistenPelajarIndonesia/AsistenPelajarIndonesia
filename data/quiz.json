@@ -1,0 +1,288 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "topic": "Sinonim & Antonim",
+      "questionText": "Kata 'adagium' dalam kalimat 'Adagium tersebut masih relevan hingga hari ini' memiliki padanan makna dengan kata...",
+      "options": [
+        { "id": "a", "text": "Paradigma" },
+        { "id": "b", "text": "Pepatah" },
+        { "id": "c", "text": "Algoritma" },
+        { "id": "d", "text": "Diagnosis" },
+        { "id": "e", "text": "Hipotesis" }
+      ],
+      "correctAnswerId": "b",
+      "explanation": "Menurut Kamus Besar Bahasa Indonesia (KBBI), 'adagium' berarti pepatah atau peribahasa. Oleh karena itu, kata yang paling mendekati maknanya adalah 'pepatah'."
+    },
+    {
+      "id": "q2",
+      "topic": "Sinonim & Antonim",
+      "questionText": "Lawan kata (antonim) dari 'sporadis' adalah...",
+      "options": [
+        { "id": "a", "text": "Jarang" },
+        { "id": "b", "text": "Laten" },
+        { "id": "c", "text": "Rutin" },
+        { "id": "d", "text": "Parsial" },
+        { "id": "e", "text": "Virtual" }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "'Sporadis' berarti tidak tentu, kadang-kadang, atau tidak teratur. Lawan katanya yang paling tepat adalah 'rutin' yang berarti teratur dan berkelanjutan."
+    },
+    {
+      "id": "q3",
+      "topic": "Ide Pokok & Makna",
+      "passage": "Industri 'fast fashion' atau mode cepat telah mengubah cara konsumen membeli pakaian. Model bisnis ini berfokus pada produksi pakaian yang cepat dan murah untuk mengikuti tren terkini. Meskipun memberikan akses yang lebih luas terhadap mode, dampaknya terhadap lingkungan sangat signifikan. Produksi tekstil yang masif mengonsumsi sumber daya air dalam jumlah besar dan sering kali melepaskan zat kimia berbahaya ke lingkungan. Selain itu, budaya konsumsi yang didorong oleh mode cepat menghasilkan limbah tekstil yang menumpuk di tempat pembuangan akhir, karena kualitas pakaian yang rendah dan cepatnya perubahan tren.",
+      "questionText": "Ide pokok paragraf tersebut adalah...",
+      "options": [
+        { "id": "a", "text": "Mode cepat membuat pakaian lebih terjangkau." },
+        { "id": "b", "text": "Mode cepat mendorong budaya konsumsi yang boros." },
+        { "id": "c", "text": "Mode cepat memiliki dampak negatif yang signifikan bagi lingkungan." },
+        { "id": "d", "text": "Limbah tekstil merupakan masalah utama di dunia." },
+        { "id": "e", "text": "Produksi pakaian modern sangat bergantung pada tren." }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "Paragraf tersebut secara keseluruhan membahas berbagai dampak negatif dari industri 'fast fashion' terhadap lingkungan, mulai dari konsumsi air, polusi kimia, hingga limbah tekstil. Pilihan lain hanya merupakan bagian dari gagasan utama."
+    },
+    {
+      "id": "q4",
+      "topic": "Kata & Bentuk Kata",
+      "questionText": "Penulisan kata berimbuhan yang salah terdapat pada kalimat...",
+      "options": [
+        { "id": "a", "text": "Pemerintah akan menyubsidi kebutuhan pokok masyarakat." },
+        { "id": "b", "text": "Ibu membelikan adik baju baru di toko itu." },
+        { "id": "c", "text": "Ia sedang menterjemahkan dokumen penting dari bahasa asing." },
+        { "id": "d", "text": "Perubahan iklim memengaruhi pola tanam para petani." },
+        { "id": "e", "text": "Para ilmuwan menganalisis data yang terkumpul." }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "Kata dasar 'terjemah' jika mendapat awalan 'me-', huruf 't' tidak luluh karena setelah awalan 'me-' diikuti oleh konsonan 'r'. Jadi, bentuk yang benar adalah 'menerjemahkan'. Pilihan (c) menggunakan 'menterjemahkan' yang tidak sesuai dengan kaidah PUEBI."
+    },
+    {
+      "id": "q5",
+      "topic": "Kesesuaian Wacana",
+      "questionText": "Kualitas tidur yang buruk dapat memengaruhi kesehatan fisik dan mental. [...] kurang tidur dapat menurunkan konsentrasi, melemahkan sistem imun, dan meningkatkan risiko penyakit kronis. Oleh karena itu, menjaga pola tidur yang baik sangatlah esensial.\n\nKata penghubung yang paling tepat untuk melengkapi bagian rumpang di atas adalah...",
+      "options": [
+        { "id": "a", "text": "Meskipun demikian" },
+        { "id": "b", "text": "Sebagai contoh" },
+        { "id": "c", "text": "Sebaliknya" },
+        { "id": "d", "text": "Akan tetapi" },
+        { "id": "e", "text": "Kemudian" }
+      ],
+      "correctAnswerId": "b",
+      "explanation": "Kalimat kedua memberikan contoh atau rincian dari dampak buruk kualitas tidur yang disebutkan di kalimat pertama. Oleh karena itu, frasa penghubung 'Sebagai contoh' adalah yang paling tepat untuk menunjukkan hubungan perincian tersebut."
+    },
+    {
+      "id": "q6",
+      "topic": "Hubungan Antar Paragraf",
+      "passage": "(1) Digitalisasi telah merambah ke berbagai sektor, termasuk pendidikan. Pembelajaran daring (online) menjadi alternatif utama, terutama sejak pandemi global. Platform digital menawarkan fleksibilitas waktu dan tempat, serta akses ke sumber belajar yang lebih luas. Namun, tantangan seperti kesenjangan akses internet dan perangkat masih menjadi kendala signifikan di banyak daerah.\n(2) Untuk mengatasi tantangan tersebut, diperlukan kolaborasi antara pemerintah, sektor swasta, dan masyarakat. Pembangunan infrastruktur digital yang merata menjadi prioritas utama. Selain itu, program literasi digital bagi siswa dan guru juga harus digalakkan agar teknologi dapat dimanfaatkan secara optimal untuk menunjang kualitas pendidikan, bukan hanya sebagai pengganti ruang kelas fisik.",
+      "questionText": "Paragraf kedua berfungsi untuk...",
+      "options": [
+        { "id": "a", "text": "Membandingkan kelebihan dan kekurangan pembelajaran daring yang dibahas di paragraf pertama." },
+        { "id": "b", "text": "Menyangkal gagasan utama yang dikemukakan dalam paragraf pertama." },
+        { "id": "c", "text": "Memberikan contoh spesifik dari kendala yang disebutkan di paragraf pertama." },
+        { "id": "d", "text": "Menawarkan solusi atas permasalahan yang diidentifikasi pada paragraf pertama." },
+        { "id": "e", "text": "Merangkum isi dari paragraf pertama." }
+      ],
+      "correctAnswerId": "d",
+      "explanation": "Paragraf pertama mengidentifikasi masalah atau tantangan dalam digitalisasi pendidikan (kesenjangan akses). Paragraf kedua secara langsung membahas cara mengatasi tantangan tersebut melalui kolaborasi, pembangunan infrastruktur, dan literasi digital. Jadi, paragraf kedua menawarkan solusi."
+    },
+    {
+      "id": "q7",
+      "topic": "Sinonim & Antonim",
+      "questionText": "Kata 'prerogatif' memiliki sinonim terdekat dengan...",
+      "options": [
+        { "id": "a", "text": "Kewajiban" },
+        { "id": "b", "text": "Tugas" },
+        { "id": "c", "text": "Hak istimewa" },
+        { "id": "d", "text": "Peraturan" },
+        { "id": "e", "text": "Keputusan" }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "'Prerogatif' adalah hak istimewa yang dimiliki oleh seseorang atau lembaga tertentu karena kedudukan atau jabatannya, yang tidak dimiliki oleh yang lain."
+    },
+    {
+      "id": "q8",
+      "topic": "Ide Pokok & Makna",
+      "passage": "Upaya mitigasi perubahan iklim sering kali terfokus pada pengurangan emisi karbon dari sektor energi dan industri. Padahal, sektor pertanian dan kehutanan juga memegang peranan krusial. Praktik pertanian regeneratif, misalnya, tidak hanya mengurangi emisi, tetapi juga dapat menyerap karbon dari atmosfer dan menyimpannya di dalam tanah. Praktik ini meningkatkan kesuburan tanah, ketahanan pangan, dan keanekaragaman hayati. Dengan demikian, mengintegrasikan pendekatan regeneratif dalam kebijakan iklim adalah sebuah langkah strategis yang memberikan manfaat ganda.",
+      "questionText": "Makna frasa 'manfaat ganda' dalam konteks bacaan di atas adalah...",
+      "options": [
+        { "id": "a", "text": "Manfaat bagi petani dan pemerintah." },
+        { "id": "b", "text": "Mengurangi emisi sekaligus menyerap karbon." },
+        { "id": "c", "text": "Manfaat bagi lingkungan dan ekonomi secara bersamaan." },
+        { "id": "d", "text": "Meningkatkan kesuburan tanah dan ketahanan pangan." },
+        { "id": "e", "text": "Mendukung sektor pertanian dan kehutanan." }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "Konteks kalimat terakhir merangkum bahwa pendekatan regeneratif memberikan manfaat bagi iklim (lingkungan) melalui penyerapan karbon, sekaligus manfaat lain seperti peningkatan kesuburan tanah dan ketahanan pangan (ekonomi/sosial). Jadi, 'manfaat ganda' merujuk pada keuntungan lingkungan dan ekonomi/sosial."
+    },
+    {
+      "id": "q9",
+      "topic": "Kata & Bentuk Kata",
+      "questionText": "Bentuk kata yang tepat untuk melengkapi kalimat 'Para atlet sedang menjalani ... fisik sebelum bertanding' adalah...",
+      "options": [
+        { "id": "a", "text": "pemusatan" },
+        { "id": "b", "text": "pusatan" },
+        { "id": "c", "text": "terpusat" },
+        { "id": "d", "text": "memusatkan" }
+      ],
+      "correctAnswerId": "a",
+      "explanation": "Kalimat tersebut membutuhkan sebuah nomina (kata benda) yang merujuk pada proses. Imbuhan 'pe-an' pada kata dasar 'pusat' membentuk kata 'pemusatan' yang berarti proses atau cara memusatkan. Ini sesuai dengan konteks 'menjalani' sebuah proses latihan."
+    },
+    {
+      "id": "q10",
+      "topic": "Umum",
+      "questionText": "Manakah di antara kalimat berikut yang merupakan kalimat efektif?",
+      "options": [
+        { "id": "a", "text": "Bagi para siswa-siswi diharapkan untuk membawa bekal dari rumah." },
+        { "id": "b", "text": "Rapat itu membahas tentang daripada kenaikan biaya operasional." },
+        { "id": "c", "text": "Ia belajar dengan giat demi untuk bisa lulus ujian nasional." },
+        { "id": "d", "text": "Pembangunan jembatan itu akan segera kami laksanakan." },
+        { "id": "e", "text": "Adalah merupakan tugas kita untuk menjaga kebersihan lingkungan." }
+      ],
+      "correctAnswerId": "d",
+      "explanation": "Pilihan (d) adalah kalimat yang paling efektif karena tidak boros kata dan memiliki struktur yang jelas (S-P-O-K). Pilihan (a) berlebihan ('bagi para siswa-siswi'). Pilihan (b) dan (c) menggunakan kata penghubung yang berlebihan ('tentang daripada', 'demi untuk'). Pilihan (e) juga mubazir ('adalah merupakan')."
+    },
+    {
+      "id": "q11",
+      "topic": "Sinonim & Antonim",
+      "questionText": "Lawan kata dari 'prominen' adalah...",
+      "options": [
+        { "id": "a", "text": "Terkenal" },
+        { "id": "b", "text": "Biasa" },
+        { "id": "c", "text": "Superior" },
+        { "id": "d", "text": "Dominan" },
+        { "id": "e", "text": "Absolut" }
+      ],
+      "correctAnswerId": "b",
+      "explanation": "'Prominen' berarti terkemuka, menonjol, atau terkenal. Lawan katanya yang paling sesuai adalah 'biasa' atau tidak menonjol."
+    },
+    {
+      "id": "q12",
+      "topic": "Ide Pokok & Makna",
+      "passage": "Ekonomi sirkular adalah model ekonomi yang bertujuan untuk memperpanjang siklus hidup produk, bahan, dan sumber daya, dengan maksud mengurangi limbah hingga seminimal mungkin. Berbeda dengan model ekonomi linear tradisional (ambil-pakai-buang), ekonomi sirkular dirancang untuk menjadi regeneratif. Dalam praktiknya, ini berarti mendesain produk agar tahan lama, mudah diperbaiki, dan dapat didaur ulang. Ketika suatu produk mencapai akhir masa pakainya, materialnya akan tetap berada dalam siklus ekonomi untuk digunakan kembali, sehingga menciptakan nilai tambah lebih lanjut.",
+      "questionText": "Berdasarkan bacaan tersebut, apa tujuan utama dari penerapan ekonomi sirkular?",
+      "options": [
+        { "id": "a", "text": "Menciptakan produk-produk baru dengan cepat." },
+        { "id": "b", "text": "Meningkatkan keuntungan perusahaan dalam jangka pendek." },
+        { "id": "c", "text": "Mengurangi timbulan limbah dan memaksimalkan penggunaan sumber daya." },
+        { "id": "d", "text": "Menggantikan peran model ekonomi tradisional secara total." },
+        { "id": "e", "text": "Menurunkan harga produk bagi konsumen." }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "Teks secara eksplisit menyatakan bahwa tujuan ekonomi sirkular adalah 'mengurangi limbah hingga seminimal mungkin' dan menjaga agar material 'tetap berada dalam siklus ekonomi untuk digunakan kembali'."
+    },
+    {
+      "id": "q13",
+      "topic": "Kesesuaian Wacana",
+      "questionText": "Kalimat 'Ia tidak hanya pandai dalam bidang akademik, ... juga aktif dalam kegiatan ekstrakurikuler' akan menjadi padu jika dilengkapi dengan kata/frasa...",
+      "options": [
+        { "id": "a", "text": "namun" },
+        { "id": "b", "text": "sedangkan" },
+        { "id": "c", "text": "bahkan" },
+        { "id": "d", "text": "melainkan" },
+        { "id": "e", "text": "tetapi" }
+      ],
+      "correctAnswerId": "e",
+      "explanation": "Konjungsi korelatif yang berpasangan dengan 'tidak hanya' adalah 'tetapi juga' atau 'namun juga'. Dalam pilihan yang tersedia, 'tetapi' adalah pasangan yang tepat untuk melengkapi struktur kalimat tersebut menjadi 'tidak hanya ..., tetapi juga ...'."
+    },
+    {
+      "id": "q14",
+      "topic": "Kata & Bentuk Kata",
+      "questionText": "Penggunaan kata ulang yang tidak tepat terdapat dalam kalimat...",
+      "options": [
+        { "id": "a", "text": "Ibu membeli sayur-mayur di pasar tradisional." },
+        { "id": "b", "text": "Mereka saling bersalam-salaman setelah acara selesai." },
+        { "id": "c", "text": "Anak itu berlari-lari kecil di taman." },
+        { "id": "d", "text": "Buku-buku di perpustakaan itu tersusun rapi." },
+        { "id": "e", "text": "Gerak-gerik orang itu tampak mencurigakan." }
+      ],
+      "correctAnswerId": "b",
+      "explanation": "Kata 'saling' sudah mengandung makna resiprokal atau berbalasan. Kata ulang 'bersalam-salaman' juga mengandung makna yang sama. Penggunaan keduanya dalam satu kalimat ('saling bersalam-salaman') menyebabkan pleonasme atau pemborosan kata. Seharusnya, cukup 'Mereka saling bersalaman' atau 'Mereka bersalam-salaman'."
+    },
+    {
+      "id": "q15",
+      "topic": "Hubungan Antar Paragraf",
+      "passage": "(1) Keanekaragaman hayati laut Indonesia merupakan salah satu yang terkaya di dunia, mencakup berbagai ekosistem seperti terumbu karang, padang lamun, dan hutan bakau. Ekosistem ini tidak hanya menjadi rumah bagi ribuan spesies, tetapi juga memberikan jasa lingkungan yang vital, seperti perlindungan pesisir dan sumber pangan bagi jutaan orang.\n(2) Namun, kekayaan ini berada di bawah ancaman serius. Praktik penangkapan ikan yang merusak, polusi plastik, dan dampak perubahan iklim seperti pemutihan karang, secara bertahap menggerus kesehatan ekosistem laut. Tanpa upaya konservasi yang kuat dan penegakan hukum yang tegas, Indonesia berisiko kehilangan aset biologisnya yang tak ternilai.",
+      "questionText": "Hubungan antara paragraf (1) dan paragraf (2) adalah...",
+      "options": [
+        { "id": "a", "text": "Sebab - akibat" },
+        { "id": "b", "text": "Perbandingan" },
+        { "id": "c", "text": "Potensi - ancaman" },
+        { "id": "d", "text": "Umum - khusus" },
+        { "id": "e", "text": "Tesis - antitesis" }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "Paragraf pertama menjelaskan tentang potensi besar dan kekayaan keanekaragaman hayati laut Indonesia. Paragraf kedua, yang diawali dengan kata 'Namun', menyajikan ancaman-ancaman serius terhadap potensi yang telah dijelaskan tersebut. Jadi, hubungannya adalah potensi dan ancaman."
+    },
+    {
+      "id": "q16",
+      "topic": "Umum",
+      "questionText": "Penulisan tanda baca yang benar terdapat pada kalimat...",
+      "options": [
+        { "id": "a", "text": "Dia membeli buku, pensil dan penggaris." },
+        { "id": "b", "text": "Surat ini ditujukan kepada Yth. Bapak Manajer Personalia." },
+        { "id": "c", "text": "Menurut Andri, \"Kita harus bekerja lebih keras lagi.\"" },
+        { "id": "d", "text": "Ini bukan milik saya; melainkan milik adik saya." },
+        { "id": "e", "text": "Karena lelah, ia beristirahat sejenak di bawah pohon." }
+      ],
+      "correctAnswerId": "e",
+      "explanation": "Kalimat (e) menggunakan tanda koma dengan benar untuk memisahkan anak kalimat ('Karena lelah') yang mendahului induk kalimat. Pilihan (a) salah karena seharusnya ada koma sebelum 'dan' dalam perincian lebih dari dua unsur. Pilihan (b) salah karena 'Yth.' tidak diikuti titik jika kalimat berlanjut. Pilihan (c) salah karena koma seharusnya berada setelah nama ('Menurut Andri,'). Pilihan (d) salah karena sebelum 'melainkan' seharusnya menggunakan koma, bukan titik koma."
+    },
+    {
+      "id": "q17",
+      "topic": "Ide Pokok & Makna",
+      "passage": "Banyak orang menganggap bahwa kreativitas adalah bakat bawaan yang hanya dimiliki oleh segelintir individu, seperti seniman atau musisi. Pandangan ini menciptakan penghalang mental yang membuat orang enggan untuk mencoba hal-hal baru. Padahal, penelitian modern menunjukkan bahwa kreativitas lebih merupakan sebuah keterampilan yang dapat diasah. Seperti otot, ia akan semakin kuat jika terus-menerus dilatih melalui latihan, rasa ingin tahu, dan keberanian untuk gagal.",
+      "questionText": "Simpulan yang paling tepat dari bacaan di atas adalah...",
+      "options": [
+        { "id": "a", "text": "Seniman dan musisi adalah orang-orang yang paling kreatif." },
+        { "id": "b", "text": "Kreativitas bukanlah bakat, melainkan keterampilan yang bisa dikembangkan oleh siapa saja." },
+        { "id": "c", "text": "Kegagalan adalah kunci utama untuk melatih kreativitas." },
+        { "id": "d", "text": "Setiap orang terlahir dengan tingkat kreativitas yang sama." },
+        { "id": "e", "text": "Pandangan masyarakat tentang kreativitas sudah benar." }
+      ],
+      "correctAnswerId": "b",
+      "explanation": "Bacaan tersebut menyanggah pandangan bahwa kreativitas adalah bakat ('Padahal...') dan menegaskan bahwa ia adalah keterampilan yang bisa diasah atau dilatih ('lebih merupakan sebuah keterampilan yang dapat diasah')."
+    },
+    {
+      "id": "q18",
+      "topic": "Sinonim & Antonim",
+      "questionText": "Kata 'tandas' dalam kalimat 'Ia menegaskan gagasannya dengan tandas' paling mendekati makna...",
+      "options": [
+        { "id": "a", "text": "Habis" },
+        { "id": "b", "text": "Lambat" },
+        { "id": "c", "text": "Ragu-ragu" },
+        { "id": "d", "text": "Tegas" },
+        { "id": "e", "text": "Lunak" }
+      ],
+      "correctAnswerId": "d",
+      "explanation": "Dalam konteks kalimat tersebut, 'tandas' berarti dengan jelas, tegas, dan tidak ragu-ragu. Meskipun 'tandas' juga bisa berarti habis sama sekali, konteks kalimat ini mengarah pada makna 'tegas'."
+    },
+    {
+      "id": "q19",
+      "topic": "Kesesuaian Wacana",
+      "passage": "(1) Urbanisasi yang pesat di kota-kota besar sering kali tidak diimbangi dengan penyediaan ruang terbuka hijau (RTH) yang memadai. (2) Padahal, RTH memiliki fungsi ekologis yang krusial, seperti menyerap polusi udara, menjadi daerah resapan air, dan menurunkan suhu kota. (3) Banyak taman kota yang kini beralih fungsi menjadi area komersial. (4) Fungsi sosial RTH sebagai tempat interaksi warga juga tidak kalah penting. (5) Akibatnya, kualitas hidup di perkotaan cenderung menurun seiring dengan berkurangnya RTH.",
+      "questionText": "Kalimat manakah yang tidak padu dalam paragraf tersebut?",
+      "options": [
+        { "id": "a", "text": "Kalimat (1)" },
+        { "id": "b", "text": "Kalimat (2)" },
+        { "id": "c", "text": "Kalimat (3)" },
+        { "id": "d", "text": "Kalimat (4)" }
+      ],
+      "correctAnswerId": "c",
+      "explanation": "Paragraf ini membahas pentingnya RTH dari fungsi ekologis (kalimat 2) dan sosial (kalimat 4) serta akibat dari kekurangannya (kalimat 5). Kalimat (3) yang menyatakan 'Banyak taman kota yang kini beralih fungsi menjadi area komersial' lebih merupakan contoh atau penyebab spesifik, yang sedikit menyimpang dari alur utama penjelasan fungsi RTH. Kalimat lain secara langsung membangun argumen tentang fungsi dan dampak RTH."
+    },
+    {
+      "id": "q20",
+      "topic": "Kata & Bentuk Kata",
+      "questionText": "Kalimat berikut ini yang mengandung kesalahan dalam pembentukan kata adalah...",
+      "options": [
+        { "id": "a", "text": "Ayah mensukseskan acara syukuran di kampung kami." },
+        { "id": "b", "text": "Dia berhasil mempopulerkan tarian tradisional itu." },
+        { "id": "c", "text": "Pemerintah sedang menggalakkan program wajib belajar." },
+        { "id": "d", "text": "Para nelayan memperlebar jaring mereka." }
+      ],
+      "correctAnswerId": "a",
+      "explanation": "Menurut kaidah morfologi bahasa Indonesia, awalan 'me-' yang diikuti kata dasar yang berawalan huruf 's' akan luluh menjadi 'meny-'. Oleh karena itu, bentuk yang benar dari 'me- + sukses + -kan' adalah 'menyukseskan', bukan 'mensukseskan'."
+    }
+  ]
+}

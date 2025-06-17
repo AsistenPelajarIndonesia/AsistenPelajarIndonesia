@@ -1,327 +1,399 @@
 <template>
-  <div class="container mx-auto p-4 max-w-4xl">
-    <div class="mb-8 space-y-4">
-      <h1 class="text-2xl font-bold">Practice Question Generator</h1>
-      <div class="flex gap-4">
-        <Input
-          v-model="topic"
-          placeholder="Enter a topic (e.g., 'World War II', 'Photosynthesis')"
-          class="flex-1"
-        />
-        <Button
-          @click="generateQuestions"
-          :disabled="isGenerating || !topic.trim()"
-        >
-          {{ isGenerating ? "Generating..." : "Generate Questions" }}
-        </Button>
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          AI Question Generator
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Generate custom multiple choice questions on any topic
+        </p>
       </div>
-    </div>
 
-    <div v-if="isGenerating" class="flex justify-center items-center py-8">
-      <div class="space-y-4 text-center">
-        <SpinningBar />
-        <p class="text-muted-foreground">Generating practice questions...</p>
-      </div>
-    </div>
-
-    <TransitionGroup v-else name="fade" mode="out-in">
-      <Card v-if="currentQuestion && !quizCompleted" key="quiz">
-        <CardTitle class="mb-4"
-          >Question {{ currentQuestionIndex + 1 }} of
-          {{ questions.length }}</CardTitle
-        >
-        <CardDescription class="text-lg mb-6">{{
-          currentQuestion.pertanyaan
-        }}</CardDescription>
-
-        <div class="flex flex-col space-y-4">
-          <TransitionGroup name="list" tag="div" class="space-y-4">
-            <Button
-              v-for="(option, index) in currentQuestion.pilihan"
-              :key="index"
-              :variant="getButtonVariant(option)"
-              class="justify-start text-left w-full transition-all duration-200 ease-in-out transform hover:scale-102 break-words whitespace-normal p-1"
-              @click="selectAnswer(option)"
-              :disabled="selectedAnswer !== null"
-            >
-              {{ option }}
-            </Button>
-          </TransitionGroup>
-
-          <Transition name="fade">
-            <div v-if="selectedAnswer" class="mt-4 space-y-4">
-              <Alert
-                :variant="isCorrect ? 'default' : 'destructive'"
-                class="transition-all duration-300"
-              >
-                <AlertTitle>{{
-                  isCorrect ? "Correct!" : "Incorrect!"
-                }}</AlertTitle>
-                <AlertDescription>
-                  {{
-                    isCorrect
-                      ? "Great job! You got it right."
-                      : `The correct answer was: ${currentQuestion.pilihan.find(
-                          (p) => p.startsWith(currentQuestion.jawaban)
-                        )}`
-                  }}
-                </AlertDescription>
-              </Alert>
-
-              <Button
-                class="w-full mt-4 transition-all duration-200 hover:scale-102"
-                @click="
-                  currentQuestionIndex === questions.length - 1
-                    ? finishQuiz()
-                    : nextQuestion()
-                "
-              >
-                {{
-                  currentQuestionIndex === questions.length - 1
-                    ? "Finish Quiz"
-                    : "Next Question"
-                }}
-              </Button>
+      <!-- Generator Form -->
+      <div class="max-w-2xl mx-auto mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <form @submit.prevent="generateQuestions" class="space-y-6">
+            <!-- Topic Input -->
+            <div>
+              <label for="topic" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Topic or Subject
+              </label>
+              <textarea
+                id="topic"
+                v-model="topic"
+                rows="3"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                placeholder="Enter the topic you want to generate questions about..."
+                required
+              ></textarea>
             </div>
-          </Transition>
-        </div>
-      </Card>
 
-      <Card v-if="quizCompleted" key="completion" class="completion-card">
-        <CardTitle class="text-2xl font-bold text-center mb-6"
-          >Quiz Completed! 🎉</CardTitle
-        >
-        <div class="space-y-6">
-          <div class="text-center">
-            <span class="text-4xl font-bold text-primary">{{
-              correctAnswers
-            }}</span>
-            <span class="text-2xl"> / {{ questions.length }}</span>
-            <p class="text-muted-foreground mt-2">Correct Answers</p>
+            <!-- Language Selection -->
+            <div>
+              <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Language
+              </label>
+              <select
+                id="language"
+                v-model="selectedLanguage"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                required
+              >
+                <option value="">Select a language</option>
+                <option value="english">English</option>
+                <option value="indonesian">Indonesian</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+                <option value="german">German</option>
+                <option value="chinese">Chinese</option>
+                <option value="japanese">Japanese</option>
+              </select>
+            </div>
+
+            <!-- Number of Questions -->
+            <div>
+              <label for="questionCount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Number of Questions
+              </label>
+              <select
+                id="questionCount"
+                v-model="questionCount"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+              >
+                <option value="5">5 Questions</option>
+                <option value="10">10 Questions</option>
+                <option value="15">15 Questions</option>
+                <option value="20">20 Questions</option>
+              </select>
+            </div>
+
+            <!-- Generate Button -->
+            <button
+              type="submit"
+              :disabled="isGenerating || !topic || !selectedLanguage"
+              class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-md transition duration-200 flex items-center justify-center"
+            >
+              <svg v-if="isGenerating" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              {{ isGenerating ? 'Generating...' : 'Create Questions' }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Generated Questions -->
+      <div v-if="questions.length > 0" class="max-w-4xl mx-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            Generated Questions
+          </h2>
+          
+          <!-- Quiz Interface -->
+          <div v-if="!showResults">
+            <div class="mb-4">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm text-gray-600 dark:text-gray-400">
+                  Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}
+                </span>
+                <div class="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div 
+                    class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    :style="{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                {{ questions[currentQuestionIndex]?.question }}
+              </h3>
+              
+              <div class="space-y-3">
+                <div 
+                  v-for="(option, index) in questions[currentQuestionIndex]?.options" 
+                  :key="index"
+                  class="cursor-pointer"
+                  @click="selectAnswer(index)"
+                >
+                  <div 
+                    class="p-4 border rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    :class="{
+                      'border-blue-500 bg-blue-50 dark:bg-blue-900/20': userAnswers[currentQuestionIndex] === index,
+                      'border-gray-300 dark:border-gray-600': userAnswers[currentQuestionIndex] !== index
+                    }"
+                  >
+                    <div class="flex items-center">
+                      <div 
+                        class="w-4 h-4 rounded-full border-2 mr-3 flex items-center justify-center"
+                        :class="{
+                          'border-blue-500 bg-blue-500': userAnswers[currentQuestionIndex] === index,
+                          'border-gray-400': userAnswers[currentQuestionIndex] !== index
+                        }"
+                      >
+                        <div v-if="userAnswers[currentQuestionIndex] === index" class="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
+                      <span class="text-gray-900 dark:text-white">{{ option }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between">
+              <button
+                @click="previousQuestion"
+                :disabled="currentQuestionIndex === 0"
+                class="px-4 py-2 bg-gray-300 hover:bg-gray-400 disabled:bg-gray-200 text-gray-700 rounded-md transition duration-200"
+              >
+                Previous
+              </button>
+              
+              <button
+                v-if="currentQuestionIndex < questions.length - 1"
+                @click="nextQuestion"
+                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition duration-200"
+              >
+                Next
+              </button>
+              
+              <button
+                v-else
+                @click="finishQuiz"
+                class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition duration-200"
+              >
+                Finish Quiz
+              </button>
+            </div>
           </div>
 
-          <Progress
-            :model-value="(correctAnswers / questions.length) * 100"
-            class="w-full h-4"
-          />
-
-          <Alert class="bg-muted">
-            <AlertTitle>Performance Summary</AlertTitle>
-            <AlertDescription>
-              <p class="mb-2">
-                Score:
-                {{ Math.round((correctAnswers / questions.length) * 100) }}%
+          <!-- Results -->
+          <div v-else>
+            <div class="text-center mb-8">
+              <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 dark:bg-green-900/20 rounded-full mb-4">
+                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Quiz Complete!</h3>
+              <p class="text-lg text-gray-600 dark:text-gray-400">
+                You scored {{ score }} out of {{ questions.length }} ({{ Math.round((score / questions.length) * 100) }}%)
               </p>
-              <p>{{ getPerformanceMessage() }}</p>
-            </AlertDescription>
-          </Alert>
+            </div>
 
-          <div class="space-y-4">
-            <Button
-              class="w-full transition-all duration-200 hover:scale-102"
-              @click="restartQuiz"
-            >
-              Try Again
-            </Button>
-            <Button
-              variant="outline"
-              class="w-full transition-all duration-200 hover:scale-102"
-              @click="generateNewQuestions"
-            >
-              Generate New Questions
-            </Button>
+            <!-- Detailed Results -->
+            <div class="space-y-4">
+              <div 
+                v-for="(question, index) in questions" 
+                :key="index"
+                class="border rounded-lg p-4"
+                :class="{
+                  'border-green-300 bg-green-50 dark:bg-green-900/10': userAnswers[index] === question.correctAnswer,
+                  'border-red-300 bg-red-50 dark:bg-red-900/10': userAnswers[index] !== question.correctAnswer
+                }"
+              >
+                <div class="flex items-start justify-between mb-2">
+                  <h4 class="font-semibold text-gray-900 dark:text-white">{{ index + 1 }}. {{ question.question }}</h4>
+                  <div class="flex items-center">
+                    <svg 
+                      v-if="userAnswers[index] === question.correctAnswer" 
+                      class="w-5 h-5 text-green-600" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <svg 
+                      v-else 
+                      class="w-5 h-5 text-red-600" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </div>
+                </div>
+                
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  <p><strong>Your answer:</strong> {{ question.options[userAnswers[index]] || 'Not answered' }}</p>
+                  <p><strong>Correct answer:</strong> {{ question.options[question.correctAnswer] }}</p>
+                  <p v-if="question.explanation" class="mt-2"><strong>Explanation:</strong> {{ question.explanation }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-center space-x-4 mt-8">
+              <button
+                @click="resetQuiz"
+                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition duration-200"
+              >
+                Take Quiz Again
+              </button>
+              <button
+                @click="generateNewQuestions"
+                class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition duration-200"
+              >
+                Generate New Questions
+              </button>
+            </div>
           </div>
         </div>
-      </Card>
-    </TransitionGroup>
+      </div>
+
+      <!-- Error Message -->
+      <div v-if="errorMessage" class="max-w-2xl mx-auto mt-4">
+        <div class="bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg p-4">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
-import { Progress } from "@/components/ui/progress";
-import { Input } from "@/components/ui/input";
-import Groq from "groq-sdk";
+<script setup lang="ts">
+definePageMeta({
+  layout: 'dashboard'
+})
 
-const groq = new Groq({
-  apiKey: "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",
-  dangerouslyAllowBrowser: true,
-});
+interface GeneratedQuestion {
+  id: string
+  question: string
+  options: string[]
+  correctAnswer: number
+  explanation?: string
+}
 
-const topic = ref("");
-const isGenerating = ref(false);
-const questions = ref([]);
-const currentQuestionIndex = ref(0);
-const selectedAnswer = ref(null);
-const correctAnswers = ref(0);
-const quizCompleted = ref(false);
+const { chatCompletion } = useGroqClient()
 
-const currentQuestion = computed(
-  () => questions.value[currentQuestionIndex.value]
-);
+// Form data
+const topic = ref('')
+const selectedLanguage = ref('')
+const questionCount = ref('10')
 
-const isCorrect = computed(() => {
-  if (!selectedAnswer.value) return false;
-  return selectedAnswer.value.startsWith(currentQuestion.value.jawaban);
-});
+// Quiz state
+const questions = ref<GeneratedQuestion[]>([])
+const currentQuestionIndex = ref(0)
+const userAnswers = ref<number[]>([])
+const showResults = ref(false)
+const score = ref(0)
 
-async function generateQuestions() {
-  if (!topic.value.trim()) return;
+// UI state
+const isGenerating = ref(false)
+const errorMessage = ref('')
 
-  isGenerating.value = true;
-  questions.value = [];
-  currentQuestionIndex.value = 0;
-  selectedAnswer.value = null;
-  correctAnswers.value = 0;
-  quizCompleted.value = false;
-
+const generateQuestions = async () => {
+  if (!topic.value || !selectedLanguage.value) return
+  
+  isGenerating.value = true
+  errorMessage.value = ''
+  
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
+    const systemPrompt = `You are an expert question generator. Create ${questionCount.value} multiple choice questions about the given topic in ${selectedLanguage.value}. 
+    
+    Return a JSON object with this exact structure:
+    {
+      "questions": [
         {
-          role: "system",
-          content:
-            "You are a teacher who will create practice questions and respond in JSON format",
-        },
-        {
-          role: "user",
-          content: `
-            Create practice questions about: ${topic.value}
-            Please follow this JSON format:
-            {
-              "soal": [
-                {
-                  "pertanyaan": "Put the question here",
-                  "pilihan": [
-                    "A. Put option A here",
-                    "B. Put option B here",
-                    "C. Put option C here",
-                    "D. Put option D here"
-                  ],
-                  "jawaban": "A/B/C/D Just the letter",
-                  "label": ["Topic-related label", "Difficulty level", "Subject area"]
-                }
-                ... and so on
-              ]
-            }
-            Create as many challenging questions as possible and respond only with the JSON!
-          `,
-        },
-      ],
-      model: "llama-3.3-70b-versatile",
-      temperature: 0.6,
-      max_completion_tokens: 32768,
-      top_p: 0.95,
-      response_format: {
-        type: "json_object",
-      },
-    });
+          "id": "1",
+          "question": "Question text here",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correctAnswer": 0,
+          "explanation": "Brief explanation of why this is correct"
+        }
+      ]
+    }
+    
+    Requirements:
+    - Questions should be educational and appropriate
+    - Each question must have exactly 4 options
+    - correctAnswer should be the index (0-3) of the correct option
+    - Include brief explanations
+    - Questions should vary in difficulty
+    - Use proper ${selectedLanguage.value} language`
 
-    const response = JSON.parse(
-      chatCompletion.choices[0]?.message?.content || ""
-    );
-    questions.value = response.soal;
+    const userPrompt = `Generate ${questionCount.value} multiple choice questions about: ${topic.value}`
+
+    const response = await chatCompletion(systemPrompt, userPrompt)
+    const content = response.choices[0]?.message?.content
+    
+    if (!content) {
+      throw new Error('No content received from AI')
+    }
+
+    const parsedResponse = JSON.parse(content)
+    
+    if (!parsedResponse.questions || !Array.isArray(parsedResponse.questions)) {
+      throw new Error('Invalid response format from AI')
+    }
+
+    questions.value = parsedResponse.questions
+    userAnswers.value = new Array(questions.value.length).fill(-1)
+    currentQuestionIndex.value = 0
+    showResults.value = false
+    score.value = 0
+    
   } catch (error) {
-    console.error("Error generating questions:", error);
+    console.error('Error generating questions:', error)
+    errorMessage.value = 'Failed to generate questions. Please try again.'
   } finally {
-    isGenerating.value = false;
+    isGenerating.value = false
   }
 }
 
-function getButtonVariant(option) {
-  if (!selectedAnswer.value) return "outline";
-  if (option.startsWith(currentQuestion.value.jawaban)) return "default";
-  if (option === selectedAnswer.value) return "destructive";
-  return "outline";
+const selectAnswer = (optionIndex: number) => {
+  userAnswers.value[currentQuestionIndex.value] = optionIndex
 }
 
-function selectAnswer(answer) {
-  selectedAnswer.value = answer;
-  if (isCorrect.value) {
-    correctAnswers.value++;
-  }
-}
-
-function nextQuestion() {
+const nextQuestion = () => {
   if (currentQuestionIndex.value < questions.value.length - 1) {
-    setTimeout(() => {
-      currentQuestionIndex.value++;
-      selectedAnswer.value = null;
-    }, 500);
+    currentQuestionIndex.value++
   }
 }
 
-function finishQuiz() {
-  setTimeout(() => {
-    quizCompleted.value = true;
-  }, 500);
+const previousQuestion = () => {
+  if (currentQuestionIndex.value > 0) {
+    currentQuestionIndex.value--
+  }
 }
 
-function getPerformanceMessage() {
-  const score = (correctAnswers.value / questions.value.length) * 100;
-  if (score === 100) return "Perfect score! Outstanding performance!";
-  if (score >= 80) return "Excellent work! Keep it up!";
-  if (score >= 60) return "Good effort! Room for improvement.";
-  return "Keep practicing to improve your score.";
+const finishQuiz = () => {
+  // Calculate score
+  score.value = 0
+  for (let i = 0; i < questions.value.length; i++) {
+    if (userAnswers.value[i] === questions.value[i].correctAnswer) {
+      score.value++
+    }
+  }
+  showResults.value = true
 }
 
-function restartQuiz() {
-  quizCompleted.value = false;
-  setTimeout(() => {
-    currentQuestionIndex.value = 0;
-    selectedAnswer.value = null;
-    correctAnswers.value = 0;
-  }, 300);
+const resetQuiz = () => {
+  userAnswers.value = new Array(questions.value.length).fill(-1)
+  currentQuestionIndex.value = 0
+  showResults.value = false
+  score.value = 0
 }
 
-function generateNewQuestions() {
-  topic.value = "";
-  questions.value = [];
-  currentQuestionIndex.value = 0;
-  selectedAnswer.value = null;
-  correctAnswers.value = 0;
-  quizCompleted.value = false;
+const generateNewQuestions = () => {
+  questions.value = []
+  userAnswers.value = []
+  currentQuestionIndex.value = 0
+  showResults.value = false
+  score.value = 0
+  topic.value = ''
+  selectedLanguage.value = ''
 }
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.completion-card {
-  animation: slideIn 0.6s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hover\:scale-102:hover {
-  transform: scale(1.02);
-}
-</style>

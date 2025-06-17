@@ -1,0 +1,72 @@
+User File: READING_NEGATIVE_FACTUAL.user.getter.md
+System File: You are an expert AI assistant specializing in generating complex TOEFL iBT Reading section questions. Your task is to create a 'Negative Factual Information' question. This question type requires test-takers to identify which of four statements is NOT mentioned in the passage or is an EXCEPTION based on the passage's content. Adhere to the following strict guidelines:
+
+1. **Passage Generation**: Construct an original, academically-styled passage of approximately 700-750 words. The passage should be dense with information, suitable for advanced English language learners. Topics could include scientific advancements, historical analysis, literary criticism, or complex social phenomena. Ensure the passage contains multiple distinct facts, details, and concepts that can be used to formulate plausible distractors.
+
+2. **Question Formulation**: Craft a clear 'Negative Factual Information' question. It must explicitly use phrases like "Which of the following is NOT mentioned...", "According to the passage, all of the following are true EXCEPT...", or "The author discusses all of the following points EXCEPT...". The question should target specific information within a single paragraph or a clearly defined section of the passage if necessary, but can also be about the passage as a whole.
+
+3. **Option Generation (Crucial)**:
+
+* Provide four answer options (A, B, C, D).
+
+* **Three options (distractors)** MUST be factually accurate statements directly supported by or paraphrased from information explicitly present in the passage. These distractors should be tempting and require careful reading to confirm their presence in the text.
+
+* **One option (the correct answer)** MUST be a statement that is either directly contradicted by the passage, not mentioned at all, or an overgeneralization/misinterpretation of information in the passage. This is the piece of information the user must identify as NOT being in the text or being the EXCEPTION.
+
+4. **Explanation (Detailed & Pedagogical)**:
+
+* Provide a comprehensive explanation. This explanation must first clearly state why the correct option is indeed the answer (i.e., why it's NOT mentioned or is the EXCEPTION).
+
+* Crucially, for EACH of the three distractor options, the explanation MUST pinpoint the specific sentence(s) or phrase(s) in the passage that supports them, demonstrating why they *are* mentioned or true according to the text. This helps the learner understand their mistakes.
+
+5. **JSON Output Structure**: Return the generated content in a valid JSON object with the following keys: "passageTitle" (String), "passageText" (String), "questionText" (String), "options" (Array of Objects, each with "id": String and "text": String), "correctOptionId" (String - the ID of the NOT mentioned/EXCEPTION option), "explanation" (String - your detailed pedagogical explanation).
+
+  
+
+Example Topic for Passage: 'The Evolutionary Adaptations of Deep-Sea Vent Organisms' or 'The Influence of Renaissance Humanism on Early Scientific Thought'. Focus on creating a challenging yet fair question.
+--------------------------------------------------
+<think>
+Alright, let's start by analyzing the given text and the question according to the specified parameters. 
+
+First, **Passage Length & Complexity**: The passage is around 700-750 words, which meets the requirement. The vocabulary is advanced with terms like "evapotranspiration," "ground-level ozone," and "socioeconomic," indicating it's suitable for TOEFL iBT. The paragraphs are well-structured, each focusing on distinct aspects of urban green spaces, which allows for multiple distractors.
+
+Next, **Academic Tone & Coherence**: The language is formal and academic, with no colloquialisms. Each paragraph flows logically, using transitional phrases like "Beyond temperature regulation" and "Furthermore," which enhance coherence. All sentences are grammatically correct and contribute to the main topic of urban green spaces and climate change.
+
+**Density of Distinct Facts**: The passage includes at least 8-10 specific facts, such as the temperature reduction by 2-4°C, the role of green roofs in retaining 50-90% of rainwater, and the sequestration of CO2 by trees. Each fact is clear and unambiguous, and the paragraphs aren't overloaded with overlapping information.
+
+**Negative Factual Question Wording**: The question uses a clear negative structure: "all of the following are significant benefits... EXCEPT." The scope is the entire passage, which is appropriate. The wording is unambiguous, making it clear that the task is to identify the unmentioned benefit.
+
+**Option Generation & Distractor Accuracy**: All four options are present. Options A, B, and C are directly supported by the passage. Option D is the correct answer as it's an overstatement not mentioned. The distractors are tempting and based on specific details from the text, making them plausible.
+
+**CorrectOptionId Accuracy**: The correct answer is D, which matches the explanation. The explanation clearly states that the passage mentions reduced energy demand but not the complete elimination of air conditioning, making D the correct choice.
+
+**Explanation Depth & Pedagogical Clarity**: The explanation is thorough, citing specific paragraphs and sentences for each option. It explains why D is the correct answer by pointing out the overstatement, which helps learners understand the reasoning.
+
+**Negative Question Fairness & Difficulty**: The correct answer requires careful reading. The distractors test different aspects (temperature, water management, air quality), ensuring comprehensive reading. D is not a trivial inversion but a genuine omission.
+
+**Self-Consistency of Terminology**: Terms like "urban green spaces" and "evapotranspiration" are used consistently. The correct answer doesn't use synonyms not present in the passage.
+
+**Language Accuracy & Style**: There are no grammatical or spelling errors. The passage uses varied sentence structures, typical of academic writing.
+
+**Scope & Focus of the Negative Question**: The question applies to the entire passage, and the correct answer is distributed across different sections, ensuring that learners must review all parts.
+
+Overall, the text meets all the parameters effectively. The grade is high because all aspects are well-addressed, with minor feedback on the passage length being slightly below the upper limit but still within the acceptable range.
+</think>
+
+{
+  "Passage Length & Complexity": "98",
+  "Academic Tone & Coherence": "97",
+  "Density of Distinct Facts": "95",
+  "Negative Factual Question Wording": "99",
+  "Option Generation & Distractor Accuracy": "98",
+  "CorrectOptionId Accuracy": "100",
+  "Explanation Depth & Pedagogical Clarity": "99",
+  "Negative Question Fairness & Difficulty": "97",
+  "Self-Consistency of Terminology": "100",
+  "Language Accuracy & Style": "99",
+  "Scope & Focus of the Negative Question": "98",
+  "overall_grade": "98",
+  "feedback": "The text meets nearly all criteria with high precision. The passage length is within the 700-750 word range (approximately 720 words), vocabulary is appropriately advanced, and paragraphs are well-structured for distractor generation. The question uses clear negative wording, distractors are accurate and plausible, and the explanation is thorough. Minor reduction for the passage length being slightly below the upper limit and one paragraph containing slightly overlapping facts (e.g., water management and pollution control in Paragraph 3)."
+}
+--------------------------------------------------
+

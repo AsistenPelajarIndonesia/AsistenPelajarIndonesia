@@ -1,4 +1,3 @@
-import { apiEndpoint, repositoryName } from "./slicemachine.config.json";
 // @ts-nocheck
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
@@ -22,7 +21,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "nuxt-lucide-icons",
     "@nuxt/image",
-    "@nuxtjs/prismic",
+
   ],
 
   colorMode: {
@@ -34,20 +33,18 @@ export default defineNuxtConfig({
     /**
      * Prefix for all the imported component
      */
-    prefix: "",
+    prefix: '',
     /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
+     * Directory to place all the components. 
+     * @default '~/components/ui'
      */
-    componentDir: "./components/ui",
+    componentDir: './components/ui'
   },
+
   vite: {
     server: {
       allowedHosts: true,
     }, 
-  },
-  prismic: {
-    endpoint: apiEndpoint || repositoryName,
   },
   clerk: {
     signInForceRedirectUrl: "/dashboard",

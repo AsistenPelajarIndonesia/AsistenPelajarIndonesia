@@ -1,0 +1,145 @@
+User File: PU_PK.user.getter.md
+System File: Anda adalah asisten AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam) di Indonesia, khususnya untuk subtes Penalaran Kuantitatif.
+
+Tugas Anda adalah membuat soal pilihan ganda yang berkualitas tinggi dalam bahasa Indonesia.
+
+Setiap soal harus menguji salah satu dari tiga jenis kemampuan penalaran kuantitatif berikut:
+
+1. Kuantitas: Melibatkan perbandingan, rasio, dan proporsi.
+
+2. Hubungan matematika sederhana: Melibatkan konversi satuan dan deret bilangan.
+
+3. Operasi aritmetika dasar: Melibatkan penjumlahan, pengurangan, perkalian, pembagian, dan persen.
+
+Pastikan soal-soal mencakup ketiga jenis kemampuan tersebut secara seimbang jika memungkinkan, atau setidaknya ada variasi.
+
+Setiap soal harus memiliki:
+
+- "id": string (nomor soal, e.g., "pk_q1", "pk_q2", ... "pk_q10")
+
+- "question_text": string (teks pertanyaan yang jelas dan lengkap, bisa berupa soal cerita atau soal numerik langsung)
+
+- "topic": string (salah satu dari 'Kuantitas', 'Hubungan Matematika Sederhana', 'Operasi Aritmetika Dasar')
+
+- "options": array of objects, masing-masing dengan "id" (e.g., "a", "b", "c", "d", "e") dan "text" (teks pilihan jawaban, bisa berupa angka atau pernyataan). Harus ada 5 pilihan jawaban.
+
+- "correct_answer_id": string (id dari pilihan jawaban yang benar)
+
+- "explanation": string (penjelasan rinci langkah-langkah penyelesaian dan mengapa jawaban tersebut benar, dalam bahasa Indonesia)
+
+  
+
+Format output HARUS berupa JSON array yang valid. Contoh satu soal:
+
+{
+
+"id": "pk_q1",
+
+"question_text": "Sebuah toko memberikan diskon 20% untuk semua barang. Jika harga awal sebuah baju adalah Rp150.000, berapakah harga baju tersebut setelah diskon?",
+
+"topic": "Operasi Aritmetika Dasar",
+
+"options": [
+
+{ "id": "a", "text": "Rp100.000" },
+
+{ "id": "b", "text": "Rp110.000" },
+
+{ "id": "c", "text": "Rp120.000" },
+
+{ "id": "d", "text": "Rp130.000" },
+
+{ "id": "e", "text": "Rp140.000" }
+
+],
+
+"correct_answer_id": "c",
+
+"explanation": "Diskon = 20% dari Rp150.000 = 0.20 * 150.000 = Rp30.000. Harga setelah diskon = Rp150.000 - Rp30.000 = Rp120.000."
+
+}
+--------------------------------------------------
+
+<think>
+Okay, I need to evaluate the given questions based on the specified parameters. Let me start by looking at each parameter one by one and see how each question fits in.
+
+First, for tingkat_kesulitan_kuantitatif (quantitative difficulty level), I'll assess how complex the math involved is. The questions like calculating discount, averages, ratios, and arithmetic sequences seem straightforward. Maybe some, like question 8 involving the garden area, require more steps, but overall they’re basic. Maybe an average of 30/100? 
+
+Next, kejelasan_data_dan_informasi (clarity of data). The questions provide clear numbers and context, no ambiguities. So maybe 90/100.
+
+keragaman_konsep_matematis (variety of math concepts). The topics include percentages, ratios, arithmetic sequences, area, profit percentage. They cover different areas, so maybe 70/100.
+
+kompleksitas_operasi (operation complexity). Most require basic operations, some with multiple steps but not too complex. Maybe 40/100.
+
+kemampuan_analisis_strategi (strategic analysis ability). Some questions need setting up equations or analyzing steps, like the age problem or the arithmetic sequence. But not too high, maybe 50/100.
+
+keakuratan_konteks_realistis (realistic context accuracy). The scenarios like shopping discounts, age ratios, train times are realistic. Maybe 85/100.
+
+koreksi_isi_dan_validitas (content accuracy and validity). All calculations check out as per explanations. So 100/100.
+
+kemampuan_diskriminasi (discrimination ability). The distractors are plausible but correct ones are distinct. Maybe 75/100.
+
+kesesuaian_standar_uji (test standard conformity). The questions are standard SNBT types, so 90/100.
+
+originalitas_soal (originality). The problems are common types, not very unique. Maybe 40/100.
+
+kesesuaian_notasi_dan_simbol (notation accuracy. All symbols used correctly, so 100/100.
+
+Wait, the user wants each parameter evaluated, but the input is multiple questions. The user's instruction says to evaluate the text (the entire JSON array) based on the parameters. Since each question may have different scores, but the overall assessment would be an average or a collective judgment.
+
+Hmm, but the parameters need to be applied to the entire set. Let me check each parameter's requirements again. For example, tingkat_kesulitan_kuantitatif: the average difficulty of all questions. Since most are basic arithmetic, maybe around 30. 
+
+Originalitas_soal: since they’re common problems, maybe low originality. 
+
+I need to make sure each parameter is addressed with an overall grade for all questions. Let me compile the scores based on the set as a whole.
+
+Finalizing the JSON with each parameter's average or appropriate score and feedback.
+</think>
+
+{
+  "tingkat_kesulitan_kuantitatif": "35",
+  "kejelasan_data_dan_informasi": "90",
+  "keragaman_konsep_matematis": "65",
+  "kompleksitas_operasi": "40",
+  "kemampuan_analisis_strategi": "50",
+  "keakuratan_konteks_realistis": "85",
+  "koreksi_isi_dan_validitas": "100",
+  "kemampuan_diskriminasi": "70",
+  "kesesuaian_standar_uji": "90",
+  "originalitas_soal": "40",
+  "kesesuaian_notasi_dan_simbol": "100",
+  "overall_grade": "75",
+  "feedback": "Most questions are clear and accurate with standard arithmetic concepts. Difficulty is moderate but lacks high originality. Minor inconsistency in question pk_q8's explanation (incorrect answer option 'e' but correct answer marked as 'b' with 192 m² which matches the calculation, so validity is intact."
+}
+--------------------------------------------------
+
+User File: PPU.user.getter.md
+System File: Anda adalah AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam), khususnya subtes Penalaran Umum bagian Pengetahuan dan Pemahaman Umum (PPU).
+
+Tujuan tes PPU adalah mengukur kemampuan memahami, menilai, dan mengomunikasikan pengetahuan yang dianggap penting di lingkungan budaya Indonesia.
+
+Buatlah soal pilihan ganda yang unik dan beragam untuk PPU. Setiap soal harus memiliki:
+
+1. ID unik (id), contoh "q1", "q2", dst.
+2. Topik soal (topic), pilih salah satu dari: 'Sinonim & Antonim', 'Ide Pokok & Makna', 'Kata & Bentuk Kata', 'Kesesuaian Wacana', 'Hubungan Antar Paragraf', atau 'Umum' jika tidak spesifik.
+3. Teks bacaan (passage) jika soal memerlukan konteks dari sebuah teks. Ini opsional.
+4. Teks pertanyaan (questionText).
+5. 4 atau 5 pilihan jawaban (options), masing-masing dengan 'text' dan 'id' (misalnya 'a', 'b', 'c', 'd', 'e').
+6. Satu jawaban yang benar (correctAnswerId), yang merujuk ke 'id' pilihan yang benar.
+7. (Opsional) Penjelasan singkat mengapa jawaban tersebut benar (explanation).
+
+Berikut adalah deskripsi dan contoh untuk setiap topik:
+
+- **Sinonim & Antonim**: Padanan kata (makna dekat) & lawan kata. Contoh soal: "Kata 'gigih' paling mendekati sinonim dari..."
+- **Ide Pokok & Makna**: Menentukan ide utama, simpulan, makna konteks. Contoh soal: "Paragraf kedua teks tersebut mengemukakan..."
+- **Kata & Bentuk Kata**: Afiks (imbuhan), derivasi, kata ulang. Contoh soal: "Bentuk kata yang benar untuk 'ke-ajar-an' adalah..." (Catatan: tipe soal bisa pilihan ganda atau isian singkat, tapi untuk API ini, buatlah selalu pilihan ganda).
+- **Kesesuaian Wacana**: Kohesi (rangkaian kata) & koherensi (keselarasan gagasan). Contoh soal: "Kata penghubung yang tepat untuk melanjutkan kalimat berikut adalah..."
+- **Hubungan Antar Paragraf**: Rujukan, pengembangan ide, transisi paragraf. Contoh soal: "Paragraf ketiga berfungsi sebagai ... terhadap paragraf sebelumnya."
+
+Pastikan soal-soal bervariasi dalam tingkat kesulitan dan mencakup berbagai aspek dari tipe-tipe soal tersebut. Distribusikan jumlah soal secara merata antar topik jika memungkinkan.
+
+Format output harus berupa JSON object yang valid dengan struktur berikut: { "questions": [ { "id": "q1", "topic": "Sinonim & Antonim", "questionText": "...", "options": [{"id": "a", "text": "..."}, ...], "correctAnswerId": "c", "explanation": "..." }, ... ] }
+
+Pastikan setiap soal memiliki `id` yang unik (misalnya, "q1", "q2", ..., "q20").
+Pastikan setiap pilihan dalam soal memiliki `id` yang unik dalam konteks soal tersebut (misalnya, "a", "b", "c", "d").
+--------------------------------------------------

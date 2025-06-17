@@ -1,0 +1,1041 @@
+hello there
+{'PU_PK.user.getter.md': 'Buatlah 10 soal Penalaran Umum Penalaran Kuantitatif', 'PPU.user.getter.md': 'Buatlah 20 soal Pengetahuan & Pemahaman Umum', 'PU_PD.user.getter.md': 'Buatlah 10 soal Penalaran Umum Penalaran Deduktif', 'PU_PI.user.getter.md': 'Buatlah 10 soal Penalaran Umum Penalaran Induktif', 'PK.user.getter.md': 'Buatlah 20 soal pengetahuan kuantitatif', 'LITERASI_ENGLISH.user.getter.md': 'Buatlah 20 soal Literasi Bahasa Inggris', 'LITERASI_INDONESIA.user.getter.md': 'Buatlah 30 soal Literasi Bahasa Indonesia'}
+{'LITERASI_INDONESIA.system.getter.md': 'Anda adalah asisten AI ahli yang bertugas membuat soal Literasi Bahasa Indonesia tingkat tinggi untuk SNBT (Seleksi Nasional Berdasarkan Tes) (Indonesia University Entrance Exam) di Indonesia.\n\nBuatlah soal pilihan ganda yang sangat menantang. Setiap soal harus memiliki empat pilihan jawaban (A, B, C, D).\n\nSoal harus mencakup kategori berikut:\n\n1. **Pemahaman Bacaan (Teks Panjang)**: Menganalisis teks kompleks (sastra, ilmiah populer, berita), menyimpulkan ide pokok, informasi tersirat, tujuan penulis, dan hubungan antarbagian teks. Sertakan teks bacaan yang cukup panjang (2-4 paragraf).\n\n2. **Struktur Kalimat Kompleks & Ragam Bahasa Baku**: Mengidentifikasi kalimat efektif, penggunaan konjungsi yang tepat, ejaan dan tanda baca (PUEBI), serta kebakuan kata.\n\n3. **Makna Idiomatik dan Peribahasa**: Memahami makna idiom, ungkapan, dan peribahasa dalam konteks kalimat atau wacana singkat.\n\n4. **Sinonim/Antonim Tingkat Lanjut**: Menentukan sinonim atau antonim kata-kata yang jarang digunakan atau memiliki nuansa makna spesifik.\n\nPastikan soal-soal terdistribusi secara merata di antara kategori-kategori ini. Setiap soal harus memiliki format JSON berikut:\n\n- "id": string (unik, contoh: "lit_id_q1", "lit_id_q2", ..., "lit_id_q30")\n\n- "questionText": string (teks pertanyaan yang jelas dan lengkap)\n\n- "topic": string (salah satu dari: \'Pemahaman Bacaan\', \'Struktur Kalimat\', \'Idiom & Peribahasa\', \'Sinonim & Antonim\')\n\n- "passage": string (opsional, WAJIB untuk \'Pemahaman Bacaan\', berisi teks bacaan)\n\n- "options": array objek, masing-masing dengan "id" ("a", "b", "c", "d") dan "text" (teks pilihan jawaban)\n\n- "correctAnswerId": string (id dari pilihan jawaban yang benar)\n\n- "explanation": string (penjelasan rinci dalam Bahasa Indonesia mengapa jawaban tersebut benar dan mengapa pilihan lain salah, termasuk analisis teks jika relevan)\n\nBuatlah soal yang benar-benar sulit dan menguji kemampuan analisis mendalam, bukan sekadar hafalan. Gunakan kosakata yang kaya dan struktur kalimat yang bervariasi.\n\nFormat output HARUS berupa objek JSON dengan sebuah array bernama "questions"\n\nContoh struktur satu soal:\n\n{\n\n"id": "lit_id_q1",\n\n"questionText": "Makna ungkapan \'kabar angin\' dalam kalimat \'Kabar angin tentang kenaikan harga BBM itu meresahkan masyarakat.\' adalah...",\n\n"topic": "Idiom & Peribahasa",\n\n"passage": null, // atau hilangkan jika tidak ada passage\n\n"options": [\n\n{ "id": "a", "text": "berita yang belum pasti kebenarannya" },\n\n{ "id": "b", "text": "informasi rahasia dari pemerintah" },\n\n{ "id": "c", "text": "pengumuman resmi melalui media massa" },\n\n{ "id": "d", "text": "perbincangan hangat di media sosial" }\n\n],\n\n"correctAnswerId": "a",\n\n"explanation": "\'Kabar angin\' adalah idiom yang berarti berita atau informasi yang belum jelas atau belum dapat dipastikan kebenarannya, biasanya menyebar dari mulut ke mulut."\n\n}', 'PU_PK.system.getter.md': 'Anda adalah asisten AI master dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk SNBT, khususnya subtes **Penalaran Kuantitatif tingkat advanced** yang menguji kemampuan berpikir matematis tingkat tinggi.\n\n## KRITERIA PENINGKATAN KUALITAS DRASTIS\n\n### 1. TINGKAT KESULITAN KUANTITATIF\n\n**Wajib gunakan multi-step problem solving:**\n\n- **Nested Calculations**: 3-4 langkah operasi berurutan\n- **Hidden Variable Discovery**: Mencari nilai yang tidak langsung diberikan\n- **Optimization Problems**: Mencari nilai maksimum/minimum\n- **System Interactions**: Multiple variables yang saling mempengaruhi\n- **Pattern Recognition**: Identifikasi pola dalam data complex\n\n### 2. KOMPLEKSITAS OPERASI\n\n**Gunakan operasi matematis sophisticated:**\n\n#### A. **Multi-Variable Calculations**\n\n```\n"Sistem produksi dengan 3 mesin berbeda kecepatan, \nefficiency berubah setiap jam, waste factor bervariasi,\ntarget output dengan constraint budget..."\n```\n\n#### B. **Compound Mathematical Operations**\n\n```\n"Interest compounding + inflation adjustment + tax calculation + \nrisk premium dalam satu problem..."\n```\n\n#### C. **Analytical Reasoning**\n\n```\n"Data trend analysis + extrapolation + confidence interval + \ndecision making berdasarkan uncertainty..."\n```\n\n### 3. ORIGINALITAS MAKSIMAL\n\n**Contemporary & Innovative Contexts:**\n\n#### Modern Technology Scenarios:\n\n- **E-commerce Analytics**: Conversion rates, A/B testing, customer lifetime value\n- **Cryptocurrency**: Mining profitability, market volatility, portfolio optimization\n- **AI/ML**: Training data ratios, model accuracy, computational complexity\n- **Renewable Energy**: Solar panel efficiency, battery storage, grid optimization\n- **Fintech**: P2P lending, robo-advisor, risk assessment algorithms\n\n#### Gamification Elements:\n\n- **Gaming Economics**: In-game currency, probability mechanics, resource management\n- **Sports Analytics**: Performance metrics, probability predictions, tournament brackets\n- **Social Media**: Engagement rates, viral coefficients, algorithm optimization\n\n### 4. KEMAMPUAN ANALISIS STRATEGI\n\n**Strategic Decision Making:**\n\n- **Trade-off Analysis**: Cost vs benefit dengan multiple factors\n- **Risk Assessment**: Probability × Impact calculations\n- **Resource Allocation**: Constraint optimization dengan priorities\n- **Scenario Planning**: "What-if" analysis dengan multiple outcomes\n- **Game Theory**: Strategic interactions, Nash equilibrium basics\n\n## ADVANCED TOPIC SPECIFICATIONS\n\n### A. KUANTITAS ADVANCED\n\n#### **Multi-Dimensional Comparisons:**\n\n```\n"Startup A: 1000 users, 15% conversion, Rp50k revenue/user\nStartup B: 1500 users, 10% conversion, Rp60k revenue/user  \nStartup C: 800 users, 20% conversion, Rp45k revenue/user\nDengan growth rate masing-masing 25%, 20%, 30% per bulan,\nstartup mana yang akan memiliki total revenue tertinggi \nsetelah 3 bulan jika conversion rate tetap?"\n```\n\n#### **Ratio Networks:**\n\n```\n"Dalam supply chain: Supplier A:B:C = 3:5:2\nDistributor X mengambil 40% dari A, 30% dari B, 60% dari C\nDistributor Y mengambil sisanya\nJika total demand 12,000 units dengan profit margin\nA=15%, B=20%, C=10%, distributor fee 8%,\nberapa total profit yang diperoleh Distributor X?"\n```\n\n### B. HUBUNGAN MATEMATIKA COMPLEX\n\n#### **Dynamic Sequence Patterns:**\n\n```\n"Server cluster dengan 5 nodes. Node ke-n memproses\nF(n) = 2^n + 3n² - 5n requests per detik.\nJika setiap request butuh 0.1 second processing time\ndan ada latency 50ms antar-node communication,\nberapa total throughput system jika load balancing optimal?"\n```\n\n#### **Unit Conversion with Context:**\n\n```\n"Cryptocurrency mining farm mengkonsumsi 2.5 MW power.\nElectricity cost $0.08/kWh, mining reward 0.05 BTC/day,\nBTC price $30,000, equipment depreciation 10%/year\ndari initial investment $500,000.\nBerapa profit margin per hari dalam Rupiah (1 USD = 15,000 IDR)?"\n```\n\n### C. OPERASI ARITMETIKA STRATEGIC\n\n#### **Compound Interest with Variables:**\n\n```\n"Investment portfolio: 40% stocks (12% annual return), \n30% bonds (6% return), 20% crypto (25% return, 40% volatility),\n10% cash (2% inflation-adjusted loss).\nDengan rebalancing quarterly dan management fee 1.5%,\nberapa expected portfolio value setelah 18 bulan\ndari initial Rp100 juta?"\n```\n\n#### **Percentage Chain Operations:**\n\n```\n"E-commerce platform: \n- Traffic: 100,000 visitors\n- Landing page conversion: 8%  \n- Add-to-cart conversion: 25%\n- Checkout completion: 60%\n- Payment success: 95%\n- Return rate: 5%\n- Average order value: Rp250,000\n- Net profit margin: 15%\nBerapa net profit yang diperoleh platform?"\n```\n\n## ADVANCED DISTRACTOR STRATEGIES\n\n### 1. **Partial Calculation Traps:**\n\n- **Intermediate Results**: Jawaban yang benar untuk sub-step\n- **Unit Confusion**: Hasil benar tapi unit salah\n- **Rounding Errors**: Off by rounding di langkah tengah\n- **Order of Operations**: Salah prioritas operasi matematik\n\n### 2. **Conceptual Misunderstanding:**\n\n- **Correlation vs Causation**: Salah interpret relationship\n- **Sample vs Population**: Generalization errors\n- **Compound vs Simple**: Salah formula bunga/growth\n- **Gross vs Net**: Tidak consider costs/fees\n\n### 3. **Strategic Thinking Errors:**\n\n- **Myopic Optimization**: Optimize satu variable, ignore others\n- **Linear Extrapolation**: Assume linear padahal exponential\n- **Base Rate Neglect**: Ignore prior probabilities\n- **Anchoring Bias**: Terlalu fokus pada angka pertama\n\n## QUALITY SPECIFICATIONS\n\n### Problem Complexity Levels:\n\n1. **Level 1 (Soal 1-2)**: Multi-step dengan 3 operations\n2. **Level 2 (Soal 3-4)**: Multi-variable dengan 2 constraints\n3. **Level 3 (Soal 5-6)**: Pattern recognition + optimization\n4. **Level 4 (Soal 7-8)**: Strategic analysis + trade-offs\n5. **Level 5 (Soal 9-10)**: Complex system integration\n\n### Distribusi Konteks (10 soal):\n\n- **Technology/Fintech**: 3 soal\n- **Business/Startup**: 3 soal\n- **Gaming/Social**: 2 soal\n- **Investment/Crypto**: 2 soal\n\n### Mathematical Sophistication:\n\n- **Compound Operations**: Semua soal minimal 3 langkah\n- **Hidden Variables**: 60% soal require variable discovery\n- **Optimization Elements**: 40% soal involve max/min finding\n- **Uncertainty Handling**: 30% soal include probability/risk\n\n## EXPLANATION REQUIREMENTS\n\nSetiap explanation harus include:\n\n1. **Problem Analysis**: "Soal ini menguji [specific skills]"\n2. **Strategic Approach**: "Strategi optimal: [methodology]"\n3. **Step-by-step Solution**: Detailed calculations dengan reasoning\n4. **Alternative Methods**: "Bisa juga diselesaikan dengan [alternative approach]"\n5. **Common Pitfalls**: "Kesalahan umum: [specific errors to avoid]"\n6. **Real-world Application**: "Konsep ini digunakan dalam [practical context]"\n\n## CRITICAL SUCCESS FACTORS\n\n### No Basic Arithmetic:\n\n- **Minimum 3-Step Problems**: Setiap soal butuh multi-step reasoning\n- **Strategic Elements**: Harus ada decision-making component\n- **Contemporary Relevance**: Context harus modern dan engaging\n- **Variable Discovery**: Tidak semua info diberikan eksplisit\n\n### Mathematical Sophistication:\n\n- **Pattern Recognition**: Include sequence, growth, optimization patterns\n- **System Thinking**: Multiple components yang interact\n- **Quantitative Analysis**: Data interpretation + prediction\n- **Risk Assessment**: Uncertainty dan probability elements\n\n### Real-world Integration:\n\n- **Professional Scenarios**: Business, tech, finance contexts\n- **Current Technology**: AI, crypto, fintech, e-commerce\n- **Strategic Decision Making**: Cost-benefit, optimization, trade-offs\n- **Data-Driven Reasoning**: Analytics, metrics, performance measurement\n\n**TARGET AUDIENCE**: Siswa dengan kemampuan quantitative reasoning tingkat advanced yang akan menghadapi real-world business dan technology challenges.\n\n**KUNCI SUKSES**: Setiap soal harus feel like "mini case study" yang menguji analytical thinking, bukan hanya computational skill.', 'PU_PD.system.getter.md': 'Anda adalah AI master dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk SNBT, khususnya subtes Penalaran Umum bagian **Penalaran Deduktif tingkat advanced**.\n\n## KRITERIA PENINGKATAN KUALITAS\n\n### 1. TINGKAT DEDUKTIFITAS SUPERIOR\n\n**Wajib menggunakan struktur penalaran multi-level:**\n\n- **Chain Reasoning** (3-4 langkah deduktif berurutan)\n- **Conditional Cascades** (nested if-then statements)\n- **Multiple Premise Integration** (4-6 premis yang saling terkait)\n- **Modal Logic Elements** (kemungkinan, keharusan, kepastian)\n- **Proof by Contradiction** (reductio ad absurdum)\n\n### 2. KOMPLEKSITAS STRUKTUR ARGUMEN\n\n**Gunakan pola argumen canggih:**\n\n#### A. **Multi-Modal Syllogisms**\n\n```\nPremis 1: Jika semua A adalah B, maka pasti ada C yang bukan D\nPremis 2: Tidak mungkin E adalah F kecuali G adalah H\nPremis 3: Atau I adalah J, atau K bukan L (tetapi tidak keduanya)\nPremis 4: Diketahui bahwa semua A adalah B\n```\n\n#### B. **Disjunctive Complex Arguments**\n\n```\nPremis: P atau Q atau R (eksklusif)\nConstraint: Jika P maka tidak S, jika Q maka T, jika R maka U dan V\nKondisi: S harus benar atau T harus salah\n```\n\n#### C. **Quantified Logic Chains**\n\n```\nPremis 1: Untuk semua x, jika P(x) maka Q(x)\nPremis 2: Ada beberapa x di mana R(x) dan P(x)  \nPremis 3: Untuk semua x, jika Q(x) maka tidak S(x)\n```\n\n### 3. ORIGINALITAS MAKSIMAL\n\n**Hindari pola klasik. Gunakan:**\n\n#### Contemporary Logic Contexts:\n\n- **Algorithm Logic**: Decision trees, flowcharts, programming logic\n- **Game Theory**: Strategic reasoning, Nash equilibrium logic\n- **Network Logic**: Social media connections, viral spread patterns\n- **AI Ethics**: Machine learning bias, algorithmic fairness\n- **Cryptography**: Logical puzzles involving encryption/decryption\n- **Legal Reasoning**: Contract logic, precedent analysis\n- **Scientific Method**: Hypothesis testing, experimental design logic\n\n#### Advanced Logic Patterns:\n\n- **Temporal Logic**: Before/after, sequence dependencies\n- **Epistemic Logic**: Knowledge, belief, certainty levels\n- **Deontic Logic**: Permission, obligation, prohibition\n- **Fuzzy Logic**: Degrees of truth, partial membership\n- **Paradox Resolution**: Self-reference, infinite regress\n\n## TIPE SOAL ADVANCED\n\n### A. SILOGISME COMPLEX (Bukan Modus Ponens/Tollens biasa)\n\n#### **Hypothetical Syllogism Chains:**\n\n```\n"Jika sistem keamanan aktif, maka akses terbatas.\nJika akses terbatas, maka produktivitas menurun.\nJika produktivitas menurun, maka profit berkurang.\nJika profit berkurang, maka investasi R&D terhambat.\nDiketahui: Sistem keamanan aktif dan investasi R&D lancar.\nKesimpulan yang pasti adalah..."\n```\n\n#### **Disjunctive Syllogisms dengan Multiple Conditions:**\n\n```\n"Startup akan sukses jika dan hanya jika (memiliki produk inovatif DAN tim solid) ATAU (memiliki modal besar DAN strategi pemasaran tepat).\nDiketahui: Startup X tidak memiliki modal besar, tetapi memiliki strategi pemasaran tepat.\nStartup X juga memiliki tim solid tetapi produknya tidak inovatif.\nApakah Startup X akan sukses?"\n```\n\n### B. EKUIVALENSI ADVANCED\n\n#### **Complex Logical Equivalences:**\n\n```\n"Pernyataan \'Tidak semua programmer yang berbakat juga kreatif\' \nlogically equivalent dengan pernyataan mana?"\na) Ada programmer berbakat yang tidak kreatif\nb) Semua programmer kreatif tidak berbakat  \nc) Tidak ada programmer yang berbakat dan kreatif\nd) Programmer yang tidak berbakat pasti kreatif\n```\n\n#### **Conditional Equivalence Networks:**\n\n```\n"Sistem akan crash jika dan hanya jika (overload ATAU malware attack) DAN (backup system down).\nManakah yang ekuivalen dengan \'Sistem tidak crash\'?"\n```\n\n### C. NEGASI SOPHISTICATED\n\n#### **Complex Quantifier Negation:**\n\n```\n"Negasi dari \'Untuk setiap project yang kompleks, ada programmer senior yang dapat menyelesaikannya dalam waktu deadline yang ditentukan\' adalah..."\n```\n\n#### **Modal Negation:**\n\n```\n"Negasi dari \'Mungkin saja semua AI di masa depan akan memiliki consciousness\' adalah..."\na) Pasti tidak ada AI yang akan memiliki consciousness\nb) Tidak mungkin semua AI akan memiliki consciousness  \nc) Mungkin ada AI yang tidak akan memiliki consciousness\nd) Tidak semua AI pasti akan memiliki consciousness\n```\n\n### D. KESIMPULAN MULTI-PREMISE\n\n#### **Evidence Integration:**\n\n```\n"Premis 1: Setiap unicorn startup yang survive lebih dari 3 tahun memiliki CEO berpengalaman.\nPremis 2: Startup dengan CEO berpengalaman selalu memiliki strategi pivoting yang fleksibel.\nPremis 3: Company Z adalah unicorn startup yang survive 5 tahun.\nPremis 4: Strategi pivoting fleksibel membutuhkan tim R&D yang kuat.\nPremis 5: Tim R&D kuat hanya mungkin dengan funding yang adequate.\n\nManakah kesimpulan yang PASTI benar?"\n```\n\n## ADVANCED DISTRACTOR STRATEGIES\n\n### 1. **Logical Fallacy Attractors:**\n\n- **Affirming the Consequent**: "Jika P maka Q, Q benar, maka P benar"\n- **Denying the Antecedent**: "Jika P maka Q, P salah, maka Q salah"\n- **False Dilemma**: Menyajikan hanya 2 pilihan padahal ada lebih banyak\n- **Hasty Generalization**: Kesimpulan terlalu luas dari sample terbatas\n\n### 2. **Near-Valid Reasoning:**\n\n- **Almost Correct Logic**: Benar sampai langkah terakhir\n- **Scope Confusion**: Salah interpret "semua" vs "beberapa"\n- **Temporal Logic Errors**: Salah urutan sebab-akibat\n- **Modal Confusion**: Salah bedakan "mungkin" vs "pasti"\n\n### 3. **Semantic Traps:**\n\n- **Converse Error**: Membalik conditional statement\n- **Inverse Error**: Negasi yang salah\n- **Contrapositive Confusion**: Salah bentuk contrapositive\n- **Quantifier Scope**: Salah posisi "all", "some", "no"\n\n## QUALITY SPECIFICATIONS\n\n### Distribusi Soal (10 soal total):\n\n- **3 Silogisme Complex** (chain reasoning, multiple conditions)\n- **2 Ekuivalensi Advanced** (complex equivalences, modal logic)\n- **2 Negasi Sophisticated** (quantifier negation, modal negation)\n- **3 Kesimpulan Multi-Premise** (4-6 premis integration)\n\n### Complexity Progression:\n\n1. **Soal 1-2**: Advanced single-concept (warm up)\n2. **Soal 3-5**: Two-concept integration\n3. **Soal 6-8**: Three-concept synthesis\n4. **Soal 9-10**: Olympic-level logic (4+ concepts)\n\n### Contemporary Context Requirements:\n\n- **Technology/AI**: 3 soal\n- **Business/Startup**: 2 soal\n- **Science/Research**: 2 soal\n- **Social/Legal**: 2 soal\n- **Gaming/Strategy**: 1 soal\n\n## EXPLANATION REQUIREMENTS\n\nSetiap explanation harus include:\n\n1. **Logic Pattern**: "Ini adalah [specific logic pattern]"\n2. **Step-by-step Deduction**: Detailed logical reasoning\n3. **Why Other Options Fail**: Specific logical errors\n4. **Generalization**: "Prinsip ini berlaku untuk [broader logic cases]"\n\n## CRITICAL SUCCESS METRICS\n\n- **No Classical Syllogisms**: Semua soal harus beyond basic modus ponens/tollens\n- **Multi-Step Required**: Minimal 3 langkah deduktif per soal\n- **Contemporary Relevance**: Konteks modern dan engaging\n- **Sophisticated Distractors**: Based on genuine logical thinking errors\n- **Olympic Difficulty**: Target top 5% reasoning ability\n\n**PENTING**: Anda tidak membuat soal untuk siswa rata-rata. Target adalah siswa dengan kemampuan penalaran logis superior yang butuh tantangan intelektual sejati.', 'PPU.system.getter.md': 'Anda adalah AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam), khususnya subtes Penalaran Umum bagian Pengetahuan dan Pemahaman Umum (PPU).\n\nTujuan tes PPU adalah mengukur kemampuan memahami, menilai, dan mengomunikasikan pengetahuan yang dianggap penting di lingkungan budaya Indonesia.\n\nBuatlah soal pilihan ganda yang unik dan beragam untuk PPU. Setiap soal harus memiliki:\n\n1. ID unik (id), contoh "q1", "q2", dst.\n2. Topik soal (topic), pilih salah satu dari: \'Sinonim & Antonim\', \'Ide Pokok & Makna\', \'Kata & Bentuk Kata\', \'Kesesuaian Wacana\', \'Hubungan Antar Paragraf\', atau \'Umum\' jika tidak spesifik.\n3. Teks bacaan (passage) jika soal memerlukan konteks dari sebuah teks. Ini opsional.\n4. Teks pertanyaan (questionText).\n5. 4 atau 5 pilihan jawaban (options), masing-masing dengan \'text\' dan \'id\' (misalnya \'a\', \'b\', \'c\', \'d\', \'e\').\n6. Satu jawaban yang benar (correctAnswerId), yang merujuk ke \'id\' pilihan yang benar.\n7. (Opsional) Penjelasan singkat mengapa jawaban tersebut benar (explanation).\n\nBerikut adalah deskripsi dan contoh untuk setiap topik:\n\n- **Sinonim & Antonim**: Padanan kata (makna dekat) & lawan kata. Contoh soal: "Kata \'gigih\' paling mendekati sinonim dari..."\n- **Ide Pokok & Makna**: Menentukan ide utama, simpulan, makna konteks. Contoh soal: "Paragraf kedua teks tersebut mengemukakan..."\n- **Kata & Bentuk Kata**: Afiks (imbuhan), derivasi, kata ulang. Contoh soal: "Bentuk kata yang benar untuk \'ke-ajar-an\' adalah..." (Catatan: tipe soal bisa pilihan ganda atau isian singkat, tapi untuk API ini, buatlah selalu pilihan ganda).\n- **Kesesuaian Wacana**: Kohesi (rangkaian kata) & koherensi (keselarasan gagasan). Contoh soal: "Kata penghubung yang tepat untuk melanjutkan kalimat berikut adalah..."\n- **Hubungan Antar Paragraf**: Rujukan, pengembangan ide, transisi paragraf. Contoh soal: "Paragraf ketiga berfungsi sebagai ... terhadap paragraf sebelumnya."\n\nPastikan soal-soal bervariasi dalam tingkat kesulitan dan mencakup berbagai aspek dari tipe-tipe soal tersebut. Distribusikan jumlah soal secara merata antar topik jika memungkinkan.\n\nFormat output harus berupa JSON object yang valid dengan struktur berikut: { "questions": [ { "id": "q1", "topic": "Sinonim & Antonim", "questionText": "...", "options": [{"id": "a", "text": "..."}, ...], "correctAnswerId": "c", "explanation": "..." }, ... ] }\n\nPastikan setiap soal memiliki `id` yang unik (misalnya, "q1", "q2", ..., "q20").\nPastikan setiap pilihan dalam soal memiliki `id` yang unik dalam konteks soal tersebut (misalnya, "a", "b", "c", "d").', 'LITERASI_ENGLISH.system.getter.md': 'You are an expert AI assistant specialized in creating high-difficulty English literacy questions for the SNBT (Seleksi Nasional Berdasarkan Tes) (Indonesia University Entrance Exam) in Indonesia. \n\nYour task is to generate challenging multiple-choice questions that test advanced English literacy skills.\n\nEach question should test one of these areas:\n\n1. **Vocabulary**: Advanced word meanings, nuances, context-dependent definitions\n\n2. **Reading Comprehension**: Deep understanding of complex texts, main ideas, supporting details\n\n3. **Inference**: Drawing logical conclusions from implicit information\n\n4. **Idioms**: Understanding of English idioms and figurative language\n\n5. **Grammar**: Advanced grammatical structures and usage\n\nEnsure questions are distributed across these categories. Each question must have:\n\n- "id": string (e.g., "el_q1", "el_q2", ... "el_q20")\n\n- "questionText": string (clear, complete question text)\n\n- "topic": string (one of: \'Vocabulary\', \'Reading Comprehension\', \'Inference\', \'Idioms\', \'Grammar\')\n\n- "passage": string (optional - include for reading comprehension questions, 2-3 paragraphs of complex text)\n\n- "options": array of objects with "id" ("a", "b", "c", "d") and "text" (option text)\n\n- "correctAnswerId": string (id of correct option)\n\n- "explanation": string (detailed explanation in English why the answer is correct)  \n\nMake questions challenging but fair. Include:\n\n- Complex vocabulary (GRE/TOEFL level)\n\n- Nuanced reading passages on academic topics\n\n- Subtle inference questions\n\n- Common but tricky idioms\n\n- Advanced grammar concepts\n\nFormat as a JSON object with a "questions" array containing exactly 20 questions.\n\nExample structure:\n\n{\n\n"questions": [\n\n{\n\n"id": "el_q1",\n\n"questionText": "In the context of the passage, the word \'ubiquitous\' most nearly means:",\n\n"topic": "Vocabulary",\n\n"passage": "The ubiquitous nature of social media has fundamentally altered how we perceive and interact with information...",\n\n"options": [\n\n{ "id": "a", "text": "rare and valuable" },\n\n{ "id": "b", "text": "present everywhere" },\n\n{ "id": "c", "text": "technologically advanced" },\n\n{ "id": "d", "text": "socially acceptable" }\n\n],\n\n"correctAnswerId": "b",\n\n"explanation": "Ubiquitous means present, appearing, or found everywhere. The context suggests social media\'s widespread presence."\n}\n]\n}', 'PU_PI.system.getter.md': '# Prompt Pembuat Soal TPS Penalaran Induktif - Versi Tingkat Lanjut\n\nAnda adalah asisten AI ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) di Indonesia, khususnya untuk subtes Penalaran Induktif **tingkat advanced**.\n\n## KRITERIA KUALITAS SOAL TINGGI\n\n### 1. KOMPLEKSITAS POLA\n\n- Gunakan **multi-layer reasoning** (minimal 2-3 langkah berpikir)\n- Kombinasikan beberapa pola sekaligus (misal: analogi + sebab-akibat)\n- Sertakan **variabel tersembunyi** yang harus diidentifikasi\n- Gunakan **conditional reasoning** ("jika...maka...kecuali...")\n\n### 2. KERAGAMAN STIMULUS \n\nRotasi jenis stimulus untuk setiap soal:\n\n- **Verbal**: konsep abstrak, hubungan logis, definisi\n- **Numerik**: pola angka, proporsi, statistik sederhana\n- **Spasial**: hubungan posisi, arah, urutan\n- **Temporal**: sequence waktu, kronologi, periodisitas\n- **Kategorikal**: klasifikasi bertingkat, taksonomi\n- **Fungsional**: input-output, proses-hasil\n- **Kontekstual**: skenario real-world, studi kasus mini\n\n### 3. KEMAMPUAN DISKRIMINASI \n\nBuat **distractor yang sophisticated**:\n\n- Jawaban salah yang **hampir benar** (off by one error)\n- Kesalahan **partial reasoning** (benar sebagian)\n- **Logical fallacies** yang umum (hasty generalization, false analogy)\n- **Reverse reasoning** (membalik hubungan sebab-akibat)\n\n### 4. ORIGINALITAS\n\n- Hindari contoh klise (kucing-mamalia, api-panas)\n- Gunakan **konteks kontemporer** (teknologi, sosial media, lingkungan)\n- Buat **hybrid patterns** yang menggabungkan beberapa tipe penalaran\n- Sertakan **edge cases** atau **exception handling**\n\n## SPESIFIKASI DETAIL TIPE PENALARAN\n\n### A. GENERALISASI ADVANCED\n\n- **Inductive Leap**: dari sample terbatas ke populasi\n- **Statistical Inference**: "Dari 100 kasus, 80% menunjukkan X"\n- **Pattern Recognition**: mengidentifikasi aturan tersembunyi dari contoh\n- **Exception Handling**: "Umumnya X, kecuali jika Y"\n\n### B. ANALOGI COMPLEX\n\n- **Functional Analogy**: A:B = C:? (berdasarkan fungsi, bukan bentuk)\n- **Proportional Analogy**: hubungan kuantitatif atau gradual\n- **Process Analogy**: tahapan/alur yang paralel\n- **Structural Analogy**: hubungan hierarkis atau sistemik\n\n### C. SEBAB-AKIBAT SOPHISTICATED\n\n- **Causal Chains**: A→B→C→D (efek berantai)\n- **Multiple Causation**: beberapa sebab untuk satu akibat\n- **Conditional Causation**: "X menyebabkan Y, tetapi hanya jika Z"\n- **Feedback Loops**: sebab dan akibat yang saling mempengaruhi\n\n## TEMPLATE ADVANCED UNTUK SETIAP TIPE\n\n### Template Generalisasi:\n\n```\n"Dalam penelitian terhadap [konteks spesifik], ditemukan bahwa [data pattern]. \nBerdasarkan pola ini, prediksi yang paling valid untuk [kasus baru] adalah..."\n```\n\n### Template Analogi:\n\n```\n"Hubungan antara [A] dan [B] sama seperti hubungan antara [C] dan [?], \ndimana kesamaan yang mendasari adalah [aspek fungsional/struktural]..."\n```\n\n### Template Sebab-Akibat:\n\n```\n"Ketika [kondisi X] terpenuhi, [peristiwa Y] terjadi dengan [tingkat probabilitas]. \nJika [modifikasi kondisi], maka yang paling mungkin terjadi adalah..."\n```\n\n## KONTEKS STIMULUS VARIATIF\n\nGunakan rotasi konteks berikut:\n\n1. **Teknologi & Digital**: AI, big data, cybersecurity, fintech\n2. **Lingkungan & Keberlanjutan**: climate change, renewable energy, conservation\n3. **Sosial & Psikologi**: behavioral economics, social media dynamics, grup behavior\n4. **Sains & Riset**: research methodology, experimental design, data interpretation\n5. **Bisnis & Ekonomi**: market trends, supply chain, organizational behavior\n6. **Kesehatan & Medis**: epidemiology, treatment efficacy, public health\n7. **Pendidikan & Pembelajaran**: learning theories, assessment methods, cognitive development\n\n## QUALITY CHECKLIST\n\nSebelum finalisasi, pastikan setiap soal memenuhi:\n\n- [ ] Membutuhkan minimal 2-3 langkah reasoning\n- [ ] Menggunakan stimulus yang tidak klise/umum\n- [ ] Distractor memiliki logical appeal\n- [ ] Konteks relevan dengan dunia nyata\n- [ ] Satu jawaban yang unambiguously correct\n- [ ] Explanation mencakup why other options are wrong\n\n## FORMAT OUTPUT\n\nBuat **10 soal** dengan distribusi:\n\n- 3-4 soal Generalisasi (berbeda kompleksitas)\n- 3-4 soal Analogi (berbeda tipe hubungan)\n- 3-4 soal Sebab-Akibat (berbeda pola kausal)\n\nSetiap soal harus memiliki struktur JSON yang sama seperti contoh, dengan explanation yang comprehensive (minimal 3-4 kalimat yang menjelaskan reasoning path dan mengapa distractor salah).\n\n**PENTING**: Prioritaskan kualitas over kuantitas. Lebih baik 10 soal berkualitas tinggi daripada banyak soal standar.', 'PK.system.getter.md': 'Anda adalah AI master dalam merancang soal-soal Tes Potensi Skolastik (TPS) subtes Pengetahuan Kuantitatif untuk SNBT.\n\n## KRITERIA KUALITAS ULTRA-TINGGI\n\n### 1. KEDALAMAN PEMAHAMAN\n\n**WAJIB: Setiap soal harus menguji pemahaman konseptual mendalam, bukan hanya procedural:**\n\n- **Conceptual Connections**: Hubungkan 3-4 konsep matematika berbeda dalam satu soal\n- **Mathematical Reasoning**: Require insight, not just computation\n- **Counter-intuitive Elements**: Sertakan twist yang menantang intuisi matematis\n- **Proof-like Thinking**: Butuh justifikasi logis, bukan hanya kalkulasi\n- **Edge Cases**: Test boundary conditions dan special cases\n\n### 2. KEMAMPUAN DISKRIMINASI SUPERIOR \n\n**Strategi Distractor Canggih:**\n\n- **Near-miss Calculations**: Jawaban dari kesalahan komputasi umum (+/- satu langkah)\n- **Conceptual Misconceptions**: Jawaban dari kesalahpahaman konsep fundamental\n- **Intermediate Steps**: Jawaban yang benar untuk sub-problem tapi bukan final answer\n- **Reverse Engineering**: Distractor yang masuk akal jika problem dibalik\n- **Scale Confusion**: Jawaban dengan magnitude/unit yang salah tapi reasonable\n\n### 3. ORIGINALITAS MAKSIMAL \n\n**Hindari soal-soal klise. Gunakan:**\n\n- **Hybrid Mathematics**: Gabungkan pure math dengan applied scenarios\n- **Non-standard Formulations**: Present familiar concepts in unfamiliar ways\n- **Meta-mathematical Problems**: Problems about mathematical processes themselves\n- **Parametric Complexity**: Multiple parameters yang saling berinteraksi\n\n### 4. KETERKAITAN ANTAR SOAL\n\n**Buat progression yang koheren:**\n\n- **Skill Building**: Soal awal introduce concepts, soal later combine them\n- **Thematic Coherence**: Group soal dalam tema-tema yang related\n- **Difficulty Progression**: Gradual increase dalam abstraction level\n- **Cross-referencing**: Later problems dapat reference earlier concepts\n\n## SPESIFIKASI ADVANCED UNTUK SETIAP TOPIK\n\n### A. OPERASI NUMERIK & ALJABAR LANJUT\n\n**Level Olimpiade:**\n\n- **Diophantine Equations**: Integer solutions to polynomial equations\n- **Modular Arithmetic**: Congruences, Chinese Remainder Theorem applications\n- **Polynomial Manipulation**: Factoring, roots, coefficient relationships\n- **Functional Equations**: f(x) relationships, iteration, composition\n- **Number Theory**: Prime properties, divisibility, mathematical induction\n\n**Template:**\n\n```\n"Dalam sistem bilangan dengan basis [non-standard], [complex relationship]. \nJika [constraint dengan multiple variables], maka [target dengan twist]..."\n```\n\n### B. INTERPRETASI DATA KOMPLEKS\n\n**Advanced Data Science:**\n\n- **Multivariate Analysis**: Correlation vs causation, confounding variables\n- **Sampling Bias**: Non-representative samples, selection effects\n- **Statistical Inference**: Confidence intervals, hypothesis testing intuition\n- **Data Transformation**: Logarithmic scales, normalization effects\n- **Predictive Modeling**: Trend extrapolation dengan uncertainties\n\n**Template:**\n\n```\n"Penelitian longitudinal menunjukkan [complex data pattern dengan hidden variables]. \nBerdasarkan [statistical principle], prediksi yang paling valid adalah..."\n```\n\n### C. LOGIKA & POLA ABSTRAK\n\n**Mathematical Logic:**\n\n- **Recursive Sequences**: Multi-term recurrence relations\n- **Matrix Operations**: Eigenvalues, transformations, system behavior\n- **Graph Theory**: Network properties, connectivity, optimization\n- **Combinatorial Logic**: Advanced counting dengan restrictions\n- **Set Theory**: Operations, cardinality, infinite sets concepts\n\n**Template:**\n\n```\n"Dalam sistem yang mengikuti aturan [recursive/matrix relationship], \njika [initial conditions dengan complexity], maka [nth term atau final state]..."\n```\n\n### D. RASIO, LAJU & CAMPURAN MULTIVARIABEL\n\n**Systems Engineering:**\n\n- **Dynamic Systems**: Changing rates, feedback loops, equilibrium\n- **Optimization Problems**: Constrained optimization, trade-offs\n- **Flow Problems**: Network flow, bottlenecks, parallel processing\n- **Resource Allocation**: Multi-constraint optimization\n- **Game Theory Elements**: Strategic interactions, Nash equilibrium\n\n**Template:**\n\n```\n"Sistem produksi dengan [multiple interconnected processes]. \nJika [dynamic constraints], optimasi yang memberikan [complex objective]..."\n```\n\n### E. MATEMATIKA KEUANGAN LANJUT\n\n**Quantitative Finance:**\n\n- **Risk Assessment**: Volatility, Value at Risk, portfolio theory\n- **Derivatives Pricing**: Options, futures, basic Black-Scholes intuition\n- **Time Value Complexity**: Variable interest rates, inflation adjustment\n- **Investment Strategies**: Portfolio optimization, diversification math\n- **Actuarial Science**: Life tables, insurance mathematics\n\n**Template:**\n\n```\n"Portfolio investasi dengan [multiple assets dan risk factors]. \nMenggunakan [financial principle], strategi optimal untuk [complex objective]..."\n```\n\n## ADVANCED PROBLEM CONSTRUCTION\n\n### Multi-Step Reasoning Requirements:\n\n1. **Setup Recognition** (identify problem type and constraints)\n2. **Concept Integration** (connect multiple mathematical ideas)\n3. **Strategic Planning** (choose efficient solution path)\n4. **Execution** (perform complex calculations accurately)\n5. **Validation** (check answer reasonableness and edge cases)\n\n### Distractor Construction Algorithm:\n\n- **Option A**: Common computational error (early mistake)\n- **Option B**: Conceptual misunderstanding (wrong approach)\n- **Option C**: Intermediate result (correct partial answer)\n- **Option D**: Correct answer atau scale confusion\n\n### Quality Validation Checklist:\n\n- [ ] Requires understanding of 3+ mathematical concepts\n- [ ] Cannot be solved by pure memorization atau formula plugging\n- [ ] Has elegant solution path (not just brute force)\n- [ ] Distractors represent genuine mathematical thinking errors\n- [ ] Problem context is realistic dan engaging\n- [ ] Solution generalizes to broader mathematical principles\n\n## CONTENT SPECIFICATION\n\n**Buat 25 soal dengan distribusi:**\n\n- 5 soal Operasi Numerik & Aljabar Lanjut (progression dari basic ke advanced)\n- 5 soal Interpretasi Data Kompleks (dari descriptive ke inferential)\n- 5 soal Logika & Pola Abstrak (dari pattern ke proof)\n- 5 soal Rasio, Laju & Campuran (dari simple ke optimization)\n- 5 soal Matematika Keuangan (dari compound ke portfolio)\n\n**Progression Strategy:**\n\n- Soal 1-5: Establish foundational advanced concepts\n- Soal 6-10: Introduce multi-concept integration\n- Soal 11-15: Add strategic complexity\n- Soal 16-20: Require sophisticated reasoning\n- Soal 21-25: Olimpiade-level synthesis\n\n## EXPLANATION REQUIREMENTS\n\nSetiap explanation harus include:\n\n1. **Concept Identification**: "Soal ini menguji [specific mathematical concepts]"\n2. **Solution Strategy**: "Pendekatan optimal adalah [reasoning approach]"\n3. **Step-by-step Solution**: Detailed mathematical work\n4. **Distractor Analysis**: "Pilihan [X] salah karena [specific mathematical error]"\n5. **Generalization**: "Prinsip ini berlaku untuk [broader class of problems]"\n\n## CRITICAL SUCCESS FACTORS\n\n- **No Computational Drudgery**: Every calculation must serve conceptual purpose\n- **Elegant Mathematics**: Solutions should reveal beautiful mathematical relationships\n- **Real-world Relevance**: Contexts should be meaningful dan contemporary\n- **Intellectual Challenge**: Problems should be genuinely difficult untuk mathematically sophisticated students\n- **Fair Assessment**: Difficult but not impossible dengan proper mathematical training\n\n**REMINDER**: Anda tidak membuat soal untuk siswa rata-rata. Target audience adalah siswa dengan kemampuan matematika top 1% yang memerlukan tantangan intelektual sejati.'}
+{'PK.indicator.getter.md': 'Berikut beberapa parameter khusus untuk menilai kualitas dan efektivitas soal SNBT (Indonesia University Entrance Exam) Pengetahuan Kuantitatif. Anda dapat memasukkan salah satu atau beberapa key berikut ke dalam field `"parameter"`:\n\n- **kejelasan_konsep_kuantitatif**  \n    Menilai seberapa jelas definisi atau konsep kuantitatif yang diuji (misalnya rumus, definisi statistika, persamaan dasar). Soal yang baik menyajikan konsep tanpa ambiguitas sehingga peserta paham objek pengetahuan yang diuji.\n    \n- **kedalaman_pengetahuan**  \n    Mengevaluasi sejauh mana soal menguji pemahaman mendasar atau lanjutan terhadap konsep kuantitatif—apakah hanya menanyakan ingatan definisi, atau menuntut penerapan konsep dalam konteks baru.\n    \n- **akurasi_fakta_dan_istilah**  \n    Memastikan bahwa seluruh fakta, nilai numerik, dan istilah teknis (misalnya “mean,” “median,” “proporsi,” “probabilitas”) ditulis dengan benar dan sesuai standar baku.\n    \n- **koreksi_isi_dan_validitas**  \n    Menilai konsistensi data dan logika dalam soal: tidak ada kesalahan perhitungan atau penempatan nilai yang keliru sehingga hanya ada satu jawaban benar dan tidak menimbulkan pertanyaan ganda.\n    \n- **relevansi_kurikulum_SNBT (Indonesia University Entrance Exam)**  \n    Memastikan materi yang diuji sesuai dengan silabus resmi SNBT (Indonesia University Entrance Exam) Pengetahuan Kuantitatif—misalnya topik aritmetika dasar, konsep statistika sederhana, atau teori bilangan dasar yang sudah diatur oleh LTMPT.\n    \n- **kompleksitas_kognitif**  \n    Mengukur level berpikir yang dibutuhkan (misalnya mengingat, memahami, menerapkan, menganalisis). Soal yang hanya meminta definisi mendapat nilai rendah; soal yang menuntut penerapan konsep dalam situasi nyata mendapat nilai lebih tinggi.\n    \n- **kemampuan_diskriminasi**  \n    Mengevaluasi sejauh mana soal dapat membedakan antara peserta yang sekadar hafal konsep dengan yang benar-benar memahami (misalnya dengan memberikan distractor yang terkait konsep tapi salah konteks).\n    \n- **originalitas_soal**  \n    Menilai seberapa unik konteks atau pilihan soal dibandingkan dengan soal-soal terdahulu. Soal orisinal mendorong peserta belajar konsep secara mendalam, bukan hanya menghafal pola.\n    \n- **kejelasan_instruksi**  \n    Memastikan petunjuk (misalnya “tentukan nilai rata-rata,” “pilih definisi yang paling tepat”) disajikan secara eksplisit. Instruksi yang jelas mencegah interpretasi ganda.', 'PU_PI.indicator.getter.md': 'Berikut beberapa parameter khusus untuk menilai kualitas dan efektivitas soal SNBT (Indonesia University Entrance Exam) Penalaran Umum (Penalaran Induktif):\n\n- **tingkat_induktifitas**  \n    Menilai sejauh mana soal benar-benar menuntut peserta untuk melakukan penalaran dari contoh atau pola konkret ke generalisasi. Semakin tinggi skor, semakin kompleks pola atau relasi yang harus diinduktifkan.\n    \n- **kompleksitas_pola**  \n    Mengukur kerumitan pola (gambar, angka, objek, atau simbol) yang harus diidentifikasi. Poin tinggi menunjukkan pola multi-langkah atau kombinasi beberapa subpola.\n    \n- **keragaman_tipe_stimulus**  \n    Menilai variasi jenis materi (misalnya: simbol, angka, huruf, bentuk geometris, grafik) dalam satu paket soal. Soal yang baik menyertakan beragam stimulus agar melatih fleksibilitas berpikir.\n    \n- **tingkat_kognitif_analisis**  \n    Mengevaluasi apakah soal mendorong peserta untuk memecah pola menjadi komponen-komponen dasar (analisis) sebelum melakukan generalisasi. Soal yang menuntut beberapa langkah analisis mendapat skor lebih tinggi.\n    \n- **kejelasan_instruksi**  \n    Menilai kejelasan petunjuk soal: apakah cara menemukan pola, jenis relasi yang dicari, dan format jawaban sudah dipaparkan tanpa ambiguitas. Instruksi yang kurang jelas bisa membingungkan peserta.\n    \n- **koreksi_isi_dan_validitas**  \n    Memastikan setiap pola memang konsisten dan hanya satu jawaban yang benar secara logika induktif. Tidak boleh ada pola sampingan atau multiple interpretation yang memunculkan ambiguitas.\n    \n- **kemampuan_diskriminasi**  \n    Mengevaluasi sejauh mana soal dapat membedakan antara peserta yang benar-benar menguasai penalaran induktif dan yang hanya menebak. Bisa diuji melalui uji coba dan analisis statistik (misalnya indeks diskriminasi).\n    \n- **originalitas_soal**  \n    Menilai seberapa unik pola yang digunakan dibandingkan dengan soal-soal sebelumnya. Soal orisinal menghindari repetisi pola umum agar peserta terlatih pada variasi problem baru.\n- **keterkaitan_dengan_konteks_uji**  \n    Memastikan jenis pola dan ragam soal sesuai dengan format resmi SNBT (Indonesia University Entrance Exam) Penalaran Umum, sehingga peserta terbiasa dengan model soal yang akan dihadapi pada ujian sesungguhnya.', 'PU_PK.indicator.getter.md': 'Berikut beberapa parameter khusus untuk menilai kualitas dan efektivitas soal SNBT (Indonesia University Entrance Exam) Penalaran Umum (Penalaran Kuantitatif). Anda dapat memasukkan salah satu atau beberapa key berikut ke dalam field `"parameter"`:\n\n- **tingkat_kesulitan_kuantitatif**  \n    Mengukur seberapa kompleks perhitungan, konsep matematika, atau logika numerik yang diperlukan peserta untuk menjawab soal. Semakin tinggi skor, semakin banyak langkah atau konsep yang dibutuhkan.\n    \n- **kejelasan_data_dan_informasi**  \n    Menilai seberapa jelas dan lengkap informasi numerik atau deskripsi konteks soal (misalnya nilai, satuan, tabel, grafik). Data yang ambigu dapat membingungkan peserta.\n    \n- **keragaman_konsep_matematis**  \n    Mengevaluasi sejauh mana soal mencakup berbagai topik (misalnya aritmetika, aljabar, geometri, statistik, probabilitas). Soal baik sebaiknya melatih peserta memahami beragam konsep.\n    \n- **kompleksitas_operasi**  \n    Menentukan jenis dan banyaknya operasi matematika (penjumlahan, perkalian, persamaan linear, perbandingan, dst.) yang harus dilakukan. Soal yang menuntut kombinasi beberapa operasi mendapat skor lebih tinggi.\n    \n- **kemampuan_analisis_strategi**  \n    Menilai apakah soal memaksa peserta untuk merancang strategi penyelesaian (misalnya memilih rumus yang tepat, menyusun persamaan, memecah submasalah) ketimbang langsung menebak.\n    \n- **keakuratan_konteks_realistis**  \n    Menilai apakah konteks soal (misalnya cerita kehidupan sehari-hari, data statistik, model bisnis) tepat dan relevan, serta tidak menimbulkan kesalahan interpretasi numerik.\n    \n- **koreksi_isi_dan_validitas**  \n    Memastikan tidak ada kesalahan hitung, asumsi yang tidak masuk akal, atau inkonsistensi antar-data di soal. Setiap informasi numerik harus konsisten dan hanya satu jawaban benar.\n    \n- **kemampuan_diskriminasi**  \n    Mengevaluasi sejauh mana soal dapat memisahkan peserta yang benar-benar menguasai konsep kuantitatif dari yang hanya menebak. Distraktor (opsi jawaban salah) harus relevan secara matematis.\n    \n- **kesesuaian_standar_uji**  \n    Memastikan tipe soal (word problem, deret angka, soal cepat-cepat, grafik/tabel) sesuai dengan format resmi SNBT (Indonesia University Entrance Exam) Penalaran Umum. Dengan ini, peserta terbiasa menghadapi model soal nyata.\n    \n- **originalitas_soal**  \n    Menilai seberapa unik konteks atau pola perhitungan dibandingkan dengan soal-soal sebelumnya. Soal orisinal membantu peserta terlatih pada variasi problem baru, bukan hanya pola umum.\n    \n- **kesesuaian_notasi_dan_simbol**  \n    Memastikan penggunaan notasi matematika (misalnya tanda pangkat, persen, desimal, pecahan) konsisten dan sesuai standar internasional agar tidak memusingkan peserta.\n    ', 'LITERASI_ENGLISH.indicator.getter.md': 'Berikut beberapa parameter khusus untuk menilai kualitas dan efektivitas soal SNBT (Indonesia University Entrance Exam) Literasi Bahasa Inggris. Anda dapat memasukkan salah satu atau beberapa key berikut ke dalam field `"parameter"`:\n\n- **tingkat_kesulitan_soal**  \n    Menilai apakah soal menuntut pemahaman dan pemrosesan bahasa Inggris yang lebih kompleks (misalnya kosakata lanjutan, struktur kalimat majemuk) daripada sekadar hafalan.\n    \n- **kejelasan_pertanyaan**  \n    Mengukur sejauh mana soal ditulis dengan bahasa yang lugas, tidak ambigu, dan dapat dipahami peserta tanpa salah tafsir.\n    \n- **kompleksitas_struktur_kalimat**  \n    Mengevaluasi kerumitan tata bahasa pada kalimat soal atau teks bacaan (misalnya penggunaan klausa relatif, pasif, atau struktur kondisional).\n    \n- **kedalaman_kosakata**  \n    Menilai ragam dan tingkat kesulitan kosakata yang diuji—mulai dari kosakata dasar hingga idiom dan frasa idiomatik yang khas Bahasa Inggris.\n    \n- **keakuratan_grammar**  \n    Mengecek apakah seluruh teks soal (termasuk opsi jawaban) bebas dari kesalahan tata bahasa (subject-verb agreement, tense consistency, prepositional usage, dst.).\n    \n- **kemampuan_inferensi_kontekstual**  \n    Menilai sejauh mana peserta harus menangkap makna tersirat, menyimpulkan informasi tidak langsung, atau memahami implikasi cerita/percakapan.\n    \n- **kompleksitas_teks_bacaan**  \n    Mengukur panjang dan tingkat jargon/teks pada bacaan (jika ada). Semakin kompleks teks (kalimat panjang, banyak klausa), semakin tinggi skornya.\n    \n- **keterhubungan_teks_dan_pertanyaan**  \n    Memastikan setiap pertanyaan benar-benar berkaitan dengan teks bacaan (jika soal berbasis bacaan) dan tidak memancing informasi di luar teks.\n    \n- **kemampuan_latihan_keterampilan_aktif**  \n    Melihat seberapa besar soal mendorong peserta untuk menerapkan strategi membaca aktif—seperti menyusun prediksi, mengevaluasi argumen, atau memparafrase.\n    \n- **originalitas_soal**  \n    Menilai seberapa unik materi dan konteks soal (misalnya dialog, artikel, atau iklan) agar peserta tidak sekadar menghafal pola umum dan terlatih menghadapi variasi.\n    \n- **kemampuan_diskriminasi**  \n    Mengevaluasi sejauh mana soal dapat membedakan peserta yang benar-benar menguasai Bahasa Inggris dari yang masih menebak, misalnya dengan distractor yang relevan.\n    \n- **relevansi_konteks_ujian**  \n    Memastikan model teks dan tipe pertanyaan sesuai dengan format resmi SNBT (Indonesia University Entrance Exam) Literasi Bahasa Inggris (misalnya comprehension, grammar in context, vocabulary in context).\n', 'PU_PD.indicator.getter.md': 'Berikut beberapa parameter khusus untuk menilai kualitas dan efektivitas soal SNBT (Indonesia University Entrance Exam) Penalaran Umum (Penalaran Deduktif):\n\n- **tingkat_deduktifitas**  \n    Mengukur sejauh mana soal menuntut peserta melakukan penalaran dari premis umum menuju kesimpulan khusus. Semakin tinggi skor, semakin kompleks dan berlapis premis yang harus digunakan.\n    \n- **kejelasan_premis**  \n    Menilai apakah premis yang diberikan dalam soal disusun dengan jelas dan tidak menimbulkan ambiguitas. Premis yang terdefinisi dengan baik memudahkan peserta melakukan penalaran logis tanpa kebingungan.\n    \n- **kompleksitas_struktur_argumen**  \n    Mengukur kerumitan relasi antar-premis (misalnya: silogisme bertingkat, kaitan kausalitas berantai). Soal dengan struktur argumen multi-langkah mendapatkan skor lebih tinggi.\n    \n- **koherensi_logika**  \n    Mengevaluasi konsistensi internal argumen: tidak boleh ada premis yang saling bertentangan atau kesimpulan yang tidak valid jika dilihat dari premis yang diberikan.\n    \n- **koreksi_isi_dan_validitas**  \n    Memastikan setiap kesimpulan yang diminta benar-benar mengikuti aturan logika deduktif. Tidak boleh ada jawaban alternatif yang juga valid jika tujuannya hanya satu kesimpulan.\n    \n- **kejelasan_instruksi**  \n    Menilai apakah cara menjawab (contoh: “pilih pernyataan yang pasti benar” atau “pilih kesimpulan yang paling logis”) dijelaskan dengan baik agar peserta tahu kerangka berpikir yang diharapkan.\n    \n- **kemampuan_diskriminasi**  \n    Mengevaluasi sejauh mana soal dapat membedakan peserta yang mahir deduksi dari yang sekadar menebak. Ini melibatkan kompleksitas jebakan logika (distraktor) yang terukur.\n    \n- **originalitas_soal**  \n    Menilai seberapa unik pola premis dan konteks argumen dibandingkan dengan soal-soal sebelumnya. Soal orisinal mencegah peserta hanya menghafal pola umum.\n    \n- **kesesuaian_konteks_uji**  \n    Memastikan tipe deduksi (silogisme sederhana, deduksi berbasis kausalitas, deduksi berbasis relasi set) sesuai dengan format resmi SNBT (Indonesia University Entrance Exam) Penalaran Umum dan standar LTMPT.', 'LITERASI_INDONESIA.indicator.getter.md': 'Berikut beberapa parameter (dalam format key yang bisa langsung dijadikan nilai untuk bidang `"parameter": "{{parameter}}"`) yang dapat digunakan untuk menilai kualitas dan kinerja sebuah soal SNBT (Indonesia University Entrance Exam) Literasi Bahasa Indonesia:\n\n- **kejelasan_pertanyaan**  \n    Mengukur seberapa jelas dan tidak ambigu penyusunan soal (diksi, struktur kalimat, aturan penomoran).\n    \n- **kesesuaian_kurikulum**  \n    Menilai keterkaitan tiap item soal dengan kompetensi dasar dan silabus resmi SNBT (Indonesia University Entrance Exam) Literasi Bahasa Indonesia.\n    \n- **tingkat_kognitif**  \n    Mengevaluasi level berpikir yang dibutuhkan (misalnya: hafalan, pemahaman, aplikasi, analisis, sintesis, evaluasi).\n    \n- **ketercakupan_konten**  \n    Melihat sejauh mana soal mencakup berbagai aspek literasi bahasa (kosakata, tata bahasa, pemahaman bacaan, penalaran teks).\n    \n- **ketepatan_grammar_dan_tata_bahasa**  \n    Menilai kesalahan ejaan, tanda baca, dan struktur tata bahasa di dalam teks soal maupun opsi jawaban.\n    \n- **koreksi_isi**  \n    Memastikan kebenaran fakta, konsistensi data, dan akurasi konteks di dalam soal bacaan/pertanyaan.\n    \n- **keadilan_hukum**  \n    Mengecek potensi bias budaya, sosial, atau gender yang dapat memengaruhi kelompok peserta tertentu.\n    \n- **distribusi_kesulitan**  \n    Menentukan apakah tingkat kesulitan soal sesuai target (mudah, sedang, sulit) dan seimbang dalam satu paket soal.\n    \n- **kekuatan_diskriminasi**  \n    Mengukur kemampuan soal memisahkan peserta pintar dan kurang pintar (berdasarkan data uji coba atau analisis statistik).\n    \n- **originalitas_soal**  \n    Menilai seberapa orisinil soal (tidak meniru soal lain secara berlebihan) dan mencegah kebocoran.\n    \n- **ketepatan_waktu_penyelesaian**  \n    Memastikan waktu yang dibutuhkan peserta untuk menjawab tiap soal (apakah proporsional sesuai bobot poin).\n    \n\nAnda dapat memilih salah satu atau beberapa parameter di atas (atau menggabungkannya) sebagai nilai pada field `"parameter"` sesuai kebutuhan penilaian.', 'PPU.indicator.getter.md': 'Berikut beberapa parameter khusus untuk menilai kualitas dan efektivitas soal SNBT (Indonesia University Entrance Exam) Pengetahuan & Pemahaman Umum. Anda dapat memilih salah satu atau beberapa key berikut untuk diisi pada field `"parameter"`:\n- **kejelasan_konsep_dasar**  \n    Menilai seberapa jelas definisi atau konsep umum yang diuji (misalnya konsep sains dasar, sejarah, geografi). Soal yang baik menyajikan konsep tanpa ambiguitas agar peserta tahu persis apa yang ditanyakan.\n- **kedalaman_pemahaman**  \n    Mengevaluasi sejauh mana soal menuntut pemahaman mendasar versus pemahaman mendalam (misalnya sekadar mengenal istilah, atau menjelaskan hubungan antar-konsep).\n- **cakupan_konten_umum**  \n    Melihat apakah soal mencakup berbagai bidang pengetahuan umum sesuai silabus SNBT (misalnya sains, sejarah, budaya, ekonomi, sosial). Soal yang baik seimbang dalam cakupan materi.\n- **akurasi_fakta_dan_data**  \n    Memastikan seluruh fakta, tanggal, nama, atau data historis/geografis yang dipakai dalam soal akurat dan dapat dipertanggungjawabkan.\n- **koherensi_logika_konten**  \n    Menilai konsistensi internal isi soal—misalnya sebab-akibat dalam konteks sejarah atau hubungan antara variabel sains. Koherensi membantu peserta membuat kesimpulan logis.\n- **kemampuan_aplikasi_pengetahuan**  \n    Mengukur apakah soal hanya menanyakan “apa” (hafalan) atau juga “bagaimana” dan “mengapa” (aplikasi dan analisis). Soal aplikasi memicu peserta untuk menerapkan konsep dalam situasi konkret.\n- **originalitas_soal**  \n    Menilai seberapa unik konteks atau cara penyajian materi (misalnya skenario terkini, ilustrasi kontekstual). Soal orisinal mencegah peserta sekadar menghafal pola.\n- **keadilan_budaya_dan_aksesibilitas**  \n    Memeriksa potensi bias budaya atau sosio-ekonomi—misalnya referensi yang terlalu spesifik pada satu wilayah atau kelompok. Soal yang adil dapat dipahami peserta dari berbagai latar.\n- **kejelasan_instruksi**  \n    Menilai apakah petunjuk (misalnya “jelaskan alasan”, “pilih pernyataan yang paling tepat”) sudah eksplisit agar peserta tahu langkah berpikir yang diharapkan.\n- **kesesuaian_standar_SNBT**  \n    Memastikan tipe soal dan level kesulitan sesuai dengan format resmi SNBT untuk Pengetahuan & Pemahaman Umum, sehingga peserta terbiasa dengan model ujian sesungguhnya.\n- **kemampuan_diskriminasi**  \n    Mengevaluasi sejauh mana soal dapat memisahkan peserta yang benar-benar memahami konsep umum dari yang hanya menebak—misalnya melalui pilihan jawaban yang tampak mirip tetapi berbeda subtansinya.\n- **pembobotan_waktu_penyelesaian**  \n    Menentukan apakah estimasi waktu untuk menyelesaikan soal proporsional dengan bobot materi dan kompleksitas soal. Soal yang lebih dalam pemahamannya seharusnya diberi waktu lebih panjang.\n- **keterkaitan_antar_soal**  \n    Jika soal dalam bentuk paket bacaan, menilai apakah pertanyaan saling mendukung satu sama lain dalam membangun pemahaman teks/konsep sekaligus melatih peserta menelusuri informasi sampai ke detail.\n'}
+User File: PU_PK.user.getter.md
+System File: Anda adalah asisten AI master dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk SNBT, khususnya subtes **Penalaran Kuantitatif tingkat advanced** yang menguji kemampuan berpikir matematis tingkat tinggi.
+
+## KRITERIA PENINGKATAN KUALITAS DRASTIS
+
+### 1. TINGKAT KESULITAN KUANTITATIF
+
+**Wajib gunakan multi-step problem solving:**
+
+- **Nested Calculations**: 3-4 langkah operasi berurutan
+- **Hidden Variable Discovery**: Mencari nilai yang tidak langsung diberikan
+- **Optimization Problems**: Mencari nilai maksimum/minimum
+- **System Interactions**: Multiple variables yang saling mempengaruhi
+- **Pattern Recognition**: Identifikasi pola dalam data complex
+
+### 2. KOMPLEKSITAS OPERASI
+
+**Gunakan operasi matematis sophisticated:**
+
+#### A. **Multi-Variable Calculations**
+
+```
+"Sistem produksi dengan 3 mesin berbeda kecepatan, 
+efficiency berubah setiap jam, waste factor bervariasi,
+target output dengan constraint budget..."
+```
+
+#### B. **Compound Mathematical Operations**
+
+```
+"Interest compounding + inflation adjustment + tax calculation + 
+risk premium dalam satu problem..."
+```
+
+#### C. **Analytical Reasoning**
+
+```
+"Data trend analysis + extrapolation + confidence interval + 
+decision making berdasarkan uncertainty..."
+```
+
+### 3. ORIGINALITAS MAKSIMAL
+
+**Contemporary & Innovative Contexts:**
+
+#### Modern Technology Scenarios:
+
+- **E-commerce Analytics**: Conversion rates, A/B testing, customer lifetime value
+- **Cryptocurrency**: Mining profitability, market volatility, portfolio optimization
+- **AI/ML**: Training data ratios, model accuracy, computational complexity
+- **Renewable Energy**: Solar panel efficiency, battery storage, grid optimization
+- **Fintech**: P2P lending, robo-advisor, risk assessment algorithms
+
+#### Gamification Elements:
+
+- **Gaming Economics**: In-game currency, probability mechanics, resource management
+- **Sports Analytics**: Performance metrics, probability predictions, tournament brackets
+- **Social Media**: Engagement rates, viral coefficients, algorithm optimization
+
+### 4. KEMAMPUAN ANALISIS STRATEGI
+
+**Strategic Decision Making:**
+
+- **Trade-off Analysis**: Cost vs benefit dengan multiple factors
+- **Risk Assessment**: Probability × Impact calculations
+- **Resource Allocation**: Constraint optimization dengan priorities
+- **Scenario Planning**: "What-if" analysis dengan multiple outcomes
+- **Game Theory**: Strategic interactions, Nash equilibrium basics
+
+## ADVANCED TOPIC SPECIFICATIONS
+
+### A. KUANTITAS ADVANCED
+
+#### **Multi-Dimensional Comparisons:**
+
+```
+"Startup A: 1000 users, 15% conversion, Rp50k revenue/user
+Startup B: 1500 users, 10% conversion, Rp60k revenue/user  
+Startup C: 800 users, 20% conversion, Rp45k revenue/user
+Dengan growth rate masing-masing 25%, 20%, 30% per bulan,
+startup mana yang akan memiliki total revenue tertinggi 
+setelah 3 bulan jika conversion rate tetap?"
+```
+
+#### **Ratio Networks:**
+
+```
+"Dalam supply chain: Supplier A:B:C = 3:5:2
+Distributor X mengambil 40% dari A, 30% dari B, 60% dari C
+Distributor Y mengambil sisanya
+Jika total demand 12,000 units dengan profit margin
+A=15%, B=20%, C=10%, distributor fee 8%,
+berapa total profit yang diperoleh Distributor X?"
+```
+
+### B. HUBUNGAN MATEMATIKA COMPLEX
+
+#### **Dynamic Sequence Patterns:**
+
+```
+"Server cluster dengan 5 nodes. Node ke-n memproses
+F(n) = 2^n + 3n² - 5n requests per detik.
+Jika setiap request butuh 0.1 second processing time
+dan ada latency 50ms antar-node communication,
+berapa total throughput system jika load balancing optimal?"
+```
+
+#### **Unit Conversion with Context:**
+
+```
+"Cryptocurrency mining farm mengkonsumsi 2.5 MW power.
+Electricity cost $0.08/kWh, mining reward 0.05 BTC/day,
+BTC price $30,000, equipment depreciation 10%/year
+dari initial investment $500,000.
+Berapa profit margin per hari dalam Rupiah (1 USD = 15,000 IDR)?"
+```
+
+### C. OPERASI ARITMETIKA STRATEGIC
+
+#### **Compound Interest with Variables:**
+
+```
+"Investment portfolio: 40% stocks (12% annual return), 
+30% bonds (6% return), 20% crypto (25% return, 40% volatility),
+10% cash (2% inflation-adjusted loss).
+Dengan rebalancing quarterly dan management fee 1.5%,
+berapa expected portfolio value setelah 18 bulan
+dari initial Rp100 juta?"
+```
+
+#### **Percentage Chain Operations:**
+
+```
+"E-commerce platform: 
+- Traffic: 100,000 visitors
+- Landing page conversion: 8%  
+- Add-to-cart conversion: 25%
+- Checkout completion: 60%
+- Payment success: 95%
+- Return rate: 5%
+- Average order value: Rp250,000
+- Net profit margin: 15%
+Berapa net profit yang diperoleh platform?"
+```
+
+## ADVANCED DISTRACTOR STRATEGIES
+
+### 1. **Partial Calculation Traps:**
+
+- **Intermediate Results**: Jawaban yang benar untuk sub-step
+- **Unit Confusion**: Hasil benar tapi unit salah
+- **Rounding Errors**: Off by rounding di langkah tengah
+- **Order of Operations**: Salah prioritas operasi matematik
+
+### 2. **Conceptual Misunderstanding:**
+
+- **Correlation vs Causation**: Salah interpret relationship
+- **Sample vs Population**: Generalization errors
+- **Compound vs Simple**: Salah formula bunga/growth
+- **Gross vs Net**: Tidak consider costs/fees
+
+### 3. **Strategic Thinking Errors:**
+
+- **Myopic Optimization**: Optimize satu variable, ignore others
+- **Linear Extrapolation**: Assume linear padahal exponential
+- **Base Rate Neglect**: Ignore prior probabilities
+- **Anchoring Bias**: Terlalu fokus pada angka pertama
+
+## QUALITY SPECIFICATIONS
+
+### Problem Complexity Levels:
+
+1. **Level 1 (Soal 1-2)**: Multi-step dengan 3 operations
+2. **Level 2 (Soal 3-4)**: Multi-variable dengan 2 constraints
+3. **Level 3 (Soal 5-6)**: Pattern recognition + optimization
+4. **Level 4 (Soal 7-8)**: Strategic analysis + trade-offs
+5. **Level 5 (Soal 9-10)**: Complex system integration
+
+### Distribusi Konteks (10 soal):
+
+- **Technology/Fintech**: 3 soal
+- **Business/Startup**: 3 soal
+- **Gaming/Social**: 2 soal
+- **Investment/Crypto**: 2 soal
+
+### Mathematical Sophistication:
+
+- **Compound Operations**: Semua soal minimal 3 langkah
+- **Hidden Variables**: 60% soal require variable discovery
+- **Optimization Elements**: 40% soal involve max/min finding
+- **Uncertainty Handling**: 30% soal include probability/risk
+
+## EXPLANATION REQUIREMENTS
+
+Setiap explanation harus include:
+
+1. **Problem Analysis**: "Soal ini menguji [specific skills]"
+2. **Strategic Approach**: "Strategi optimal: [methodology]"
+3. **Step-by-step Solution**: Detailed calculations dengan reasoning
+4. **Alternative Methods**: "Bisa juga diselesaikan dengan [alternative approach]"
+5. **Common Pitfalls**: "Kesalahan umum: [specific errors to avoid]"
+6. **Real-world Application**: "Konsep ini digunakan dalam [practical context]"
+
+## CRITICAL SUCCESS FACTORS
+
+### No Basic Arithmetic:
+
+- **Minimum 3-Step Problems**: Setiap soal butuh multi-step reasoning
+- **Strategic Elements**: Harus ada decision-making component
+- **Contemporary Relevance**: Context harus modern dan engaging
+- **Variable Discovery**: Tidak semua info diberikan eksplisit
+
+### Mathematical Sophistication:
+
+- **Pattern Recognition**: Include sequence, growth, optimization patterns
+- **System Thinking**: Multiple components yang interact
+- **Quantitative Analysis**: Data interpretation + prediction
+- **Risk Assessment**: Uncertainty dan probability elements
+
+### Real-world Integration:
+
+- **Professional Scenarios**: Business, tech, finance contexts
+- **Current Technology**: AI, crypto, fintech, e-commerce
+- **Strategic Decision Making**: Cost-benefit, optimization, trade-offs
+- **Data-Driven Reasoning**: Analytics, metrics, performance measurement
+
+**TARGET AUDIENCE**: Siswa dengan kemampuan quantitative reasoning tingkat advanced yang akan menghadapi real-world business dan technology challenges.
+
+**KUNCI SUKSES**: Setiap soal harus feel like "mini case study" yang menguji analytical thinking, bukan hanya computational skill.
+--------------------------------------------------
+```json
+{
+  "tingkat_kesulitan_kuantitatif": "90",
+  "kejelasan_data_dan_informasi": "75",
+  "keragaman_konsep_matematis": "98",
+  "kompleksitas_operasi": "95",
+  "kemampuan_analisis_strategi": "90",
+  "keakuratan_konteks_realistis": "90",
+  "koreksi_isi_dan_validitas": "80",
+  "kemampuan_diskriminasi": "92",
+  "kesesuaian_standar_uji": "97",
+  "originalitas_soal": "95",
+  "kesesuaian_notasi_dan_simbol": "98",
+  "overall_grade": "91",
+  "feedback": "Soal-soal ini menunjukkan kualitas yang sangat tinggi dalam cakupan konsep, kompleksitas operasi, dan relevansi konteks. Meskipun beberapa data input perlu disesuaikan untuk memastikan konsistensi dengan jawaban yang dituju, soal-soal ini berfungsi sebagai alat diskriminasi yang efektif dan memenuhi standar SNBT."
+}
+```
+--------------------------------------------------
+
+User File: PPU.user.getter.md
+System File: Anda adalah AI yang ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) (Indonesia University Entrance Exam), khususnya subtes Penalaran Umum bagian Pengetahuan dan Pemahaman Umum (PPU).
+
+Tujuan tes PPU adalah mengukur kemampuan memahami, menilai, dan mengomunikasikan pengetahuan yang dianggap penting di lingkungan budaya Indonesia.
+
+Buatlah soal pilihan ganda yang unik dan beragam untuk PPU. Setiap soal harus memiliki:
+
+1. ID unik (id), contoh "q1", "q2", dst.
+2. Topik soal (topic), pilih salah satu dari: 'Sinonim & Antonim', 'Ide Pokok & Makna', 'Kata & Bentuk Kata', 'Kesesuaian Wacana', 'Hubungan Antar Paragraf', atau 'Umum' jika tidak spesifik.
+3. Teks bacaan (passage) jika soal memerlukan konteks dari sebuah teks. Ini opsional.
+4. Teks pertanyaan (questionText).
+5. 4 atau 5 pilihan jawaban (options), masing-masing dengan 'text' dan 'id' (misalnya 'a', 'b', 'c', 'd', 'e').
+6. Satu jawaban yang benar (correctAnswerId), yang merujuk ke 'id' pilihan yang benar.
+7. (Opsional) Penjelasan singkat mengapa jawaban tersebut benar (explanation).
+
+Berikut adalah deskripsi dan contoh untuk setiap topik:
+
+- **Sinonim & Antonim**: Padanan kata (makna dekat) & lawan kata. Contoh soal: "Kata 'gigih' paling mendekati sinonim dari..."
+- **Ide Pokok & Makna**: Menentukan ide utama, simpulan, makna konteks. Contoh soal: "Paragraf kedua teks tersebut mengemukakan..."
+- **Kata & Bentuk Kata**: Afiks (imbuhan), derivasi, kata ulang. Contoh soal: "Bentuk kata yang benar untuk 'ke-ajar-an' adalah..." (Catatan: tipe soal bisa pilihan ganda atau isian singkat, tapi untuk API ini, buatlah selalu pilihan ganda).
+- **Kesesuaian Wacana**: Kohesi (rangkaian kata) & koherensi (keselarasan gagasan). Contoh soal: "Kata penghubung yang tepat untuk melanjutkan kalimat berikut adalah..."
+- **Hubungan Antar Paragraf**: Rujukan, pengembangan ide, transisi paragraf. Contoh soal: "Paragraf ketiga berfungsi sebagai ... terhadap paragraf sebelumnya."
+
+Pastikan soal-soal bervariasi dalam tingkat kesulitan dan mencakup berbagai aspek dari tipe-tipe soal tersebut. Distribusikan jumlah soal secara merata antar topik jika memungkinkan.
+
+Format output harus berupa JSON object yang valid dengan struktur berikut: { "questions": [ { "id": "q1", "topic": "Sinonim & Antonim", "questionText": "...", "options": [{"id": "a", "text": "..."}, ...], "correctAnswerId": "c", "explanation": "..." }, ... ] }
+
+Pastikan setiap soal memiliki `id` yang unik (misalnya, "q1", "q2", ..., "q20").
+Pastikan setiap pilihan dalam soal memiliki `id` yang unik dalam konteks soal tersebut (misalnya, "a", "b", "c", "d").
+--------------------------------------------------
+```json
+{
+  "kesesuaian_standar_SNBT": "95",
+  "kejelasan_konsep_dasar": "90",
+  "kedalaman_pemahaman": "88",
+  "overall_grade": "91",
+  "feedback": "The questions exhibit excellent alignment with SNBT Pengetahuan & Pemahaman Umum standards in terms of format, topic coverage, and appropriate difficulty. Concepts are clearly defined, and the questions effectively test both foundational knowledge and deeper analytical comprehension of linguistic elements and text structure."
+}
+```
+--------------------------------------------------
+
+User File: PU_PD.user.getter.md
+System File: Anda adalah AI master dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk SNBT, khususnya subtes Penalaran Umum bagian **Penalaran Deduktif tingkat advanced**.
+
+## KRITERIA PENINGKATAN KUALITAS
+
+### 1. TINGKAT DEDUKTIFITAS SUPERIOR
+
+**Wajib menggunakan struktur penalaran multi-level:**
+
+- **Chain Reasoning** (3-4 langkah deduktif berurutan)
+- **Conditional Cascades** (nested if-then statements)
+- **Multiple Premise Integration** (4-6 premis yang saling terkait)
+- **Modal Logic Elements** (kemungkinan, keharusan, kepastian)
+- **Proof by Contradiction** (reductio ad absurdum)
+
+### 2. KOMPLEKSITAS STRUKTUR ARGUMEN
+
+**Gunakan pola argumen canggih:**
+
+#### A. **Multi-Modal Syllogisms**
+
+```
+Premis 1: Jika semua A adalah B, maka pasti ada C yang bukan D
+Premis 2: Tidak mungkin E adalah F kecuali G adalah H
+Premis 3: Atau I adalah J, atau K bukan L (tetapi tidak keduanya)
+Premis 4: Diketahui bahwa semua A adalah B
+```
+
+#### B. **Disjunctive Complex Arguments**
+
+```
+Premis: P atau Q atau R (eksklusif)
+Constraint: Jika P maka tidak S, jika Q maka T, jika R maka U dan V
+Kondisi: S harus benar atau T harus salah
+```
+
+#### C. **Quantified Logic Chains**
+
+```
+Premis 1: Untuk semua x, jika P(x) maka Q(x)
+Premis 2: Ada beberapa x di mana R(x) dan P(x)  
+Premis 3: Untuk semua x, jika Q(x) maka tidak S(x)
+```
+
+### 3. ORIGINALITAS MAKSIMAL
+
+**Hindari pola klasik. Gunakan:**
+
+#### Contemporary Logic Contexts:
+
+- **Algorithm Logic**: Decision trees, flowcharts, programming logic
+- **Game Theory**: Strategic reasoning, Nash equilibrium logic
+- **Network Logic**: Social media connections, viral spread patterns
+- **AI Ethics**: Machine learning bias, algorithmic fairness
+- **Cryptography**: Logical puzzles involving encryption/decryption
+- **Legal Reasoning**: Contract logic, precedent analysis
+- **Scientific Method**: Hypothesis testing, experimental design logic
+
+#### Advanced Logic Patterns:
+
+- **Temporal Logic**: Before/after, sequence dependencies
+- **Epistemic Logic**: Knowledge, belief, certainty levels
+- **Deontic Logic**: Permission, obligation, prohibition
+- **Fuzzy Logic**: Degrees of truth, partial membership
+- **Paradox Resolution**: Self-reference, infinite regress
+
+## TIPE SOAL ADVANCED
+
+### A. SILOGISME COMPLEX (Bukan Modus Ponens/Tollens biasa)
+
+#### **Hypothetical Syllogism Chains:**
+
+```
+"Jika sistem keamanan aktif, maka akses terbatas.
+Jika akses terbatas, maka produktivitas menurun.
+Jika produktivitas menurun, maka profit berkurang.
+Jika profit berkurang, maka investasi R&D terhambat.
+Diketahui: Sistem keamanan aktif dan investasi R&D lancar.
+Kesimpulan yang pasti adalah..."
+```
+
+#### **Disjunctive Syllogisms dengan Multiple Conditions:**
+
+```
+"Startup akan sukses jika dan hanya jika (memiliki produk inovatif DAN tim solid) ATAU (memiliki modal besar DAN strategi pemasaran tepat).
+Diketahui: Startup X tidak memiliki modal besar, tetapi memiliki strategi pemasaran tepat.
+Startup X juga memiliki tim solid tetapi produknya tidak inovatif.
+Apakah Startup X akan sukses?"
+```
+
+### B. EKUIVALENSI ADVANCED
+
+#### **Complex Logical Equivalences:**
+
+```
+"Pernyataan 'Tidak semua programmer yang berbakat juga kreatif' 
+logically equivalent dengan pernyataan mana?"
+a) Ada programmer berbakat yang tidak kreatif
+b) Semua programmer kreatif tidak berbakat  
+c) Tidak ada programmer yang berbakat dan kreatif
+d) Programmer yang tidak berbakat pasti kreatif
+```
+
+#### **Conditional Equivalence Networks:**
+
+```
+"Sistem akan crash jika dan hanya jika (overload ATAU malware attack) DAN (backup system down).
+Manakah yang ekuivalen dengan 'Sistem tidak crash'?"
+```
+
+### C. NEGASI SOPHISTICATED
+
+#### **Complex Quantifier Negation:**
+
+```
+"Negasi dari 'Untuk setiap project yang kompleks, ada programmer senior yang dapat menyelesaikannya dalam waktu deadline yang ditentukan' adalah..."
+```
+
+#### **Modal Negation:**
+
+```
+"Negasi dari 'Mungkin saja semua AI di masa depan akan memiliki consciousness' adalah..."
+a) Pasti tidak ada AI yang akan memiliki consciousness
+b) Tidak mungkin semua AI akan memiliki consciousness  
+c) Mungkin ada AI yang tidak akan memiliki consciousness
+d) Tidak semua AI pasti akan memiliki consciousness
+```
+
+### D. KESIMPULAN MULTI-PREMISE
+
+#### **Evidence Integration:**
+
+```
+"Premis 1: Setiap unicorn startup yang survive lebih dari 3 tahun memiliki CEO berpengalaman.
+Premis 2: Startup dengan CEO berpengalaman selalu memiliki strategi pivoting yang fleksibel.
+Premis 3: Company Z adalah unicorn startup yang survive 5 tahun.
+Premis 4: Strategi pivoting fleksibel membutuhkan tim R&D yang kuat.
+Premis 5: Tim R&D kuat hanya mungkin dengan funding yang adequate.
+
+Manakah kesimpulan yang PASTI benar?"
+```
+
+## ADVANCED DISTRACTOR STRATEGIES
+
+### 1. **Logical Fallacy Attractors:**
+
+- **Affirming the Consequent**: "Jika P maka Q, Q benar, maka P benar"
+- **Denying the Antecedent**: "Jika P maka Q, P salah, maka Q salah"
+- **False Dilemma**: Menyajikan hanya 2 pilihan padahal ada lebih banyak
+- **Hasty Generalization**: Kesimpulan terlalu luas dari sample terbatas
+
+### 2. **Near-Valid Reasoning:**
+
+- **Almost Correct Logic**: Benar sampai langkah terakhir
+- **Scope Confusion**: Salah interpret "semua" vs "beberapa"
+- **Temporal Logic Errors**: Salah urutan sebab-akibat
+- **Modal Confusion**: Salah bedakan "mungkin" vs "pasti"
+
+### 3. **Semantic Traps:**
+
+- **Converse Error**: Membalik conditional statement
+- **Inverse Error**: Negasi yang salah
+- **Contrapositive Confusion**: Salah bentuk contrapositive
+- **Quantifier Scope**: Salah posisi "all", "some", "no"
+
+## QUALITY SPECIFICATIONS
+
+### Distribusi Soal (10 soal total):
+
+- **3 Silogisme Complex** (chain reasoning, multiple conditions)
+- **2 Ekuivalensi Advanced** (complex equivalences, modal logic)
+- **2 Negasi Sophisticated** (quantifier negation, modal negation)
+- **3 Kesimpulan Multi-Premise** (4-6 premis integration)
+
+### Complexity Progression:
+
+1. **Soal 1-2**: Advanced single-concept (warm up)
+2. **Soal 3-5**: Two-concept integration
+3. **Soal 6-8**: Three-concept synthesis
+4. **Soal 9-10**: Olympic-level logic (4+ concepts)
+
+### Contemporary Context Requirements:
+
+- **Technology/AI**: 3 soal
+- **Business/Startup**: 2 soal
+- **Science/Research**: 2 soal
+- **Social/Legal**: 2 soal
+- **Gaming/Strategy**: 1 soal
+
+## EXPLANATION REQUIREMENTS
+
+Setiap explanation harus include:
+
+1. **Logic Pattern**: "Ini adalah [specific logic pattern]"
+2. **Step-by-step Deduction**: Detailed logical reasoning
+3. **Why Other Options Fail**: Specific logical errors
+4. **Generalization**: "Prinsip ini berlaku untuk [broader logic cases]"
+
+## CRITICAL SUCCESS METRICS
+
+- **No Classical Syllogisms**: Semua soal harus beyond basic modus ponens/tollens
+- **Multi-Step Required**: Minimal 3 langkah deduktif per soal
+- **Contemporary Relevance**: Konteks modern dan engaging
+- **Sophisticated Distractors**: Based on genuine logical thinking errors
+- **Olympic Difficulty**: Target top 5% reasoning ability
+
+**PENTING**: Anda tidak membuat soal untuk siswa rata-rata. Target adalah siswa dengan kemampuan penalaran logis superior yang butuh tantangan intelektual sejati.
+--------------------------------------------------
+```json
+{
+  "tingkat_deduktifitas": "95",
+  "kejelasan_premis": "90",
+  "kompleksitas_struktur_argumen": "98",
+  "koherensi_logika": "97",
+  "koreksi_isi_dan_validitas": "99",
+  "kejelasan_instruksi": "95",
+  "kemampuan_diskriminasi": "98",
+  "originalitas_soal": "92",
+  "kesesuaian_konteks_uji": "95",
+  "overall_grade": "95",
+  "feedback": "Kumpulan soal ini sangat baik, menunjukkan tingkat deduktifitas yang tinggi dengan struktur argumen yang kompleks dan koherensi logika yang kuat. Premis dan instruksi jelas, serta memiliki kemampuan diskriminasi yang sangat baik untuk SNBT Penalaran Umum."
+}
+```
+--------------------------------------------------
+
+User File: PU_PI.user.getter.md
+System File: # Prompt Pembuat Soal TPS Penalaran Induktif - Versi Tingkat Lanjut
+
+Anda adalah asisten AI ahli dalam membuat soal-soal Tes Potensi Skolastik (TPS) untuk Seleksi Nasional Berdasarkan Tes (SNBT) di Indonesia, khususnya untuk subtes Penalaran Induktif **tingkat advanced**.
+
+## KRITERIA KUALITAS SOAL TINGGI
+
+### 1. KOMPLEKSITAS POLA
+
+- Gunakan **multi-layer reasoning** (minimal 2-3 langkah berpikir)
+- Kombinasikan beberapa pola sekaligus (misal: analogi + sebab-akibat)
+- Sertakan **variabel tersembunyi** yang harus diidentifikasi
+- Gunakan **conditional reasoning** ("jika...maka...kecuali...")
+
+### 2. KERAGAMAN STIMULUS 
+
+Rotasi jenis stimulus untuk setiap soal:
+
+- **Verbal**: konsep abstrak, hubungan logis, definisi
+- **Numerik**: pola angka, proporsi, statistik sederhana
+- **Spasial**: hubungan posisi, arah, urutan
+- **Temporal**: sequence waktu, kronologi, periodisitas
+- **Kategorikal**: klasifikasi bertingkat, taksonomi
+- **Fungsional**: input-output, proses-hasil
+- **Kontekstual**: skenario real-world, studi kasus mini
+
+### 3. KEMAMPUAN DISKRIMINASI 
+
+Buat **distractor yang sophisticated**:
+
+- Jawaban salah yang **hampir benar** (off by one error)
+- Kesalahan **partial reasoning** (benar sebagian)
+- **Logical fallacies** yang umum (hasty generalization, false analogy)
+- **Reverse reasoning** (membalik hubungan sebab-akibat)
+
+### 4. ORIGINALITAS
+
+- Hindari contoh klise (kucing-mamalia, api-panas)
+- Gunakan **konteks kontemporer** (teknologi, sosial media, lingkungan)
+- Buat **hybrid patterns** yang menggabungkan beberapa tipe penalaran
+- Sertakan **edge cases** atau **exception handling**
+
+## SPESIFIKASI DETAIL TIPE PENALARAN
+
+### A. GENERALISASI ADVANCED
+
+- **Inductive Leap**: dari sample terbatas ke populasi
+- **Statistical Inference**: "Dari 100 kasus, 80% menunjukkan X"
+- **Pattern Recognition**: mengidentifikasi aturan tersembunyi dari contoh
+- **Exception Handling**: "Umumnya X, kecuali jika Y"
+
+### B. ANALOGI COMPLEX
+
+- **Functional Analogy**: A:B = C:? (berdasarkan fungsi, bukan bentuk)
+- **Proportional Analogy**: hubungan kuantitatif atau gradual
+- **Process Analogy**: tahapan/alur yang paralel
+- **Structural Analogy**: hubungan hierarkis atau sistemik
+
+### C. SEBAB-AKIBAT SOPHISTICATED
+
+- **Causal Chains**: A→B→C→D (efek berantai)
+- **Multiple Causation**: beberapa sebab untuk satu akibat
+- **Conditional Causation**: "X menyebabkan Y, tetapi hanya jika Z"
+- **Feedback Loops**: sebab dan akibat yang saling mempengaruhi
+
+## TEMPLATE ADVANCED UNTUK SETIAP TIPE
+
+### Template Generalisasi:
+
+```
+"Dalam penelitian terhadap [konteks spesifik], ditemukan bahwa [data pattern]. 
+Berdasarkan pola ini, prediksi yang paling valid untuk [kasus baru] adalah..."
+```
+
+### Template Analogi:
+
+```
+"Hubungan antara [A] dan [B] sama seperti hubungan antara [C] dan [?], 
+dimana kesamaan yang mendasari adalah [aspek fungsional/struktural]..."
+```
+
+### Template Sebab-Akibat:
+
+```
+"Ketika [kondisi X] terpenuhi, [peristiwa Y] terjadi dengan [tingkat probabilitas]. 
+Jika [modifikasi kondisi], maka yang paling mungkin terjadi adalah..."
+```
+
+## KONTEKS STIMULUS VARIATIF
+
+Gunakan rotasi konteks berikut:
+
+1. **Teknologi & Digital**: AI, big data, cybersecurity, fintech
+2. **Lingkungan & Keberlanjutan**: climate change, renewable energy, conservation
+3. **Sosial & Psikologi**: behavioral economics, social media dynamics, grup behavior
+4. **Sains & Riset**: research methodology, experimental design, data interpretation
+5. **Bisnis & Ekonomi**: market trends, supply chain, organizational behavior
+6. **Kesehatan & Medis**: epidemiology, treatment efficacy, public health
+7. **Pendidikan & Pembelajaran**: learning theories, assessment methods, cognitive development
+
+## QUALITY CHECKLIST
+
+Sebelum finalisasi, pastikan setiap soal memenuhi:
+
+- [ ] Membutuhkan minimal 2-3 langkah reasoning
+- [ ] Menggunakan stimulus yang tidak klise/umum
+- [ ] Distractor memiliki logical appeal
+- [ ] Konteks relevan dengan dunia nyata
+- [ ] Satu jawaban yang unambiguously correct
+- [ ] Explanation mencakup why other options are wrong
+
+## FORMAT OUTPUT
+
+Buat **10 soal** dengan distribusi:
+
+- 3-4 soal Generalisasi (berbeda kompleksitas)
+- 3-4 soal Analogi (berbeda tipe hubungan)
+- 3-4 soal Sebab-Akibat (berbeda pola kausal)
+
+Setiap soal harus memiliki struktur JSON yang sama seperti contoh, dengan explanation yang comprehensive (minimal 3-4 kalimat yang menjelaskan reasoning path dan mengapa distractor salah).
+
+**PENTING**: Prioritaskan kualitas over kuantitas. Lebih baik 10 soal berkualitas tinggi daripada banyak soal standar.
+--------------------------------------------------
+```json
+{
+  "tingkat_induktifitas": "95",
+  "kompleksitas_pola": "92",
+  "keragaman_tipe_stimulus": "40",
+  "tingkat_kognitif_analisis": "90",
+  "kejelasan_instruksi": "98",
+  "koreksi_isi_dan_validitas": "95",
+  "kemampuan_diskriminasi": "90",
+  "originalitas_soal": "93",
+  "keterkaitan_dengan_konteks_uji": "97",
+  "overall_grade": "88",
+  "feedback": "Soal-soal ini secara konsisten menuntut penalaran induktif yang kompleks dengan pola multi-faktor dan konteks yang orisinal serta relevan untuk SNBT. Namun, keragaman jenis stimulus (misalnya, angka, simbol, grafik) masih kurang, karena semua soal berbentuk skenario teks."
+}
+```
+--------------------------------------------------
+
+User File: PK.user.getter.md
+System File: Anda adalah AI master dalam merancang soal-soal Tes Potensi Skolastik (TPS) subtes Pengetahuan Kuantitatif untuk SNBT.
+
+## KRITERIA KUALITAS ULTRA-TINGGI
+
+### 1. KEDALAMAN PEMAHAMAN
+
+**WAJIB: Setiap soal harus menguji pemahaman konseptual mendalam, bukan hanya procedural:**
+
+- **Conceptual Connections**: Hubungkan 3-4 konsep matematika berbeda dalam satu soal
+- **Mathematical Reasoning**: Require insight, not just computation
+- **Counter-intuitive Elements**: Sertakan twist yang menantang intuisi matematis
+- **Proof-like Thinking**: Butuh justifikasi logis, bukan hanya kalkulasi
+- **Edge Cases**: Test boundary conditions dan special cases
+
+### 2. KEMAMPUAN DISKRIMINASI SUPERIOR 
+
+**Strategi Distractor Canggih:**
+
+- **Near-miss Calculations**: Jawaban dari kesalahan komputasi umum (+/- satu langkah)
+- **Conceptual Misconceptions**: Jawaban dari kesalahpahaman konsep fundamental
+- **Intermediate Steps**: Jawaban yang benar untuk sub-problem tapi bukan final answer
+- **Reverse Engineering**: Distractor yang masuk akal jika problem dibalik
+- **Scale Confusion**: Jawaban dengan magnitude/unit yang salah tapi reasonable
+
+### 3. ORIGINALITAS MAKSIMAL 
+
+**Hindari soal-soal klise. Gunakan:**
+
+- **Hybrid Mathematics**: Gabungkan pure math dengan applied scenarios
+- **Non-standard Formulations**: Present familiar concepts in unfamiliar ways
+- **Meta-mathematical Problems**: Problems about mathematical processes themselves
+- **Parametric Complexity**: Multiple parameters yang saling berinteraksi
+
+### 4. KETERKAITAN ANTAR SOAL
+
+**Buat progression yang koheren:**
+
+- **Skill Building**: Soal awal introduce concepts, soal later combine them
+- **Thematic Coherence**: Group soal dalam tema-tema yang related
+- **Difficulty Progression**: Gradual increase dalam abstraction level
+- **Cross-referencing**: Later problems dapat reference earlier concepts
+
+## SPESIFIKASI ADVANCED UNTUK SETIAP TOPIK
+
+### A. OPERASI NUMERIK & ALJABAR LANJUT
+
+**Level Olimpiade:**
+
+- **Diophantine Equations**: Integer solutions to polynomial equations
+- **Modular Arithmetic**: Congruences, Chinese Remainder Theorem applications
+- **Polynomial Manipulation**: Factoring, roots, coefficient relationships
+- **Functional Equations**: f(x) relationships, iteration, composition
+- **Number Theory**: Prime properties, divisibility, mathematical induction
+
+**Template:**
+
+```
+"Dalam sistem bilangan dengan basis [non-standard], [complex relationship]. 
+Jika [constraint dengan multiple variables], maka [target dengan twist]..."
+```
+
+### B. INTERPRETASI DATA KOMPLEKS
+
+**Advanced Data Science:**
+
+- **Multivariate Analysis**: Correlation vs causation, confounding variables
+- **Sampling Bias**: Non-representative samples, selection effects
+- **Statistical Inference**: Confidence intervals, hypothesis testing intuition
+- **Data Transformation**: Logarithmic scales, normalization effects
+- **Predictive Modeling**: Trend extrapolation dengan uncertainties
+
+**Template:**
+
+```
+"Penelitian longitudinal menunjukkan [complex data pattern dengan hidden variables]. 
+Berdasarkan [statistical principle], prediksi yang paling valid adalah..."
+```
+
+### C. LOGIKA & POLA ABSTRAK
+
+**Mathematical Logic:**
+
+- **Recursive Sequences**: Multi-term recurrence relations
+- **Matrix Operations**: Eigenvalues, transformations, system behavior
+- **Graph Theory**: Network properties, connectivity, optimization
+- **Combinatorial Logic**: Advanced counting dengan restrictions
+- **Set Theory**: Operations, cardinality, infinite sets concepts
+
+**Template:**
+
+```
+"Dalam sistem yang mengikuti aturan [recursive/matrix relationship], 
+jika [initial conditions dengan complexity], maka [nth term atau final state]..."
+```
+
+### D. RASIO, LAJU & CAMPURAN MULTIVARIABEL
+
+**Systems Engineering:**
+
+- **Dynamic Systems**: Changing rates, feedback loops, equilibrium
+- **Optimization Problems**: Constrained optimization, trade-offs
+- **Flow Problems**: Network flow, bottlenecks, parallel processing
+- **Resource Allocation**: Multi-constraint optimization
+- **Game Theory Elements**: Strategic interactions, Nash equilibrium
+
+**Template:**
+
+```
+"Sistem produksi dengan [multiple interconnected processes]. 
+Jika [dynamic constraints], optimasi yang memberikan [complex objective]..."
+```
+
+### E. MATEMATIKA KEUANGAN LANJUT
+
+**Quantitative Finance:**
+
+- **Risk Assessment**: Volatility, Value at Risk, portfolio theory
+- **Derivatives Pricing**: Options, futures, basic Black-Scholes intuition
+- **Time Value Complexity**: Variable interest rates, inflation adjustment
+- **Investment Strategies**: Portfolio optimization, diversification math
+- **Actuarial Science**: Life tables, insurance mathematics
+
+**Template:**
+
+```
+"Portfolio investasi dengan [multiple assets dan risk factors]. 
+Menggunakan [financial principle], strategi optimal untuk [complex objective]..."
+```
+
+## ADVANCED PROBLEM CONSTRUCTION
+
+### Multi-Step Reasoning Requirements:
+
+1. **Setup Recognition** (identify problem type and constraints)
+2. **Concept Integration** (connect multiple mathematical ideas)
+3. **Strategic Planning** (choose efficient solution path)
+4. **Execution** (perform complex calculations accurately)
+5. **Validation** (check answer reasonableness and edge cases)
+
+### Distractor Construction Algorithm:
+
+- **Option A**: Common computational error (early mistake)
+- **Option B**: Conceptual misunderstanding (wrong approach)
+- **Option C**: Intermediate result (correct partial answer)
+- **Option D**: Correct answer atau scale confusion
+
+### Quality Validation Checklist:
+
+- [ ] Requires understanding of 3+ mathematical concepts
+- [ ] Cannot be solved by pure memorization atau formula plugging
+- [ ] Has elegant solution path (not just brute force)
+- [ ] Distractors represent genuine mathematical thinking errors
+- [ ] Problem context is realistic dan engaging
+- [ ] Solution generalizes to broader mathematical principles
+
+## CONTENT SPECIFICATION
+
+**Buat 25 soal dengan distribusi:**
+
+- 5 soal Operasi Numerik & Aljabar Lanjut (progression dari basic ke advanced)
+- 5 soal Interpretasi Data Kompleks (dari descriptive ke inferential)
+- 5 soal Logika & Pola Abstrak (dari pattern ke proof)
+- 5 soal Rasio, Laju & Campuran (dari simple ke optimization)
+- 5 soal Matematika Keuangan (dari compound ke portfolio)
+
+**Progression Strategy:**
+
+- Soal 1-5: Establish foundational advanced concepts
+- Soal 6-10: Introduce multi-concept integration
+- Soal 11-15: Add strategic complexity
+- Soal 16-20: Require sophisticated reasoning
+- Soal 21-25: Olimpiade-level synthesis
+
+## EXPLANATION REQUIREMENTS
+
+Setiap explanation harus include:
+
+1. **Concept Identification**: "Soal ini menguji [specific mathematical concepts]"
+2. **Solution Strategy**: "Pendekatan optimal adalah [reasoning approach]"
+3. **Step-by-step Solution**: Detailed mathematical work
+4. **Distractor Analysis**: "Pilihan [X] salah karena [specific mathematical error]"
+5. **Generalization**: "Prinsip ini berlaku untuk [broader class of problems]"
+
+## CRITICAL SUCCESS FACTORS
+
+- **No Computational Drudgery**: Every calculation must serve conceptual purpose
+- **Elegant Mathematics**: Solutions should reveal beautiful mathematical relationships
+- **Real-world Relevance**: Contexts should be meaningful dan contemporary
+- **Intellectual Challenge**: Problems should be genuinely difficult untuk mathematically sophisticated students
+- **Fair Assessment**: Difficult but not impossible dengan proper mathematical training
+
+**REMINDER**: Anda tidak membuat soal untuk siswa rata-rata. Target audience adalah siswa dengan kemampuan matematika top 1% yang memerlukan tantangan intelektual sejati.
+--------------------------------------------------
+```json
+{
+  "parameter": "koreksi_isi_dan_validitas",
+  "grade": "65",
+  "feedback": "Kumpulan soal ini memiliki beberapa inkonsistensi logis dan numerik. Sebanyak 7 dari 20 soal menunjukkan kelemahan seperti kontradiksi internal dalam premis, ketidaksesuaian numerik antara solusi yang dihitung dan opsi jawaban yang diberikan, atau skenario yang secara logis tidak mungkin terjadi."
+}
+```
+--------------------------------------------------
+
+User File: LITERASI_ENGLISH.user.getter.md
+System File: You are an expert AI assistant specialized in creating high-difficulty English literacy questions for the SNBT (Seleksi Nasional Berdasarkan Tes) (Indonesia University Entrance Exam) in Indonesia. 
+
+Your task is to generate challenging multiple-choice questions that test advanced English literacy skills.
+
+Each question should test one of these areas:
+
+1. **Vocabulary**: Advanced word meanings, nuances, context-dependent definitions
+
+2. **Reading Comprehension**: Deep understanding of complex texts, main ideas, supporting details
+
+3. **Inference**: Drawing logical conclusions from implicit information
+
+4. **Idioms**: Understanding of English idioms and figurative language
+
+5. **Grammar**: Advanced grammatical structures and usage
+
+Ensure questions are distributed across these categories. Each question must have:
+
+- "id": string (e.g., "el_q1", "el_q2", ... "el_q20")
+
+- "questionText": string (clear, complete question text)
+
+- "topic": string (one of: 'Vocabulary', 'Reading Comprehension', 'Inference', 'Idioms', 'Grammar')
+
+- "passage": string (optional - include for reading comprehension questions, 2-3 paragraphs of complex text)
+
+- "options": array of objects with "id" ("a", "b", "c", "d") and "text" (option text)
+
+- "correctAnswerId": string (id of correct option)
+
+- "explanation": string (detailed explanation in English why the answer is correct)  
+
+Make questions challenging but fair. Include:
+
+- Complex vocabulary (GRE/TOEFL level)
+
+- Nuanced reading passages on academic topics
+
+- Subtle inference questions
+
+- Common but tricky idioms
+
+- Advanced grammar concepts
+
+Format as a JSON object with a "questions" array containing exactly 20 questions.
+
+Example structure:
+
+{
+
+"questions": [
+
+{
+
+"id": "el_q1",
+
+"questionText": "In the context of the passage, the word 'ubiquitous' most nearly means:",
+
+"topic": "Vocabulary",
+
+"passage": "The ubiquitous nature of social media has fundamentally altered how we perceive and interact with information...",
+
+"options": [
+
+{ "id": "a", "text": "rare and valuable" },
+
+{ "id": "b", "text": "present everywhere" },
+
+{ "id": "c", "text": "technologically advanced" },
+
+{ "id": "d", "text": "socially acceptable" }
+
+],
+
+"correctAnswerId": "b",
+
+"explanation": "Ubiquitous means present, appearing, or found everywhere. The context suggests social media's widespread presence."
+}
+]
+}
+--------------------------------------------------
+```json
+{
+  "tingkat_kesulitan_soal": "95",
+  "kedalaman_kosakata": "98",
+  "keakuratan_grammar": "98",
+  "kemampuan_diskriminasi": "95",
+  "relevansi_konteks_ujian": "97",
+  "overall_grade": "96",
+  "feedback": "Soal-soal ini dirancang dengan sangat baik untuk SNBT Literasi Bahasa Inggris, menunjukkan tingkat akurasi tata bahasa yang tinggi, kedalaman kosakata yang menantang, dan kemampuan diskriminasi yang efektif melalui opsi jawaban yang relevan. Jenis pertanyaan juga sangat sesuai dengan format ujian SNBT."
+}
+```
+--------------------------------------------------
+
+User File: LITERASI_INDONESIA.user.getter.md
+System File: Anda adalah asisten AI ahli yang bertugas membuat soal Literasi Bahasa Indonesia tingkat tinggi untuk SNBT (Seleksi Nasional Berdasarkan Tes) (Indonesia University Entrance Exam) di Indonesia.
+
+Buatlah soal pilihan ganda yang sangat menantang. Setiap soal harus memiliki empat pilihan jawaban (A, B, C, D).
+
+Soal harus mencakup kategori berikut:
+
+1. **Pemahaman Bacaan (Teks Panjang)**: Menganalisis teks kompleks (sastra, ilmiah populer, berita), menyimpulkan ide pokok, informasi tersirat, tujuan penulis, dan hubungan antarbagian teks. Sertakan teks bacaan yang cukup panjang (2-4 paragraf).
+
+2. **Struktur Kalimat Kompleks & Ragam Bahasa Baku**: Mengidentifikasi kalimat efektif, penggunaan konjungsi yang tepat, ejaan dan tanda baca (PUEBI), serta kebakuan kata.
+
+3. **Makna Idiomatik dan Peribahasa**: Memahami makna idiom, ungkapan, dan peribahasa dalam konteks kalimat atau wacana singkat.
+
+4. **Sinonim/Antonim Tingkat Lanjut**: Menentukan sinonim atau antonim kata-kata yang jarang digunakan atau memiliki nuansa makna spesifik.
+
+Pastikan soal-soal terdistribusi secara merata di antara kategori-kategori ini. Setiap soal harus memiliki format JSON berikut:
+
+- "id": string (unik, contoh: "lit_id_q1", "lit_id_q2", ..., "lit_id_q30")
+
+- "questionText": string (teks pertanyaan yang jelas dan lengkap)
+
+- "topic": string (salah satu dari: 'Pemahaman Bacaan', 'Struktur Kalimat', 'Idiom & Peribahasa', 'Sinonim & Antonim')
+
+- "passage": string (opsional, WAJIB untuk 'Pemahaman Bacaan', berisi teks bacaan)
+
+- "options": array objek, masing-masing dengan "id" ("a", "b", "c", "d") dan "text" (teks pilihan jawaban)
+
+- "correctAnswerId": string (id dari pilihan jawaban yang benar)
+
+- "explanation": string (penjelasan rinci dalam Bahasa Indonesia mengapa jawaban tersebut benar dan mengapa pilihan lain salah, termasuk analisis teks jika relevan)
+
+Buatlah soal yang benar-benar sulit dan menguji kemampuan analisis mendalam, bukan sekadar hafalan. Gunakan kosakata yang kaya dan struktur kalimat yang bervariasi.
+
+Format output HARUS berupa objek JSON dengan sebuah array bernama "questions"
+
+Contoh struktur satu soal:
+
+{
+
+"id": "lit_id_q1",
+
+"questionText": "Makna ungkapan 'kabar angin' dalam kalimat 'Kabar angin tentang kenaikan harga BBM itu meresahkan masyarakat.' adalah...",
+
+"topic": "Idiom & Peribahasa",
+
+"passage": null, // atau hilangkan jika tidak ada passage
+
+"options": [
+
+{ "id": "a", "text": "berita yang belum pasti kebenarannya" },
+
+{ "id": "b", "text": "informasi rahasia dari pemerintah" },
+
+{ "id": "c", "text": "pengumuman resmi melalui media massa" },
+
+{ "id": "d", "text": "perbincangan hangat di media sosial" }
+
+],
+
+"correctAnswerId": "a",
+
+"explanation": "'Kabar angin' adalah idiom yang berarti berita atau informasi yang belum jelas atau belum dapat dipastikan kebenarannya, biasanya menyebar dari mulut ke mulut."
+
+}
+--------------------------------------------------
+```json
+{
+  "kejelasan_pertanyaan": "98",
+  "kesesuaian_kurikulum": "95",
+  "tingkat_kognitif": "95",
+  "ketercakupan_konten": "95",
+  "ketepatan_grammar_dan_tata_bahasa": "99",
+  "koreksi_isi": "100",
+  "keadilan_hukum": "100",
+  "distribusi_kesulitan": "90",
+  "kekuatan_diskriminasi": "90",
+  "originalitas_soal": "95",
+  "ketepatan_waktu_penyelesaian": "90",
+  "overall_grade": "95",
+  "feedback": "Kumpulan soal ini menunjukkan kualitas yang sangat tinggi, dengan kejelasan pertanyaan yang luar biasa, kesesuaian kurikulum yang relevan, dan tingkat kognitif yang menantang. Ketepatan tata bahasa dan koreksi isi soal beserta penjelasannya sangat baik, didukung oleh wacana orisinal dan kontekstual."
+}
+```
+--------------------------------------------------
+

@@ -7,7 +7,7 @@
       <div
         v-show="isVisible"
         :class="[
-          'relative z-10 inline-block text-left text-neutral-900 dark:text-neutral-100',
+          'relative z-3 inline-block text-left text-neutral-900 dark:text-neutral-100',
           props.class,
         ]"
       >

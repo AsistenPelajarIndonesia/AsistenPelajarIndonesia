@@ -5,12 +5,11 @@
         <!-- Company Info -->
         <div class="space-y-4">
           <div class="flex items-center gap-2">
-            <img src="/logo.png" alt="Akademi Pelajar Logo" class="w-8 h-8" />
+            <img src="/logo.svg" alt="Akademi Pelajar Logo" class="w-8 h-8" />
             <h3 class="text-lg font-semibold">Akademi Pelajar</h3>
           </div>
           <p class="text-sm text-muted-foreground">
-            Platform bimbingan belajar online untuk persiapan SNBT, CPNS, OSN,
-            TOEFL, dan IELTS.
+            Platform bimbingan belajar online untuk persiapan SNBT, TOEFL, dan IELTS.
           </p>
           <div class="flex space-x-4 pt-2">
             <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
@@ -29,15 +28,6 @@
         <div class="space-y-4">
           <h3 class="text-lg font-semibold">Tautan Cepat</h3>
           <ul class="space-y-2">
-            <li>
-              <NuxtLink
-                to="/pricing"
-                class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
-              >
-                <LucideTag :size="16" class="group-hover:translate-x-1 transition-transform" />
-                Harga
-              </NuxtLink>
-            </li>
             <li>
               <NuxtLink
                 to="/terms"
@@ -70,24 +60,6 @@
               >
                 <LucideGraduationCap :size="16" class="group-hover:translate-x-1 transition-transform" />
                 SNBT
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/cpns"
-                class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
-              >
-                <LucideBriefcase :size="16" class="group-hover:translate-x-1 transition-transform" />
-                CPNS
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="/osn"
-                class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
-              >
-                <LucideTrophy :size="16" class="group-hover:translate-x-1 transition-transform" />
-                OSN
               </NuxtLink>
             </li>
             <li>
