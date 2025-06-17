@@ -12,7 +12,7 @@
         Inggrismu dan raih skor impian. Berlatih sekarang, masa depan cerah
         menantimu!
       </p>
-      <NuxtLink to="/trial/toefl"
+      <NuxtLink to="/toefl"
         ><Button>Free Test Simulation <LucideChevronsRight /> </Button
       ></NuxtLink>
     </div>
@@ -65,7 +65,7 @@ export default {
           radius: 50,
           delay: 10,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/trial/toefl/reading",
+          link: "/toefl/reading",
         },
         {
           name: "Speaking",
@@ -74,7 +74,7 @@ export default {
           radius: 75,
           delay: 30,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/trial/toefl/speaking",
+          link: "/toefl/speaking",
         },
         {
           name: "Writing",
@@ -83,7 +83,7 @@ export default {
           radius: 100,
           delay: 40,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/trial/toefl/writing",
+          link: "/toefl/writing",
         },
         {
           name: "Listening",
@@ -92,7 +92,7 @@ export default {
           radius: 125,
           delay: 80,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/trial/toefl/listening",
+          link: "/toefl/listening",
         },
       ],
       a: "<b>bold text here</b>",

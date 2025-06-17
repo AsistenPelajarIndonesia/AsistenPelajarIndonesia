@@ -11,7 +11,7 @@
         Buka dunia dengan kemampuan bahasa Inggrismu! Tunjukkan keahlianmu dan
         capai skor impian. Berlatih sekarang, dunia siap menyambutmu!
       </p>
-      <NuxtLink to="/trial/toefl"
+      <NuxtLink to="/ielts"
         ><Button>Free Test Simulation <LucideChevronsRight /> </Button
       ></NuxtLink>
     </div>
@@ -64,7 +64,7 @@ export default {
           radius: 50,
           delay: 10,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/trial/ielts/reading",
+          link: "/ielts/reading",
         },
         {
           name: "Speaking",
@@ -73,7 +73,7 @@ export default {
           radius: 75,
           delay: 30,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/trial/ielts/speaking",
+          link: "/ielts/speaking",
         },
         {
           name: "Writing",
@@ -82,7 +82,7 @@ export default {
           radius: 100,
           delay: 40,
           direction: ORBIT_DIRECTION.Clockwise,
-          link: "/trial/ielts/writing",
+          link: "/ielts/writing",
         },
         {
           name: "Listening",
@@ -91,7 +91,7 @@ export default {
           radius: 125,
           delay: 80,
           direction: ORBIT_DIRECTION.CounterClockwise,
-          link: "/trial/ielts/listening",
+          link: "/ielts/listening",
         },
       ],
       a: "<b>bold text here</b>",
