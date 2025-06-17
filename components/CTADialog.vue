@@ -22,7 +22,7 @@
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
         >
-          <NuxtLink to="/trial/osn" class="w-full">
+          <NuxtLink to="/osn" class="w-full">
             <Button
               class="w-full h-24 md:h-32 flex flex-col gap-1 md:gap-2"
               variant="outline"
@@ -31,7 +31,7 @@
               <span class="text-lg font-semibold">OSN</span>
             </Button>
           </NuxtLink>
-          <NuxtLink to="/trial/snbt" class="w-full">
+          <NuxtLink to="/snbt" class="w-full">
             <Button
               class="w-full h-24 md:h-32 flex flex-col gap-1 md:gap-2"
               variant="outline"
@@ -40,7 +40,7 @@
               <span class="text-lg font-semibold">SNBT</span>
             </Button>
           </NuxtLink>
-          <NuxtLink to="/trial/toefl" class="w-full">
+          <NuxtLink to="/toefl" class="w-full">
             <Button
               class="w-full h-24 md:h-32 flex flex-col gap-1 md:gap-2"
               variant="outline"
@@ -49,7 +49,7 @@
               <span class="text-lg font-semibold">TOEFL</span>
             </Button>
           </NuxtLink>
-          <NuxtLink to="/trial/ielts" class="w-full">
+          <NuxtLink to="/ielts" class="w-full">
             <Button
               class="w-full h-24 md:h-32 flex flex-col gap-1 md:gap-2"
               variant="outline"
@@ -58,7 +58,7 @@
               <span class="text-lg font-semibold">IELTS</span>
             </Button>
           </NuxtLink>
-          <NuxtLink to="/trial/cpns" class="w-full">
+          <NuxtLink to="/cpns" class="w-full">
             <Button
               class="w-full h-24 md:h-32 flex flex-col gap-1 md:gap-2"
               variant="outline"
