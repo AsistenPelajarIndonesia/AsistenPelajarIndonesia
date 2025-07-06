@@ -42,9 +42,12 @@
             </p>
           </CardContent>
           <CardFooter>
+            <NuxtLink :to="`/units/grammar/unit` + index">
             <Button class="w-full" @click="startUnit(index + 1, unit)">
               Start Unit
             </Button>
+          </NuxtLink>
+
           </CardFooter>
         </Card>
 
@@ -229,6 +232,8 @@ const grammarUnits = [
  * @param {number} unitNumber - The number of the unit being started.
  * @param {string} unitTitle - The title of the unit.
  */
+
+  const router = useRouter();
 function startUnit(unitNumber: number, unitTitle: string) {
   console.log(`Starting Unit ${unitNumber}: ${unitTitle}`);
   toast({
@@ -236,8 +241,6 @@ function startUnit(unitNumber: number, unitTitle: string) {
     description: `You are about to start: "${unitTitle}"`,
   });
   // Example of navigation in Nuxt 3:
-  const router = useRouter();
-  router.push(`/units/grammar/unit${unitNumber}`);
 }
 </script>
 
