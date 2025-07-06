@@ -340,13 +340,6 @@ function getScoreColor(percentage: number) {
 </template>
 
 <style scoped>
-/* Scoped styles for this page to simulate some of the UI library features if not present globally */
-.has-[:checked]:border-primary {
-  border-color: #1a73e8; /* A generic primary color */
-}
-.has-[:checked]:bg-muted {
-  background-color: #f1f5f9;
-}
 .text-primary {
   color: #1a73e8;
 }
@@ -419,6 +412,5 @@ function getScoreColor(percentage: number) {
   .text-muted-foreground { color: #a1a1aa; }
   .bg-muted { background-color: #27272a; }
   .bg-muted\/50 { background-color: rgba(39, 39, 42, 0.5); }
-  .has-[:checked]:bg-muted { background-color: #27272a; }
 }
 </style>

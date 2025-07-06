@@ -376,8 +376,4 @@ function goToNextUnit() {
 </template>
 
 <style scoped>
-/* Scoped styles for custom radio button appearance */
-.has-[:checked]:border-primary {
-  border-width: 1.5px;
-}
 </style>
