@@ -32,7 +32,7 @@ const emit = defineEmits(['back', 'next'])
     <!-- ======================================================================= -->
     <!-- TOP NAVIGATION & HEADER                                                 -->
     <!-- ======================================================================= -->
-    <header class="sticky top-0 z-30 flex h-auto flex-col gap-4 border-b bg-background px-4 py-4 sm:px-6">
+    <header class="z-30 flex h-auto flex-col gap-4 border-b bg-background px-4 py-4 sm:px-6">
       <div class="container mx-auto flex flex-col gap-4">
         <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           <!-- Main Title and Description -->
