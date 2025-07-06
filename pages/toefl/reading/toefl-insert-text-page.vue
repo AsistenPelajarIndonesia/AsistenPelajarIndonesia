@@ -13,19 +13,16 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CheckCircle, XCircle, Lightbulb } from "lucide-vue-next";
-import Groq from "groq-sdk";
-const groqApiKey = "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"; // IMPORTANT: Use environment variables
-// Replace with your actual API key
-const groq = new Groq({ apiKey: groqApiKey, dangerouslyAllowBrowser: true });
 
 interface InsertTextQuestionData {
   passageParts: string[]; // Passage split by insertion points. Expect 5 parts for 4 slots.
   sentenceToInsert: string;
-  correctSlotIndex: number; // 0-indexed, so 0 for first slot, 1 for second, etc.
+  correctSlotIndex: number; // 0-indexed
   rationale: string;
-  passageTitle?: string; // Optional title for the passage
+  passageTitle?: string;
 }
 
+// your reactive state
 const questionData = ref<InsertTextQuestionData | null>(null);
 const selectedSlot = ref<number | null>(null);
 const isLoading = ref(true);
@@ -33,69 +30,20 @@ const error = ref<string | null>(null);
 const showResult = ref(false);
 const isCorrect = ref(false);
 
-// This is a sophisticated prompt for the AI to generate high-quality content.
-const generatePrompt = () => {
-  return {
-    messages: [
-      {
-        role: "system",
-        content: `You are an expert TOEFL content generator specializing in "Insert Text" questions. Your task is to create a complete question set. The output MUST be a single JSON object. Do not include any markdown formatting (e.g., \`\`\`json) or any other text outside the JSON object.
-        The JSON object should have the following structure:
-        {
-          "passageTitle": "A concise and relevant title for the academic passage (optional).",
-          "passageParts": [
-            "Text part 1 (before the first insertion slot ▢).",
-            "Text part 2 (between the first ▢ and second ▢).",
-            "Text part 3 (between the second ▢ and third ▢).",
-            "Text part 4 (between the third ▢ and fourth ▢).",
-            "Text part 5 (after the fourth insertion slot ▢)."
-          ],
-          "sentenceToInsert": "A single, contextually relevant sentence that logically fits into one of the slots. This sentence should contain clear discourse markers or logical connectors (e.g., 'However,' 'Furthermore,' 'As a result,' 'For example,') that help determine its correct placement. It should not fit well in other slots.",
-          "correctSlotIndex": Number, // 0-indexed integer (0, 1, 2, or 3) indicating the correct slot for the sentenceToInsert. Slot 0 is after passageParts[0], Slot 1 after passageParts[1], etc.
-          "rationale": "A detailed explanation (2-3 sentences) of why the sentenceToInsert best fits in the correctSlotIndex. Explain the logical connection (e.g., cause-effect, contrast, exemplification, addition) provided by the sentenceToInsert with the surrounding text. Briefly explain why it doesn't fit as well in the other slots, referencing cohesion and coherence."
-        }
-        Ensure the passage is academic, around 700 words in total (sum of passageParts), and presents a coherent argument or narrative. The sentenceToInsert must have strong contextual clues. The distractors (other slots) should be plausible but clearly less optimal upon careful analysis.`,
-      },
-      {
-        role: "user",
-        content:
-          "Generate a TOEFL Insert Text question set. The passage should discuss the societal and ethical implications of artificial intelligence in creative industries. Ensure there are exactly 4 insertion slots (meaning 5 passageParts).",
-      },
-    ],
-    model: "llama-3.3-70b-versatile",
-    temperature: 0.75,
-    max_tokens: 4000, // Increased to accommodate longer passage and detailed JSON
-    top_p: 1,
-    stream: false,
-    response_format: { type: "json_object" },
-  };
-};
-
+// 1. define your fetch helper
 const fetchInsertTextQuestion = async () => {
   isLoading.value = true;
   error.value = null;
   showResult.value = false;
   selectedSlot.value = null;
+
   try {
-    const chatCompletion = await groq.chat.completions.create(
-      generatePrompt() as any
-    ); // Type assertion for Groq params
-    const content = chatCompletion.choices[0]?.message?.content;
-    if (content) {
-      const parsedData = JSON.parse(content) as InsertTextQuestionData;
-      if (parsedData.passageParts && parsedData.passageParts.length === 5) {
-        questionData.value = parsedData;
-      } else {
-        throw new Error(
-          "API returned an invalid number of passage parts for 4 slots."
-        );
-      }
-    } else {
-      throw new Error("No content received from API.");
-    }
-  } catch (err: any) {
-    console.error("Error fetching insert text question:", err);
-    error.value = `Failed to load question: ${err.message}. Please check API key and credits.`;
+    // replace '/api/insert-text-question' with your actual endpoint
+    questionData.value = await $fetch<InsertTextQuestionData>(
+      "https://flatlystudio.github.io/questions/TOEFL/READING_INSERT_TEXT.output.getter.json"
+    );
+  } catch (e: any) {
+    error.value = e.message || "Failed to load question";
   } finally {
     isLoading.value = false;
   }
@@ -110,11 +58,10 @@ const handleSlotSelect = (slotIndex: number) => {
 
 const passageWithSlots = computed(() => {
   if (!questionData.value) return [];
-  const parts = [];
+  const parts: Array<{ type: string; content?: string; index?: number }> = [];
   for (let i = 0; i < questionData.value.passageParts.length; i++) {
     parts.push({ type: "text", content: questionData.value.passageParts[i] });
     if (i < questionData.value.passageParts.length - 1) {
-      // Add slot after each part except the last
       parts.push({ type: "slot", index: i });
     }
   }
@@ -139,6 +86,7 @@ const getSlotClass = (slotIndex: number) => {
   return "bg-muted text-muted-foreground cursor-not-allowed opacity-70";
 };
 
+// 2. call it on mount
 onMounted(() => {
   fetchInsertTextQuestion();
 });
@@ -184,6 +132,20 @@ useHead({
           <Button @click="fetchInsertTextQuestion">Try Again</Button>
         </div>
         <div v-else-if="questionData" class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Insert this sentence:</h3>
+            <Card
+              class="bg-amber-50 border-amber-200 dark:bg-amber-900/30 dark:border-amber-700"
+            >
+              <CardContent class="p-4">
+                <p
+                  class="text-base font-medium text-amber-700 dark:text-amber-300"
+                >
+                  {{ questionData.sentenceToInsert }}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
           <div
             class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none dark:prose-invert p-4 border rounded-md bg-muted/30"
           >
@@ -209,21 +171,6 @@ useHead({
                 </Badge>
               </template>
             </p>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold mb-2">Insert this sentence:</h3>
-            <Card
-              class="bg-amber-50 border-amber-200 dark:bg-amber-900/30 dark:border-amber-700"
-            >
-              <CardContent class="p-4">
-                <p
-                  class="text-base font-medium text-amber-700 dark:text-amber-300"
-                >
-                  {{ questionData.sentenceToInsert }}
-                </p>
-              </CardContent>
-            </Card>
           </div>
 
           <div v-if="showResult">
@@ -266,15 +213,6 @@ useHead({
           </div>
         </div>
       </CardContent>
-      <CardFooter v-if="!isLoading && !error">
-        <Button
-          variant="outline"
-          @click="fetchInsertTextQuestion"
-          :disabled="isLoading"
-        >
-          Load New Question
-        </Button>
-      </CardFooter>
     </Card>
   </div>
 </template>

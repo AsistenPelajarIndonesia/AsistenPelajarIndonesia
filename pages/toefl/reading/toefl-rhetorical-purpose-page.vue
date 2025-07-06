@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import Groq from 'groq-sdk'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -11,16 +10,13 @@ import { AlertCircle, CheckCircle2, Info } from 'lucide-vue-next'
 
 interface RhetoricalPurposeData {
   passageTitle: string
-  passageText: string // Full passage text
-  highlightedSentence: string // The specific sentence in question
-  paragraphNumberContainingSentence: number // To help locate the sentence
-  questionText: string // e.g., "Why does the author include the sentence..."
-  options: {
-    id: string // e.g., "A", "B", "C", "D"
-    text: string
-  }[]
+  passageText: string
+  highlightedSentence: string
+  paragraphNumberContainingSentence: number
+  questionText: string
+  options: { id: string; text: string }[]
   correctOptionId: string
-  explanationOfIntent: string // Detailed explanation of the author's purpose
+  explanationOfIntent: string
 }
 
 interface Result {
@@ -29,60 +25,29 @@ interface Result {
   correctOptionId: string
   explanation: string
 }
-const groqApiKey = "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"; 
 
-const groq = new Groq({ apiKey: groqApiKey, dangerouslyAllowBrowser: true })
+const isLoading     = ref(true)
+const apiError      = ref<string | null>(null)
+const questionData  = ref<RhetoricalPurposeData | null>(null)
+const userAnswer    = ref<string | null>(null)
+const result        = ref<Result | null>(null)
+const showResults   = ref(false)
 
-const isLoading = ref(true)
-const apiError = ref<string | null>(null)
-const questionData = ref<RhetoricalPurposeData | null>(null)
-const userAnswer = ref<string | null>(null) // Stores the ID of the selected option
-const result = ref<Result | null>(null)
-const showResults = ref(false)
-
-const exampleUserPrompt = `Generate a TOEFL Reading 'Rhetorical Purpose' question. The passage should be academic, around 700-800 words, on a topic like 'The Impact of Ancient Roman Aqueducts on Urban Development'. Identify a specific, meaningful sentence within a paragraph. The question should be: 'In paragraph X, why does the author include the sentence: "[The chosen sentence]"?'. Provide four distinct answer options (A, B, C, D), one correct, and three plausible distractors. Also, provide a detailed 'explanationOfIntent' for the correct answer. Ensure the highlighted sentence is clearly identifiable. Output in JSON format: { "passageTitle": "String", "passageText": "String (full text, 700-800 words)", "highlightedSentence": "String (the exact sentence)", "paragraphNumberContainingSentence": Number, "questionText": "String (formatted question)", "options": [ { "id": "A", "text": "String" }, ... ], "correctOptionId": "String (e.g., 'C')", "explanationOfIntent": "String (detailed explanation)" }`
-
+// 1) fetch helper
 async function fetchQuestionMaterial() {
-  isLoading.value = true
-  apiError.value = null
-  showResults.value = false
-  userAnswer.value = null
-  result.value = null
+  // reset all state
+  isLoading.value    = true
+  apiError.value     = null
   questionData.value = null
+  userAnswer.value   = null
+  result.value       = null
+  showResults.value  = false
 
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an AI assistant specializing in TOEFL reading test material generation. Create a Rhetorical Purpose question set. The passage must be academic, 700-800 words. The question asks about the author\'s purpose for a specific sentence. Provide 4 options and a detailed explanation for the correct answer. Return JSON.'
-        },
-        {
-          role: 'user',
-          content: exampleUserPrompt,
-        }
-      ],
-      model: 'llama-3.3-70b-versatile',
-      temperature: 0.6,
-      top_p: 1,
-      stream: false,
-      response_format: { type: 'json_object' },
-    })
-
-    const content = chatCompletion.choices[0]?.message?.content
-    if (content) {
-      const parsedContent = JSON.parse(content) as RhetoricalPurposeData
-      // Basic validation
-      if (!parsedContent.passageText || !parsedContent.highlightedSentence || parsedContent.options?.length !== 4 || !parsedContent.correctOptionId || !parsedContent.explanationOfIntent) {
-        throw new Error('Invalid data structure received from API.')
-      }
-      questionData.value = parsedContent
-    } else {
-      throw new Error('No content received from API.')
-    }
-  } catch (e: any) {
-    console.error('Failed to fetch TOEFL material:', e)
-    apiError.value = e.message || 'An unknown error occurred while fetching data.'
+    // replace with your real endpoint
+    questionData.value = await $fetch<RhetoricalPurposeData>('https://flatlystudio.github.io/questions/TOEFL/READING_RHETORICAL_PURPOSE.output.getter.json')
+  } catch (err: any) {
+    apiError.value = err.message || 'Failed to load question'
   } finally {
     isLoading.value = false
   }
@@ -91,9 +56,9 @@ async function fetchQuestionMaterial() {
 function submitAnswer() {
   if (!userAnswer.value || !questionData.value) return
 
-  const isCorrect = userAnswer.value === questionData.value.correctOptionId
+  const correct = userAnswer.value === questionData.value.correctOptionId
   result.value = {
-    isCorrect,
+    isCorrect: correct,
     selectedOptionId: userAnswer.value,
     correctOptionId: questionData.value.correctOptionId,
     explanation: questionData.value.explanationOfIntent,
@@ -104,8 +69,10 @@ function submitAnswer() {
 const passageWithHighlight = computed(() => {
   if (!questionData.value) return ''
   const { passageText, highlightedSentence } = questionData.value
-  // Simple highlight, can be improved with more robust paragraph targeting
-  return passageText.replace(highlightedSentence, `<mark class="bg-yellow-200 dark:bg-yellow-600 px-1 rounded">${highlightedSentence}</mark>`)
+  return "&nbsp;&nbsp;&nbsp;&nbsp;" + passageText.replace(
+    highlightedSentence,
+    `<span class="bg-red-900 text-white px-1 rounded">${highlightedSentence}</span>`
+  ).replaceAll("\n\n", "\n\n&nbsp;&nbsp;&nbsp;&nbsp;")
 })
 
 onMounted(() => {
@@ -120,8 +87,9 @@ useHead({
 })
 </script>
 
+
 <template>
-  <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl bg-slate-50 dark:bg-slate-900 min-h-screen">
+  <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl min-h-screen">
     <Card class="mb-6 shadow-xl border-t-4 border-primary">
       <CardHeader>
         <CardTitle class="text-2xl sm:text-3xl font-bold text-center text-primary">

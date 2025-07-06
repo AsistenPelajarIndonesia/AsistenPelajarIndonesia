@@ -8,9 +8,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { CheckCircle, XCircle, BookOpen, HelpCircle } from 'lucide-vue-next'
-import Groq from 'groq-sdk'
-const groqApiKey = "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";
-const groq = new Groq({ apiKey: groqApiKey, dangerouslyAllowBrowser: true })
 
 interface Option {
   id: string // e.g., "A", "B", "C", "D"
@@ -31,83 +28,14 @@ interface ReadingSet {
   questions: Question[] // Array of factual information questions
 }
 
-const readingSet = ref<ReadingSet | null>(null)
 const userAnswers = reactive<Record<string, { selectedOptionId: string | null; showResult: boolean; isCorrect: boolean }>>({})
 const isLoading = ref(true)
-const error = ref<string | null>(null)
 
-const initializeUserAnswers = (questions: Question[]) => {
-  questions.forEach(q => {
-    userAnswers[q.id] = {
-      selectedOptionId: null,
-      showResult: false,
-      isCorrect: false
-    }
-  })
-}
 
-const fetchFactualInformationSet = async () => {
-  isLoading.value = true
-  error.value = null
-  try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: 'system',
-          content: `You are an expert TOEFL content generator specializing in "Factual Information" questions for the Reading section. Your task is to create a complete reading set: a passage and multiple related questions. The output MUST be a single JSON object. Do not include any markdown formatting (e.g., \`\`\`json) or any other text outside the JSON object.
-          The JSON object should have the following structure:
-          {
-            "passageTitle": "A compelling and academic title for the passage.",
-            "passageText": "A single, coherent academic passage of at least 700 words. The passage should be dense with factual information suitable for TOEFL-level questions. Topics can include science, history, art, archaeology, biology, etc. Ensure the language is sophisticated and the content is engaging.",
-            "questions": [
-              {
-                "id": "q1", // Unique identifier for the question
-                "questionText": "A factual information question based directly on information stated in the passage. It should ask about specific details, facts, definitions, or examples mentioned. Avoid inference.",
-                "options": [
-                  { "id": "A", "text": "A plausible distractor, possibly misstating a fact or presenting information out of context." },
-                  { "id": "B", "text": "The correct answer, accurately reflecting information explicitly stated in the passage." },
-                  { "id": "C", "text": "Another plausible distractor." },
-                  { "id": "D", "text": "A third plausible distractor, perhaps irrelevant or contradictory to the passage." }
-                ],
-                "correctOptionId": "The ID of the correct option (e.g., 'B').",
-                "explanation": "A brief explanation (1-2 sentences) pinpointing where the correct information can be found in the passage or why the chosen answer is correct according to the text."
-              }
-              // Include at least 3-5 such questions related to different parts of the passage.
-            ]
-          }
-          Ensure all questions are strictly factual and can be answered by locating information within the provided passage. The distractors should be challenging but clearly incorrect based on the passage text. The passage itself should be well-structured with clear paragraphs.`
-        },
-        {
-          role: 'user',
-          content: 'Generate a TOEFL Factual Information reading set. The passage should be about the ecological impact of deep-sea mining, at least 700 words. Create 4 distinct factual information questions for this passage, each with four options and a brief explanation for the correct answer.'
-        }
-      ],
-      model: "llama-3.3-70b-versatile",
-      temperature: 0.7,
-      max_tokens: 4000, // Sufficient for a long passage and multiple questions
-      top_p: 1,
-      stream: false,
-      response_format: { type: "json_object" },
-    })
-    const content = chatCompletion.choices[0]?.message?.content
-    if (content) {
-      const parsedData = JSON.parse(content) as ReadingSet
-      if (parsedData.questions && parsedData.questions.length > 0) {
-        readingSet.value = parsedData
-        initializeUserAnswers(parsedData.questions)
-      } else {
-        throw new Error('API did not return any questions.')
-      }
-    } else {
-      throw new Error('No content received from API.')
-    }
-  } catch (err: any) {
-    console.error('Error fetching reading set:', err)
-    error.value = `Failed to load reading material: ${err.message}. Please check API key and credits.`
-  } finally {
-    isLoading.value = false
-  }
-}
+const readingSet = ref<ReadingSet | null>(null)
+const error        = ref<Error | null>(null)
+
+
 
 const handleSubmit = (questionId: string) => {
   if (!readingSet.value || !userAnswers[questionId] || userAnswers[questionId].selectedOptionId === null) return
@@ -131,8 +59,26 @@ const getAlertVariant = (questionId: string) => {
   return answerState.isCorrect ? 'default' : 'destructive'
 }
 
-onMounted(() => {
-  fetchFactualInformationSet()
+const initializeUserAnswers = (questions: Question[]) => {
+  questions.forEach(q => {
+    userAnswers[q.id] = {
+      selectedOptionId: null,
+      showResult: false,
+      isCorrect: false
+    }
+  })
+}
+onMounted(async () => {
+  try {
+    // fetch and auto‑parse JSON
+    readingSet.value = await $fetch<ReadingSet>('https://flatlystudio.github.io/questions/TOEFL/READING_FACTUAL_INFORMATION.output.getter.json')
+    initializeUserAnswers(readingSet.value.questions)
+    isLoading.value = false
+  } catch (err) {
+    error.value = err as Error
+  } finally {
+    loading.value = false
+  }
 })
 
 useHead({

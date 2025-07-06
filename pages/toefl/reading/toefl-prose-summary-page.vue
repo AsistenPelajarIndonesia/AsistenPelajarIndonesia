@@ -7,169 +7,118 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { CheckCircle, XCircle, ListChecks, BookOpen } from 'lucide-vue-next'
-import Groq from 'groq-sdk'
-const groqApiKey = "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";
- // Replace with your actual API key
-const groq = new Groq({ apiKey: groqApiKey, dangerouslyAllowBrowser: true })
 
 interface SummaryOption {
-  id: string // e.g., "s1", "s2"
+  id: string
   text: string
-  isCorrectMainIdea: boolean // True if this statement is one of the 3 main summary points
+  isCorrectMainIdea: boolean
 }
 
 interface ProseSummaryData {
   passageTitle: string
   passageText: string
-  summaryOptions: SummaryOption[] // Exactly 6 options
-  overallRationale: string // Explains why the 3 correct options form the best summary
+  summaryOptions: SummaryOption[]
+  overallRationale: string
 }
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array]; // Create a shallow copy
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-const summaryData = ref<ProseSummaryData | null>(null)
-const selectedOptions = reactive<Record<string, boolean>>({})
-const isLoading = ref(true)
-const error = ref<string | null>(null)
-const showResult = ref(false)
-const submissionResult = ref<{
-  correctlySelectedCount: number;
-  incorrectlySelectedCount: number;
-  missedCorrectCount: number;
-  isPerfect: boolean;
+
+// reactive state
+const summaryData        = ref<ProseSummaryData | null>(null)
+const selectedOptions    = reactive<Record<string, boolean>>({})
+const isLoading          = ref(true)
+const error              = ref<string | null>(null)
+const showResult         = ref(false)
+const submissionResult   = ref<{
+  correctlySelectedCount: number
+  incorrectlySelectedCount: number
+  missedCorrectCount: number
+  isPerfect: boolean
 } | null>(null)
 
-const numberOfSelected = computed(() => Object.values(selectedOptions).filter(Boolean).length)
-const canSubmit = computed(() => numberOfSelected.value === 3 && !showResult.value)
+// helpers
+const numberOfSelected = computed(() =>
+  Object.values(selectedOptions).filter(Boolean).length
+)
+const canSubmit = computed(() =>
+  numberOfSelected.value === 3 && !showResult.value
+)
 
-const fetchProseSummaryQuestion = async () => {
-  isLoading.value = true
-  error.value = null
-  showResult.value = false
+// 1) your new fetch helper
+async function fetchProseSummaryQuestion() {
+  // reset everything
+  error.value            = null
+  summaryData.value      = null
+  Object.keys(selectedOptions).forEach(k => delete selectedOptions[k])
+  showResult.value       = false
   submissionResult.value = null
-  Object.keys(selectedOptions).forEach(key => delete selectedOptions[key]) // Reset selections
 
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: 'system',
-          content: `You are an expert TOEFL content generator specializing in "Prose Summary" questions. Your task is to create a complete question set. The output MUST be a single JSON object. Do not include any markdown formatting (e.g., \`\`\`json) or any other text outside the JSON object.
-          The JSON object should have the following structure:
-          {
-            "passageTitle": "An academic and engaging title for the passage.",
-            "passageText": "A single, coherent academic passage of at least 700 words. The passage should present a main topic with several key supporting ideas. Suitable topics include scientific discoveries, historical analyses, artistic movements, sociological trends, etc.",
-            "summaryOptions": [
-              // Exactly 6 options. 3 MUST be correct main ideas that accurately summarize key points of the passage. 3 MUST be incorrect (e.g., too specific, inaccurate, not mentioned, contradictory, or a minor detail presented as a main idea).
-              { "id": "s1", "text": "A statement representing a correct main idea.", "isCorrectMainIdea": true },
-              { "id": "s2", "text": "Another statement representing a correct main idea.", "isCorrectMainIdea": true },
-              { "id": "s3", "text": "A third statement representing a correct main idea.", "isCorrectMainIdea": true },
-              { "id": "s4", "text": "An incorrect statement (e.g., a minor detail).", "isCorrectMainIdea": false },
-              { "id": "s5", "text": "Another incorrect statement (e.g., inaccurate information).", "isCorrectMainIdea": false },
-              { "id": "s6", "text": "A third incorrect statement (e.g., overly broad or not supported).", "isCorrectMainIdea": false }
-            ],
-            "overallRationale": "A concise explanation (2-4 sentences) detailing why the three correct statements, when combined, form the best summary of the passage. It should highlight how these points capture the essence and main arguments of the text."
-          }
-          Ensure the passage is complex enough to warrant a summary. The correct summary options should truly represent major points, not just any true statement. Incorrect options should be plausible distractors.`
-        },
-        {
-          role: 'user',
-          content: 'Generate a TOEFL Prose Summary question set. The passage should be about the cognitive benefits of bilingualism, at least 700 words. Provide 6 summary options (3 correct, 3 incorrect) and an overall rationale.'
-        }
-      ],
-      model: "llama-3.3-70b-versatile",
-      temperature: 0.7,
-      top_p: 1,
-      stream: false,
-      response_format: { type: "json_object" },
-    })
-    const content = chatCompletion.choices[0]?.message?.content
-    if (content) {
-      const parsedData = JSON.parse(content) as ProseSummaryData
-      if (parsedData.summaryOptions && parsedData.summaryOptions.length === 6) {
-        summaryData.value = parsedData
-        parsedData.summaryOptions.forEach(opt => selectedOptions[opt.id] = false)
-        summaryData.value.summaryOptions = shuffleArray(summaryData.value.summaryOptions)
-      } else {
-        throw new Error('API did not return exactly 6 summary options.')
-      }
-    } else {
-      throw new Error('No content received from API.')
-    }
+    // adjust endpoint path as needed
+    summaryData.value = await $fetch<ProseSummaryData>('https://flatlystudio.github.io/questions/TOEFL/READING_PROSE_SUMMARY.output.getter.json')
+    // shuffle options so they appear in random order:
+    summaryData.value.summaryOptions = shuffleArray(summaryData.value.summaryOptions)
+    isLoading.value   = false
+
   } catch (err: any) {
-    console.error('Error fetching prose summary question:', err)
-    error.value = `Failed to load question: ${err.message}. Check API key and credits.`
+    error.value = err.message || 'Failed to load question set'
   } finally {
     isLoading.value = false
   }
 }
 
-const handleCheckboxChange = (optionId: string, checked: boolean) => {
-  if (showResult.value) return;
-  if (checked && numberOfSelected.value >= 3) {
-    // Prevent selecting more than 3, by not updating the model if trying to check a 4th
-    // This requires the checkbox component to respect the model's current state
-    // For Shadcn/vue Checkbox, we might need to force re-render or handle its internal state if it doesn't auto-revert
-    // A simple way is to just not update selectedOptions[optionId] to true here.
-    // However, the UI might still show it as checked momentarily. A better UX is to disable other checkboxes.
-    return; 
-  }
+// existing handlers
+function handleCheckboxChange(optionId: string, checked: boolean) {
+  if (showResult.value) return
+  if (checked && numberOfSelected.value >= 3) return
   selectedOptions[optionId] = checked
 }
 
-const handleSubmit = () => {
+function handleSubmit() {
   if (!canSubmit.value || !summaryData.value) return
+  let correctly = 0, incorrectly = 0
+  const correctIds = summaryData.value.summaryOptions
+    .filter(o => o.isCorrectMainIdea)
+    .map(o => o.id)
 
-  let correctlySelected = 0
-  let incorrectlySelected = 0
-  const correctOptionIds = summaryData.value.summaryOptions.filter(opt => opt.isCorrectMainIdea).map(opt => opt.id)
-  
   summaryData.value.summaryOptions.forEach(opt => {
-    if (selectedOptions[opt.id]) { // If the user selected this option
-      if (opt.isCorrectMainIdea) {
-        correctlySelected++
-      } else {
-        incorrectlySelected++
-      }
+    if (selectedOptions[opt.id]) {
+      opt.isCorrectMainIdea ? correctly++ : incorrectly++
     }
   })
 
-  const missedCorrect = 3 - correctlySelected
+  const missed = correctIds.length - correctly
   submissionResult.value = {
-    correctlySelectedCount: correctlySelected,
-    incorrectlySelectedCount: incorrectlySelected,
-    missedCorrectCount: missedCorrect,
-    isPerfect: correctlySelected === 3 && incorrectlySelected === 0
+    correctlySelectedCount: correctly,
+    incorrectlySelectedCount: incorrectly,
+    missedCorrectCount: missed,
+    isPerfect: correctly === correctIds.length && incorrectly === 0
   }
   showResult.value = true
 }
 
-const getOptionFeedbackClass = (option: SummaryOption) => {
-  if (!showResult.value) return ''
-  if (selectedOptions[option.id]) { // User selected this
-    return option.isCorrectMainIdea ? 'bg-green-100 dark:bg-green-900/30 border-green-400' : 'bg-red-100 dark:bg-red-900/30 border-red-400'
-  }
-  // User did not select this, but it was correct
-  if (option.isCorrectMainIdea) return 'bg-blue-100 dark:bg-blue-900/30 border-blue-400 animate-pulse'
-  return 'opacity-70'
-}
-
+// lifecycle
 onMounted(() => {
   fetchProseSummaryQuestion()
 })
 
+// SEO
 useHead({
   title: 'TOEFL Prose Summary Practice',
   meta: [
-    { name: 'description', content: 'Practice TOEFL prose summary questions. Select the three main ideas from the passage.' }
+    { name: 'description', content: 'Select the three main ideas from the passage.' }
   ]
 })
+
+// shuffle utility
+function shuffleArray<T>(array: T[]): T[] {
+  const a = [...array]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
 </script>
+
 
 <template>
   <div class="container mx-auto p-4 max-w-5xl">
@@ -203,7 +152,7 @@ useHead({
             <h3 class="text-xl font-semibold mb-3 text-primary">Reading Passage</h3>
             <ScrollArea class="h-[350px] w-full rounded-md border p-4 bg-muted/30 prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none">
               <p v-for="(paragraph, index) in summaryData.passageText.split('\n\n')" :key="index" class="mb-4 last:mb-0">
-                {{ paragraph }}
+                &nbsp;&nbsp;&nbsp;&nbsp;{{ paragraph }}
               </p>
             </ScrollArea>
           </div>
@@ -216,7 +165,7 @@ useHead({
               <div
                 v-for="option in summaryData.summaryOptions"
                 :key="option.id"
-                :class="['flex items-start space-x-3 p-3 border rounded-md transition-all', getOptionFeedbackClass(option)]"
+                :class="['flex items-start space-x-3 p-3 border rounded-md transition-all']"
               >
                 <Checkbox 
                   :id="option.id" 
@@ -268,11 +217,6 @@ useHead({
           </div>
         </div>
       </CardContent>
-      <CardFooter v-if="!isLoading && !error">
-        <Button variant="outline" @click="fetchProseSummaryQuestion" :disabled="isLoading">
-          Load New Question Set
-        </Button>
-      </CardFooter>
     </Card>
   </div>
 </template>
